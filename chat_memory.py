@@ -37,13 +37,15 @@ class ChatMemory:
             self.db.execute("BEGIN IMMEDIATE")
             yield self.db
 
-    def claim(self, req, provider):
+    def claim(self, req, provider, files, question):
         rid = str(req.request_id)
         cid = str(req.conversation_id or uuid4())
         lease = uuid4().hex
         connection = json.dumps([provider.profile, provider.base, provider.model], ensure_ascii=False)
-        signature = sha256(json.dumps([req.role, str(req.conversation_id), req.message, str(req.handoff_from)],
-                                      ensure_ascii=False).encode()).hexdigest()
+        identity = [req.role, str(req.conversation_id), req.message, str(req.handoff_from)]
+        if files.identity:
+            identity.append(files.identity)
+        signature = sha256(json.dumps(identity, ensure_ascii=False).encode()).hexdigest()
         with self.transaction() as db:
             cached = db.execute("SELECT signature, receipt FROM agent_turns WHERE request_id=?", (rid,)).fetchone()
             if cached:
@@ -55,7 +57,7 @@ class ChatMemory:
             if req.conversation_id and (not history or history[0]["role"] != req.role or history[0]["connection"] != connection):
                 raise HTTPException(410, "当前模型与岗位下找不到此会话，请新开一轮。")
             handoff = None
-            text = req.message
+            text = question
             if req.handoff_from:
                 sent = db.execute("SELECT role,connection,receipt FROM agent_turns WHERE request_id=?",
                                   (str(req.handoff_from),)).fetchone()
@@ -67,6 +69,7 @@ class ChatMemory:
                            "source_model":previous["model"], "source_generated_at":previous["generated_at"]}
                 text += "\n\n任课教师明确转交的上一岗位回复（可核查的意见，仅供参考）：\n" + json.dumps(
                     {"sender":NAMES[sent["role"]], "reply":previous["reply"][:6000]}, ensure_ascii=False)
+            text += files.memory_text()
             db.execute("DELETE FROM agent_pending WHERE until <= ?", (time.time(),))
             try:
                 db.execute("INSERT INTO agent_pending VALUES(?,?,?,?)", (rid,cid,lease,time.time()+600))
@@ -78,7 +81,7 @@ class ChatMemory:
                              {"role":"assistant","content":json.loads(row["receipt"])["reply"][:6000]}])
         messages.append({"role":"user","content":text})
         return dict(rid=rid,cid=cid,seq=history[0]["seq"]+1 if history else 1,lease=lease,
-                    signature=signature,connection=connection,history=messages,input_text=text,handoff=handoff)
+                    signature=signature,connection=connection,history=messages,input_text=text,question=question,handoff=handoff)
 
     def finish(self, claim, req, result):
         with self.transaction() as db:
@@ -88,7 +91,7 @@ class ChatMemory:
                 raise HTTPException(409, "请求已超时，请查看该会话再重试。")
             db.execute("INSERT INTO agent_turns VALUES(?,?,?,?,?,?,?,?,?)", (
                 claim["rid"],claim["cid"],claim["seq"],req.role,claim["connection"],claim["signature"],
-                req.message,claim["input_text"],json.dumps(result, ensure_ascii=False)))
+                claim["question"],claim["input_text"],json.dumps(result, ensure_ascii=False)))
 
     def abandon(self, claim):
         with self.transaction() as db:

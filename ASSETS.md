@@ -15,3 +15,6 @@
 ### 字体与第三方工具
 
 书页重排和角色对照板排版使用 Noto Sans SC Regular、Noto Serif SC Bold。两款字体的项目许可文件均标注 Google Inc. 和 SIL Open Font License 1.1。OFL 管理字体软件，排入书页、校样或视频的字样不会令整件作品自动采用 OFL。发行目录仅附许可原文，重排时由使用者自行提供字体文件。Blender、Pillow 和 FFmpeg 由重建者在本机提供。[Noto Sans SC 许可](third-party-notices/NotoSansSC-LICENSE.txt) · [Noto Serif SC 许可](third-party-notices/NotoSerifSC-LICENSE.txt)
+
+浏览器本地解析 Markdown 使用 markdown-it 及其依赖。[版本与第三方许可证](third-party-notices/markdown-it/README.md)
+教研回复的公式由 KaTeX 0.19.1 在本机转换为浏览器原生 MathML。[KaTeX 许可](third-party-notices/KaTeX-LICENSE.txt)

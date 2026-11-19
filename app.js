@@ -25,8 +25,18 @@ function stopModel(){store.modelHandle?.dispose();store.modelHandle=null;}
 const deskCanvas=document.createElement('canvas');deskCanvas.className='live-figure';deskCanvas.setAttribute('aria-hidden','true');
 function drawFigure(target,id){
  stopModel();if(!target||location.protocol==='file:')return;
+ if(target.closest('.atelier'))deskCanvas.tabIndex=-1;
+ else deskCanvas.removeAttribute('tabindex');
  target.append(deskCanvas);deskCanvas.dataset.render='loading';
- const ready=enabled=>{target.classList.toggle('has-mesh',enabled);deskCanvas.dataset.render=enabled?'webgl':'image';work.querySelectorAll('[data-turn-work]').forEach(b=>b.disabled=!enabled)};
+ const turns=work.querySelector('.turn-controls');
+ const ready=enabled=>{
+   target.classList.toggle('has-mesh',enabled);
+   deskCanvas.dataset.render=enabled?'webgl':'image';
+   if(turns){
+     turns.hidden=!enabled;
+     turns.querySelectorAll('button').forEach(b=>b.disabled=!enabled);
+   }
+ };
  store.modelHandle=window.YincaiViewer.mount(deskCanvas,{src:'models/'+id+'.glb',onReady:()=>ready(true),onError:()=>ready(false)});
 }
 function baseNav(view){document.querySelectorAll('#main-nav button').forEach(b=>{if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});}
@@ -71,11 +81,34 @@ function route(path,{top=true,push=true}={}){
 function openModel(id){route('cast/'+id);}
 const transitions=['作答记录 → 错因诊断','诊断依据 → 学科校验','校验结论 → 教学策略','教学策略 → 讲解初稿','初稿泄露答案 → 退回制作人','退回意见 → 讲解修订稿','修订稿 → 核查通过','已复核材料 → 教师决定'];
 function docket(){
- const n=store.step;const next=n<8?agents[roles[n]][1]:'任课教师';
- const item=['错因记录','校验签','教学策略','讲解初稿','退回批签','讲解修订稿','复核单','教师建议'];
- return `<button class="docket" draggable="true" data-pass title="点选或拖给${next}" aria-label="${item[n-1]}，交给${next}"><span>${item[n-1]} ○</span><strong>交给${next}　→</strong></button>`;
+ const n=store.step;
+ const next=n<8?agents[roles[n]][1]:'任课教师';
+ const items=['错因记录','校验签','教学策略','讲解初稿','退回批签','讲解修订稿','复核单','教师建议'];
+ return `<div class="handoff-action">
+   <span class="handoff-note">○ ${items[n-1]}</span>
+   <button type="button" class="docket" draggable="true" data-pass aria-label="${items[n-1]}，交给${next}，也可拖至接收岗位">交给${next}<span aria-hidden="true">→</span></button>
+ </div>`;
 }
-function stage(){const role=roles[store.step-1];return `<div class="atelier${store.flat?' flat':''}"><div class="stage-surface" aria-hidden="true"><i></i><i></i></div><div class="ensemble" aria-label="六个智能体的协作位置">${agents.map((a,i)=>`<button class="figure actor-${i}" data-actor="${a[0]}" aria-pressed="${i===role}" title="查看${a[1]}经手的步骤"><span class="figure-art"><img src="${modelImage(a[0])}" alt="${a[1]}的Q版全身形象" draggable="false"></span><span class="figure-name">${a[1]}</span></button>`).join('')}</div>${docket()}<div class="stage-caption"><span><i></i> ${agents[role][1]}经手</span>${!store.flat?'<button data-turn-work="-25" disabled aria-label="向左旋转当值智能体">↶</button><button data-turn-work="25" disabled aria-label="向右旋转当值智能体">↷</button>':''}<button data-view="chat/${agents[role][0]}">问这位智能体　↗</button><button data-open-model="${agents[role][0]}">看形象</button></div></div>`;}
+function stage(){
+ const active=roles[store.step-1];
+ const [roleId,roleName]=agents[active];
+ const seats=agents.map(([id,name],i)=>`<button type="button" class="figure" data-actor="${id}" aria-pressed="${i===active}" aria-label="${name}，查看经手步骤">
+   <span class="figure-art"><img src="${store.flat?avatar(id):modelImage(id)}" alt="" draggable="false"></span>
+   <span class="figure-name">${name}</span>
+ </button>`).join('');
+ const rotation=store.flat?'':`<div class="turn-controls" role="group" aria-label="旋转${roleName}的形象" hidden>
+   <button type="button" data-turn-work="-25" disabled aria-label="向左旋转${roleName}">左转</button>
+   <button type="button" data-turn-work="25" disabled aria-label="向右旋转${roleName}">右转</button>
+ </div>`;
+ return `<section class="atelier${store.flat?' flat':''}" aria-label="圆桌与岗位交接">
+   <div class="table-scene"><div class="ensemble" role="group" aria-label="六个协作岗位">${seats}</div></div>
+   <div class="table-toolbar">
+     <div class="stage-caption"><div class="current-role"><span>当前岗位</span><strong>${roleName}</strong></div>
+       <div class="role-actions"><button type="button" data-view="chat/${roleId}" aria-label="与${roleName}对话">与该岗位对话</button><button type="button" data-open-model="${roleId}">查看形象</button>${rotation}</div>
+     </div>${docket()}
+   </div>
+ </section>`;
+}
 function track(){return `<nav class="track" aria-label="八步真实缓存">${names.map((label,i)=>`<button data-step="${i+1}" aria-pressed="${store.step===i+1}"><small>${num(i+1)}</small><span>${label}</span></button>`).join('')}</nav>`}
 function manuscripts(){const revised=store.mss===6,r=rec(store.mss),cause=rec(revised?7:5),leak='正确答案是13。'; const current=store.step;
  return `<article class="manuscript" aria-label="同段版本审阅"><div class="folio-heading"><div><span class="eyebrow">教案批注 ○</span><h2>${e(r.title)}</h2></div><div class="switch-pair" aria-label="教案版本"><button data-variant="4" aria-pressed="${!revised}">初稿</button><button data-variant="6" aria-pressed="${revised}">修订稿</button></div></div><div class="margin-grid"><section class="annotated"><h3>第 2 步 · 代入检验 <small>○ ${num(store.mss)} 制作人</small></h3><p>${e(r.steps[1].replace(/^2\.\s*代入检验[：:]/,'' )).replace(leak,`<mark>${leak}</mark>`)}</p>${revised?`<div class="counter"><del>${leak}</del> <small>演示用反例 · 04 初稿原句</small></div>`:'<div class="counter"><small>演示用反例 · 初稿直接泄露答案</small></div>'}</section><aside class="proof"><span class="proof-index">${revised?'②':'①'}</span><div><h3>${revised?'07 复核通过':'05 核查退回'}　○ <small>${sec(revised?7:5)} 秒</small></h3><p>${e(cause.reason)}</p></div></aside></div><div class="folio-acts"><button class="ink-link" data-variant="${revised?4:6}">${revised?'对照被退回的原句':'对照修订后的同一句'}　⇄</button><button class="ink-link" data-step="${current===7?8:revised?7:6}">${current===7?'查看交付':revised?'进入复核':'移交制作人'}　→</button></div><details class="transcript"><summary>教案全文与旁白　○</summary><div><h3>教学步骤 ○</h3>${r.steps.map(t=>`<p>${e(t).replace(leak,'<mark>'+leak+'</mark>')}</p>`).join('')}<h3>语音旁白 ○ ${!revised?'· 含演示用反例':''}</h3><p>${e(r.voiceover).replace('正确答案是13哦。','<mark>正确答案是13哦。</mark>')}</p><h3>摘要与说明 ○</h3><p>${e(r.summary)}</p><p>${e(r.student_safe_diagnosis)}</p><h3>图示计划 ○</h3>${r.visual_plan.map(t=>`<p>${e(t)}</p>`).join('')}<h3>迁移练习 ○</h3><p>${e(r.migration_question)}</p></div></details></article>`;

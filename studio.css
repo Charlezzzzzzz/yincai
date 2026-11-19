@@ -35,26 +35,74 @@ body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-ou
 body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits) button { border-radius: 2px; }
 body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits) button { min-height: 40px; }
 
-/* Roundtable: shallow stage above one bound lesson record */
-body[data-view="cockpit"] .atelier:not(.flat) { height: clamp(288px, 25vw, 370px); }
-body[data-view="cockpit"] .stage-surface::before {
-  background: radial-gradient(ellipse at 50% 0, #eef0e7, transparent 71%), linear-gradient(#dfe5d8, #bfcbbd);
-  border-color: #929f92; box-shadow: 0 6px #a3afa0, 0 7px #738374, 0 15px 14px -11px #263f3a65;
+/* Six seats share one quiet table edge. All controls follow the scene in document flow. */
+.atelier { margin: 4px 0 12px; }
+.table-scene { position: relative; isolation: isolate; padding: 0 3% 17px; }
+.table-scene::before {
+  content: ''; position: absolute; z-index: -1; inset-inline: 1%; bottom: 4px;
+  height: clamp(49px, 5.6vw, 78px); border-radius: 50%;
+  background: linear-gradient(#e6e9de, #d0d8c9);
+  border-bottom: 2px solid #adb9a9; box-shadow: 0 7px 11px -10px #6a7965;
 }
-body[data-view="cockpit"] .stage-surface::after { border-color: #83928270; }
-body[data-view="cockpit"] .stage-surface i:first-child { display: none; }
-body[data-view="cockpit"] .figure-name { border-radius: 2px; border-color: #849086; background: var(--sheet); }
-body[data-view="cockpit"] .figure[aria-pressed="true"] .figure-name { box-shadow: 0 2px #89998c; }
-body[data-view="cockpit"] .figure:focus-visible { outline-offset: -3px; }
-body[data-view="cockpit"] .atelier.flat { gap: 8px; flex-wrap: wrap; overflow: visible; }
-body[data-view="cockpit"] .flat .figure-name { display: grid; place-items: center; min-height: 44px; }
-body[data-view="cockpit"] .docket {
-  bottom: 13%; min-height: 44px; background: var(--sheet); border-color: #829283;
-  border-inline-start-color: #4e6559; box-shadow: 2px 2px #dce5d8, 3px 3px #8e9d8f;
+.ensemble { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: end; }
+.figure {
+  --seat-lift: 0px;
+  min-width: 0; margin-bottom: var(--seat-lift); display: grid; justify-items: center;
+  gap: 5px; color: var(--ink); border-radius: 12px;
 }
-body[data-view="cockpit"] .stage-caption { bottom: 4px; }
-body[data-view="cockpit"] .stage-caption button { min-height: 34px; border: 0; text-decoration: underline; text-underline-offset: 4px; }
-body[data-view="cockpit"] .stage-caption [data-turn-work] { min-width: 32px; text-decoration: none; }
+.figure:nth-child(2), .figure:nth-child(5) { --seat-lift: 13px; }
+.figure:nth-child(3), .figure:nth-child(4) { --seat-lift: 23px; }
+.figure-art {
+  display: block; position: relative; width: 100%; height: clamp(135px, 13.6vw, 198px);
+}
+.figure-art > img, .figure-art > .live-figure {
+  display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+}
+.figure-art.has-mesh > img { visibility: hidden; }
+.figure-name {
+  display: inline-grid; place-items: center; padding: 4px 12px; line-height: 1.4;
+  font-size: clamp(12px, 1vw, 14px); font-weight: 550; border-radius: 100px;
+  white-space: nowrap; background: #f6f5ef; color: var(--ink);
+}
+.figure[aria-pressed="true"] .figure-name { background: var(--ink); color: #fff; }
+.figure:focus-visible { outline-offset: 0; }
+.figure.drop-target .figure-name, #main-nav .drop-target { outline: 2px dashed var(--ink); outline-offset: 3px; }
+.table-toolbar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  margin: 8px 0 0; padding: 7px 0; gap: 10px 22px;
+}
+.stage-caption, .role-actions, .handoff-action, .turn-controls { display: flex; flex-wrap: wrap; align-items: center; }
+.stage-caption { gap: 8px 20px; }
+.current-role { display: flex; align-items: baseline; gap: 8px; }
+.current-role > span, .handoff-note { color: var(--muted); font-size: 12px; }
+.current-role strong { color: var(--ink); font: 650 clamp(16px, 1.35vw, 21px)/1.35 var(--serif); }
+.role-actions { gap: 3px; }
+.role-actions button {
+  border: 0; border-radius: 6px; padding: 6px 9px; min-height: 40px;
+  color: var(--ink); font: 500 13px/1.35 var(--sans); white-space: nowrap;
+}
+.turn-controls { gap: 0; margin-inline-start: 6px; border-radius: 7px; background: #e7ebe2; }
+.turn-controls[hidden] { display: none; }
+.turn-controls button { min-width: 40px; color: #405047; }
+.handoff-action { gap: 7px 12px; }
+.docket {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 42px; padding: 8px 14px; border-radius: 8px;
+  background: var(--ink); color: #fff; font: 550 13px/1.4 var(--sans); white-space: nowrap; cursor: grab;
+}
+.docket:active { cursor: grabbing; }
+.flat .table-scene { padding: 3px 0; }
+.flat .table-scene::before { display: none; }
+.flat .ensemble { gap: 5px; align-items: stretch; }
+.flat .figure {
+  margin-bottom: 0; grid-template-columns: auto auto; align-items: center; justify-content: center;
+  gap: 6px; padding: 4px; min-height: 44px; border-radius: 8px; background: #e9ece3;
+}
+.flat .figure-art { width: 30px; height: 30px; }
+.flat .figure-art img { border-radius: 50%; }
+.flat .figure-name { background: none; color: inherit; padding: 0; font-size: 13px; }
+.flat .figure[aria-pressed="true"] { background: var(--ink); color: white; }
+.flat .figure[aria-pressed="true"] .figure-name { background: none; }
 body[data-view="cockpit"] :is(.track, .case-strip, .manuscript) { border-inline: 1px solid var(--hair); }
 body[data-view="cockpit"] .track { margin: 10px 0 0; border-top: 2px solid var(--ink); background: #eaece4; }
 body[data-view="cockpit"] .track button {
@@ -118,24 +166,30 @@ body[data-view="cast"] .casting-strip button[aria-pressed="true"] { background: 
   body[data-view="cockpit"] .track button[aria-pressed="false"]:hover,
   body[data-view="teacher"] .bookmarks button[aria-pressed="false"]:enabled:hover,
   body[data-view="cast"] .casting-strip button[aria-pressed="false"]:hover { background: #dbe3df; }
-  body[data-view="cockpit"] .docket:hover { background: #fffdf7; }
-}
-@media (min-width: 721px) {
-  body[data-view="cockpit"] .atelier:not(.flat) :is(.actor-2, .actor-3) { --y: 33%; height: 61%; }
+  .figure[aria-pressed="false"]:hover .figure-name, .role-actions button:hover { background: #dce4d8; }
+  .flat .figure[aria-pressed="false"]:hover { background: #dce4d8; }
+  .flat .figure[aria-pressed="false"]:hover .figure-name { background: none; }
+  .docket:hover { background: #304058; }
 }
 @media (max-width: 720px) {
   body[data-view] > :is(.masthead, .colophon) { --studio-gutter: 15px; }
   body[data-view] > .masthead .mast-inner { min-height: 0; gap: 0; padding-block: 4px 0; }
   body[data-view] > .masthead #main-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); width: 100%; gap: 0; }
   body[data-view] > .masthead #main-nav button { padding-inline: 1px; font-size: clamp(10px, 3.4vw, 13px); white-space: normal; }
-  body[data-view="cockpit"] .atelier:not(.flat) { height: 330px; }
-  body[data-view="cockpit"] .atelier:not(.flat) .ensemble { inset-block-end: 76px; }
-  body[data-view="cockpit"] .atelier:not(.flat) .stage-surface { inset-block-end: 63px; }
-  body[data-view="cockpit"] .atelier:not(.flat) .docket { left: 50%; bottom: 53px; transform: translateX(-50%); }
-  body[data-view="cockpit"] .atelier:not(.flat) .stage-caption { inset-inline: 0; justify-content: center; }
-  body[data-view="cockpit"] .flat .stage-caption { margin-inline-start: 0; flex-wrap: wrap; }
-  body[data-view="cockpit"] .stage-caption button { min-height: 44px; }
-  body[data-view="cockpit"] .stage-caption [data-turn-work] { min-width: 44px; }
+  .atelier { margin-block-end: 8px; }
+  .table-scene { padding: 2px 0 9px; }
+  .ensemble { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 5px; }
+  .table-scene .figure { margin-bottom: 0; }
+  .figure-art { height: clamp(84px, 20vw, 115px); }
+  .figure-name { padding: 4px 7px; }
+  .flat .figure { gap: 4px; }
+  .flat .figure-art { width: 25px; height: 25px; }
+  .flat .figure-name { font-size: clamp(11px, 2.8vw, 13px); }
+  .table-toolbar { display: grid; grid-template-columns: 1fr; gap: 7px; padding-block: 5px 0; }
+  .stage-caption { justify-content: space-between; gap: 4px 9px; }
+  .role-actions button { min-height: 44px; padding-inline: 6px; }
+  .handoff-action { justify-content: space-between; }
+  .docket { min-height: 44px; }
   body[data-view="cockpit"] .track button { flex-direction: column; gap: 0; }
   body[data-view="cockpit"] .track button:nth-child(4) { border-inline-end: 0; }
   body[data-view="cockpit"] .track button:nth-child(n+5) { border-block-start: 1px solid var(--hair); }
@@ -143,8 +197,4 @@ body[data-view="cast"] .casting-strip button[aria-pressed="true"] { background: 
   body[data-view="teacher"] .bookmarks button span { display: block; }
   body[data-view="teacher"] .review-heading { flex-wrap: wrap; gap: 8px 16px; }
   body[data-view="cast"] .sculpture-view { border-inline-end: 0; border-block-end: 1px solid var(--hair); }
-}
-@media (prefers-reduced-motion: reduce) {
-  body[data-view="cockpit"] .figure .figure-art img { transform: none; }
-  body[data-view="cockpit"] .atelier:not(.flat) .docket { transform: translateX(-50%); }
 }

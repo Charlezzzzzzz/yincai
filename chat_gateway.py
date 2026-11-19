@@ -19,11 +19,12 @@ from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_ope
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, ConfigDict, Field, SecretStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, SecretStr, model_validator
 
 from provider_catalog import PROVIDERS
 
 from agent_protocol import role_context
+from chat_attachments import Attachment, MAX_COUNT, prepare, redact
 from chat_memory import ChatMemory
 from app.model_gateway import ollama_request_lock
 
@@ -41,19 +42,22 @@ LOCAL = {"127.0.0.1", "localhost", "::1"}
 
 
 class ChatInput(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", hide_input_in_errors=True)
     role: Role
-    message: str = Field(min_length=1, max_length=2000)
+    message: str = Field(default="", max_length=2000)
+    attachments: list[Attachment] = Field(default_factory=list, max_length=MAX_COUNT)
     handoff_from: UUID | None = None
     conversation_id: UUID | None = None
     request_id: UUID = Field(default_factory=uuid4)
 
-    @field_validator("message")
-    @classmethod
-    def content(cls, text: str) -> str:
-        if not text.strip():
-            raise ValueError("消息不能为空。")
-        return text.strip()
+    @model_validator(mode="after")
+    def content(self):
+        self.message = self.message.strip()
+        if not self.message:
+            if not self.attachments:
+                raise ValueError("消息不能为空。")
+            self.message = "请结合附件给出备课建议。"
+        return self
 
 
 class NoRedirect(HTTPRedirectHandler):
@@ -87,6 +91,10 @@ def exchange(url: str, *, body: dict | None = None, auth: str | None = None, tim
         reason = {401:"模型服务拒绝了凭据，请在模型设置中核对 API 密钥和地域。",
                   403:"模型服务未授予此模型的调用权限。",404:"API 地址或模型名称有误。",
                   429:"模型服务限流或额度不足，请核对服务商账户后重试。"}.get(exc.code,"模型服务未能完成请求，请稍后重试。")
+        if exc.code in {400, 413, 415, 422} and body and any(
+            isinstance(m.get("content"), list) for m in body.get("messages", [])
+        ):
+            reason = "上游拒绝了图文请求。请确认此模型与接口支持 image_url 图像输入，或改用文字附件。本轮未生成。"
         raise HTTPException(502, reason) from None
     except (TimeoutError, socket.timeout):
         raise HTTPException(504, "等待模型回复超时，请稍后重试。") from None
@@ -228,17 +236,26 @@ class ChatService:
             raise HTTPException(429, "模型正在处理其他消息，请稍后重试。")
         claim = None
         try:
-            claim = self.memory.claim(req, provider)
+            files = prepare(req.attachments, provider.credential)
+            encoded = [f.data for f in req.attachments] + [b64 for _, b64 in files.images]
+            question = redact(req.message, provider.credential, encoded)
+            claim = self.memory.claim(req, provider, files, question)
             if "replay" in claim:
                 return claim["replay"]
             context = [{"role":"system", "content":prompt(self.root, req.role)}, *claim["history"]]
+            if files.images:
+                context[-1] = {"role":"user", "content":files.model_content(claim["input_text"])}
             start = time.perf_counter()
             reply, model = provider.complete(context)
+            reply = redact(reply, provider.credential, encoded)
+            model = redact(model, provider.credential, encoded)
             result = {"role":req.role, "reply":reply, "source":"live", "provider":provider.name,
                       "vendor":provider.profile, "model":model, "seq":claim["seq"],
                       "elapsed_ms":round((time.perf_counter()-start)*1000), "conversation_id":claim["cid"],
                       "request_id":claim["rid"], "generated_at":datetime.now(timezone.utc).isoformat(),
                       "replayed":False, "handoff":claim["handoff"]}
+            if files.metadata:
+                result["attachments"] = files.metadata
             self.memory.finish(claim, req, result)
             return result
         except BaseException:

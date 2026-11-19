@@ -9,6 +9,7 @@ function tab(search = '?recording=1', saved = new Map()) {
   const page = {window: {}, location: {search}, URLSearchParams, AbortController,
     sessionStorage: {getItem: k => saved.get(k) ?? null, setItem: (k,v) => saved.set(k,v)}};
   load('recording.js', page);
+  load('attachments.js', page);
   return page;
 }
 function load(file, page) {

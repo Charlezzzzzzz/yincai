@@ -38,6 +38,7 @@ DB_ID = 0x59433731
 AVATARS = {f"avatars/{role}.webp" for role in ("analyst", "expert", "designer", "producer", "checker", "assistant")}
 
 from agent_protocol import cache_events
+from chat_attachments import ChatBodyLimit
 from chat_gateway import chat_router, Provider
 from student_alias import display_alias
 
@@ -114,6 +115,7 @@ def create_app(database: Path, web_root: Path = WEB_ROOT, *, chat_provider: Prov
     prepare_db(database)
     app = FastAPI(title="因才 · 教师本机审阅", docs_url=None, redoc_url=None, openapi_url=None)
     app.include_router(chat_router(CASE_ROOT, chat_provider, database=database))
+    app.add_middleware(ChatBodyLimit)
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost"])
 
     @app.middleware("http")
@@ -137,6 +139,8 @@ def create_app(database: Path, web_root: Path = WEB_ROOT, *, chat_provider: Prov
         if request.url.path.startswith("/api/chat/settings"):
             return JSONResponse({"detail": "请核对服务商、接口地址、模型和密钥字段。"}, status_code=422)
         if request.url.path == "/api/chat":
+            if any("attachments" in error.get("loc", ()) for error in exc.errors()):
+                return JSONResponse({"detail": "请提交最多 3 份附件，每份 3 MiB 以内，核对名称、类型和编码。"}, status_code=422)
             # Invalid browser input can contain arbitrary fields, including a pasted credential.
             # Never echo it or the raw validation payload in the response.
             return JSONResponse({"detail": "请使用有效角色，输入 1 至 2000 字的消息，并检查会话及请求编号。"}, status_code=422)
@@ -148,7 +152,7 @@ def create_app(database: Path, web_root: Path = WEB_ROOT, *, chat_provider: Prov
 
     @app.get("/api/health")
     def health():
-        return {"status": "ok", "service": "yincai-v8.2.1", "teacher_only": True}
+        return {"status": "ok", "service": "yincai-v8.3.0", "teacher_only": True}
 
     app.add_api_route("/api/bootstrap", lambda: display_alias(bootstrap()), methods=["GET"])
 
