@@ -1,0 +1,692 @@
+{
+  "assistant": {
+    "joins": [
+      {
+        "joint": "brooch–garment",
+        "parts": [
+          "assistant-bell-backing",
+          "assistant-garment"
+        ],
+        "anchor_actor_local": [
+          0.237,
+          -0.222049,
+          0.595
+        ],
+        "intersecting_polygon_pairs": 60
+      },
+      {
+        "joint": "raised shoulder",
+        "parts": [
+          "assistant-garment",
+          "assistant-holding-sleeve"
+        ],
+        "anchor_actor_local": [
+          -0.307,
+          -0.016,
+          0.69
+        ],
+        "intersecting_polygon_pairs": 89
+      },
+      {
+        "joint": "raised wrist",
+        "parts": [
+          "assistant-holding-sleeve",
+          "assistant-holding-hand"
+        ],
+        "anchor_actor_local": [
+          -0.457243,
+          -0.365,
+          0.507171
+        ],
+        "intersecting_polygon_pairs": 52
+      },
+      {
+        "joint": "grip",
+        "parts": [
+          "assistant-holding-hand",
+          "assistant-speech-bubble"
+        ],
+        "anchor_actor_local": [
+          -0.396243,
+          -0.376,
+          0.591171
+        ],
+        "intersecting_polygon_pairs": 85
+      },
+      {
+        "joint": "thumb",
+        "parts": [
+          "assistant-holding-hand",
+          "assistant-holding-thumb"
+        ],
+        "anchor_actor_local": [
+          -0.388243,
+          -0.404,
+          0.608171
+        ],
+        "intersecting_polygon_pairs": 58
+      },
+      {
+        "joint": "relaxed shoulder",
+        "parts": [
+          "assistant-garment",
+          "assistant-relaxed-sleeve"
+        ],
+        "anchor_actor_local": [
+          0.312,
+          -0.008,
+          0.683
+        ],
+        "intersecting_polygon_pairs": 79
+      },
+      {
+        "joint": "relaxed wrist",
+        "parts": [
+          "assistant-relaxed-sleeve",
+          "assistant-relaxed-hand"
+        ],
+        "anchor_actor_local": [
+          0.43,
+          -0.099,
+          0.311
+        ],
+        "intersecting_polygon_pairs": 48
+      },
+      {
+        "joint": "颈部与面部",
+        "parts": [
+          "assistant-neck",
+          "手塑面部.005"
+        ],
+        "intersecting_polygon_pairs": 96
+      },
+      {
+        "joint": "衣身与髋部",
+        "parts": [
+          "assistant-garment",
+          "裤腰及髋部.005"
+        ],
+        "intersecting_polygon_pairs": 40
+      }
+    ],
+    "foot_gaps": [
+      7.450580596923828e-09,
+      7.450580596923828e-09
+    ]
+  },
+  "analyst": {
+    "joins": [
+      {
+        "joint": "brooch–garment",
+        "parts": [
+          "analyst-bell-backing",
+          "analyst-garment"
+        ],
+        "anchor_actor_local": [
+          0.237,
+          -0.222049,
+          0.595
+        ],
+        "intersecting_polygon_pairs": 60
+      },
+      {
+        "joint": "raised shoulder",
+        "parts": [
+          "analyst-garment",
+          "analyst-holding-sleeve"
+        ],
+        "anchor_actor_local": [
+          -0.307,
+          -0.016,
+          0.69
+        ],
+        "intersecting_polygon_pairs": 99
+      },
+      {
+        "joint": "raised wrist",
+        "parts": [
+          "analyst-holding-sleeve",
+          "analyst-holding-hand"
+        ],
+        "anchor_actor_local": [
+          -0.426965,
+          -0.321,
+          0.434348
+        ],
+        "intersecting_polygon_pairs": 49
+      },
+      {
+        "joint": "grip",
+        "parts": [
+          "analyst-holding-hand",
+          "analyst-tablet-frame"
+        ],
+        "anchor_actor_local": [
+          -0.365965,
+          -0.332,
+          0.518348
+        ],
+        "intersecting_polygon_pairs": 42
+      },
+      {
+        "joint": "thumb",
+        "parts": [
+          "analyst-holding-hand",
+          "analyst-holding-thumb"
+        ],
+        "anchor_actor_local": [
+          -0.357965,
+          -0.36,
+          0.535348
+        ],
+        "intersecting_polygon_pairs": 58
+      },
+      {
+        "joint": "relaxed shoulder",
+        "parts": [
+          "analyst-garment",
+          "analyst-relaxed-sleeve"
+        ],
+        "anchor_actor_local": [
+          0.312,
+          -0.008,
+          0.683
+        ],
+        "intersecting_polygon_pairs": 78
+      },
+      {
+        "joint": "relaxed wrist",
+        "parts": [
+          "analyst-relaxed-sleeve",
+          "analyst-relaxed-hand"
+        ],
+        "anchor_actor_local": [
+          0.43,
+          -0.099,
+          0.297
+        ],
+        "intersecting_polygon_pairs": 44
+      },
+      {
+        "joint": "颈部与面部",
+        "parts": [
+          "analyst-neck",
+          "手塑面部"
+        ],
+        "intersecting_polygon_pairs": 102
+      },
+      {
+        "joint": "衣身与髋部",
+        "parts": [
+          "analyst-garment",
+          "裤腰及髋部"
+        ],
+        "intersecting_polygon_pairs": 40
+      }
+    ],
+    "foot_gaps": [
+      7.450580596923828e-09,
+      7.450580596923828e-09
+    ]
+  },
+  "expert": {
+    "joins": [
+      {
+        "joint": "brooch–garment",
+        "parts": [
+          "expert-bell-backing",
+          "expert-garment"
+        ],
+        "anchor_actor_local": [
+          0.237,
+          -0.222049,
+          0.595
+        ],
+        "intersecting_polygon_pairs": 60
+      },
+      {
+        "joint": "raised shoulder",
+        "parts": [
+          "expert-garment",
+          "expert-holding-sleeve"
+        ],
+        "anchor_actor_local": [
+          -0.307,
+          -0.016,
+          0.69
+        ],
+        "intersecting_polygon_pairs": 101
+      },
+      {
+        "joint": "raised wrist",
+        "parts": [
+          "expert-holding-sleeve",
+          "expert-holding-hand"
+        ],
+        "anchor_actor_local": [
+          -0.43422,
+          -0.313,
+          0.457593
+        ],
+        "intersecting_polygon_pairs": 46
+      },
+      {
+        "joint": "grip",
+        "parts": [
+          "expert-holding-hand",
+          "expert-book-cover"
+        ],
+        "anchor_actor_local": [
+          -0.37322,
+          -0.324,
+          0.541593
+        ],
+        "intersecting_polygon_pairs": 50
+      },
+      {
+        "joint": "thumb",
+        "parts": [
+          "expert-holding-hand",
+          "expert-holding-thumb"
+        ],
+        "anchor_actor_local": [
+          -0.36522,
+          -0.352,
+          0.558593
+        ],
+        "intersecting_polygon_pairs": 58
+      },
+      {
+        "joint": "relaxed shoulder",
+        "parts": [
+          "expert-garment",
+          "expert-relaxed-sleeve"
+        ],
+        "anchor_actor_local": [
+          0.312,
+          -0.008,
+          0.683
+        ],
+        "intersecting_polygon_pairs": 78
+      },
+      {
+        "joint": "relaxed wrist",
+        "parts": [
+          "expert-relaxed-sleeve",
+          "expert-relaxed-hand"
+        ],
+        "anchor_actor_local": [
+          0.43,
+          -0.099,
+          0.297
+        ],
+        "intersecting_polygon_pairs": 44
+      },
+      {
+        "joint": "颈部与面部",
+        "parts": [
+          "expert-neck",
+          "手塑面部.001"
+        ],
+        "intersecting_polygon_pairs": 98
+      },
+      {
+        "joint": "衣身与髋部",
+        "parts": [
+          "expert-garment",
+          "裤腰及髋部.001"
+        ],
+        "intersecting_polygon_pairs": 40
+      }
+    ],
+    "foot_gaps": [
+      7.450580596923828e-09,
+      7.450580596923828e-09
+    ]
+  },
+  "designer": {
+    "joins": [
+      {
+        "joint": "brooch–garment",
+        "parts": [
+          "designer-bell-backing",
+          "designer-garment"
+        ],
+        "anchor_actor_local": [
+          0.237,
+          -0.222049,
+          0.595
+        ],
+        "intersecting_polygon_pairs": 60
+      },
+      {
+        "joint": "raised shoulder",
+        "parts": [
+          "designer-garment",
+          "designer-holding-sleeve"
+        ],
+        "anchor_actor_local": [
+          -0.307,
+          -0.016,
+          0.69
+        ],
+        "intersecting_polygon_pairs": 104
+      },
+      {
+        "joint": "raised wrist",
+        "parts": [
+          "designer-holding-sleeve",
+          "designer-holding-hand"
+        ],
+        "anchor_actor_local": [
+          -0.423957,
+          -0.31,
+          0.470076
+        ],
+        "intersecting_polygon_pairs": 44
+      },
+      {
+        "joint": "grip",
+        "parts": [
+          "designer-holding-hand",
+          "designer-sketch-card"
+        ],
+        "anchor_actor_local": [
+          -0.362957,
+          -0.321,
+          0.554076
+        ],
+        "intersecting_polygon_pairs": 42
+      },
+      {
+        "joint": "thumb",
+        "parts": [
+          "designer-holding-hand",
+          "designer-holding-thumb"
+        ],
+        "anchor_actor_local": [
+          -0.354957,
+          -0.349,
+          0.571076
+        ],
+        "intersecting_polygon_pairs": 58
+      },
+      {
+        "joint": "relaxed shoulder",
+        "parts": [
+          "designer-garment",
+          "designer-relaxed-sleeve"
+        ],
+        "anchor_actor_local": [
+          0.312,
+          -0.008,
+          0.683
+        ],
+        "intersecting_polygon_pairs": 78
+      },
+      {
+        "joint": "relaxed wrist",
+        "parts": [
+          "designer-relaxed-sleeve",
+          "designer-relaxed-hand"
+        ],
+        "anchor_actor_local": [
+          0.43,
+          -0.099,
+          0.297
+        ],
+        "intersecting_polygon_pairs": 44
+      },
+      {
+        "joint": "颈部与面部",
+        "parts": [
+          "designer-neck",
+          "手塑面部.002"
+        ],
+        "intersecting_polygon_pairs": 96
+      },
+      {
+        "joint": "衣身与髋部",
+        "parts": [
+          "designer-garment",
+          "裤腰及髋部.002"
+        ],
+        "intersecting_polygon_pairs": 40
+      }
+    ],
+    "foot_gaps": [
+      7.450580596923828e-09,
+      7.450580596923828e-09
+    ]
+  },
+  "producer": {
+    "joins": [
+      {
+        "joint": "brooch–garment",
+        "parts": [
+          "producer-bell-backing",
+          "producer-garment"
+        ],
+        "anchor_actor_local": [
+          0.237,
+          -0.222049,
+          0.595
+        ],
+        "intersecting_polygon_pairs": 60
+      },
+      {
+        "joint": "raised shoulder",
+        "parts": [
+          "producer-garment",
+          "producer-holding-sleeve"
+        ],
+        "anchor_actor_local": [
+          -0.307,
+          -0.016,
+          0.69
+        ],
+        "intersecting_polygon_pairs": 102
+      },
+      {
+        "joint": "raised wrist",
+        "parts": [
+          "producer-holding-sleeve",
+          "producer-holding-hand"
+        ],
+        "anchor_actor_local": [
+          -0.431042,
+          -0.327,
+          0.464463
+        ],
+        "intersecting_polygon_pairs": 46
+      },
+      {
+        "joint": "grip",
+        "parts": [
+          "producer-holding-hand",
+          "producer-play-plaque"
+        ],
+        "anchor_actor_local": [
+          -0.370042,
+          -0.338,
+          0.548463
+        ],
+        "intersecting_polygon_pairs": 42
+      },
+      {
+        "joint": "thumb",
+        "parts": [
+          "producer-holding-hand",
+          "producer-holding-thumb"
+        ],
+        "anchor_actor_local": [
+          -0.362042,
+          -0.366,
+          0.565463
+        ],
+        "intersecting_polygon_pairs": 58
+      },
+      {
+        "joint": "relaxed shoulder",
+        "parts": [
+          "producer-garment",
+          "producer-relaxed-sleeve"
+        ],
+        "anchor_actor_local": [
+          0.312,
+          -0.008,
+          0.683
+        ],
+        "intersecting_polygon_pairs": 79
+      },
+      {
+        "joint": "relaxed wrist",
+        "parts": [
+          "producer-relaxed-sleeve",
+          "producer-relaxed-hand"
+        ],
+        "anchor_actor_local": [
+          0.43,
+          -0.099,
+          0.311
+        ],
+        "intersecting_polygon_pairs": 48
+      },
+      {
+        "joint": "颈部与面部",
+        "parts": [
+          "producer-neck",
+          "手塑面部.003"
+        ],
+        "intersecting_polygon_pairs": 102
+      },
+      {
+        "joint": "衣身与髋部",
+        "parts": [
+          "producer-garment",
+          "裤腰及髋部.003"
+        ],
+        "intersecting_polygon_pairs": 40
+      }
+    ],
+    "foot_gaps": [
+      7.450580596923828e-09,
+      7.450580596923828e-09
+    ]
+  },
+  "checker": {
+    "joins": [
+      {
+        "joint": "brooch–garment",
+        "parts": [
+          "checker-bell-backing",
+          "checker-garment"
+        ],
+        "anchor_actor_local": [
+          0.237,
+          -0.222049,
+          0.595
+        ],
+        "intersecting_polygon_pairs": 60
+      },
+      {
+        "joint": "raised shoulder",
+        "parts": [
+          "checker-garment",
+          "checker-holding-sleeve"
+        ],
+        "anchor_actor_local": [
+          -0.307,
+          -0.016,
+          0.69
+        ],
+        "intersecting_polygon_pairs": 99
+      },
+      {
+        "joint": "raised wrist",
+        "parts": [
+          "checker-holding-sleeve",
+          "checker-holding-hand"
+        ],
+        "anchor_actor_local": [
+          -0.38807,
+          -0.343,
+          0.405487
+        ],
+        "intersecting_polygon_pairs": 46
+      },
+      {
+        "joint": "grip",
+        "parts": [
+          "checker-holding-hand",
+          "checker-magnifier-handle"
+        ],
+        "anchor_actor_local": [
+          -0.32707,
+          -0.354,
+          0.489487
+        ],
+        "intersecting_polygon_pairs": 56
+      },
+      {
+        "joint": "thumb",
+        "parts": [
+          "checker-holding-hand",
+          "checker-holding-thumb"
+        ],
+        "anchor_actor_local": [
+          -0.31907,
+          -0.382,
+          0.506487
+        ],
+        "intersecting_polygon_pairs": 58
+      },
+      {
+        "joint": "relaxed shoulder",
+        "parts": [
+          "checker-garment",
+          "checker-relaxed-sleeve"
+        ],
+        "anchor_actor_local": [
+          0.312,
+          -0.008,
+          0.683
+        ],
+        "intersecting_polygon_pairs": 78
+      },
+      {
+        "joint": "relaxed wrist",
+        "parts": [
+          "checker-relaxed-sleeve",
+          "checker-relaxed-hand"
+        ],
+        "anchor_actor_local": [
+          0.43,
+          -0.099,
+          0.297
+        ],
+        "intersecting_polygon_pairs": 44
+      },
+      {
+        "joint": "颈部与面部",
+        "parts": [
+          "checker-neck",
+          "手塑面部.004"
+        ],
+        "intersecting_polygon_pairs": 102
+      },
+      {
+        "joint": "衣身与髋部",
+        "parts": [
+          "checker-garment",
+          "裤腰及髋部.004"
+        ],
+        "intersecting_polygon_pairs": 40
+      }
+    ],
+    "foot_gaps": [
+      7.450580596923828e-09,
+      7.450580596923828e-09
+    ]
+  }
+}

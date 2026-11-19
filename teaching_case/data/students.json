@@ -1,0 +1,410 @@
+{
+  "status": "content-v1.1",
+  "label": "演示数据 · 模拟学生",
+  "source": "data/content-v1.1.json",
+  "students": [
+    {
+      "id": "S1",
+      "name": "小安",
+      "alias": "小安",
+      "tag": "高自信 · 规则型",
+      "grade": "七年级",
+      "learning_preference": "rule_clear",
+      "profile": {
+        "confidence": "high",
+        "hint_reliance": "low",
+        "checks_answer": false,
+        "preferred": "rule_clear"
+      },
+      "mastery": 58,
+      "focus_causes": [
+        "M2"
+      ],
+      "latest_attempt": {
+        "question_id": "Q12",
+        "selected_option": "A",
+        "answer": "8",
+        "correct": false
+      },
+      "wrong_steps": [
+        "3(x−1) − 2(x+2) = 1",
+        "3x − 3 − 2x − 4 = 1",
+        "x − 7 = 1",
+        "x = 8"
+      ],
+      "strategy": "代入检验制造认知冲突（x=8 代回左边=1/6≠1）+天平图“每份都乘6”",
+      "transfer": {
+        "q": "(2x + 1)/3 − 1 = x/2",
+        "a": "4"
+      },
+      "photo_diagnosis": null,
+      "responses": [
+        {
+          "item": "Q1",
+          "response": "2",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 49
+        },
+        {
+          "item": "Q2",
+          "response": "4",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 43
+        },
+        {
+          "item": "Q3",
+          "response": "-4",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 74
+        },
+        {
+          "item": "Q4",
+          "response": "2",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 77
+        },
+        {
+          "item": "Q5",
+          "response": "2",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 72
+        },
+        {
+          "item": "Q6",
+          "response": "-1",
+          "correct": false,
+          "misconception": "M2",
+          "used_hint": false,
+          "time_sec": 85
+        },
+        {
+          "item": "Q7",
+          "response": "5",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 44
+        },
+        {
+          "item": "Q8",
+          "response": "4",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 75
+        },
+        {
+          "item": "Q9",
+          "response": "是（代入两边均为5）",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 92
+        },
+        {
+          "item": "Q10",
+          "response": "不对",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 54
+        },
+        {
+          "item": "Q11",
+          "response": "x + (x + 5) = 85；x = 40",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 77
+        },
+        {
+          "item": "Q12",
+          "response": "8",
+          "correct": false,
+          "misconception": "M2",
+          "used_hint": false,
+          "time_sec": 116
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "小禾",
+      "alias": "小禾",
+      "tag": "低自信 · 视觉型",
+      "grade": "七年级",
+      "learning_preference": "visual",
+      "profile": {
+        "confidence": "low",
+        "hint_reliance": "high",
+        "checks_answer": true,
+        "preferred": "visual"
+      },
+      "mastery": 51,
+      "focus_causes": [
+        "M4"
+      ],
+      "latest_attempt": {
+        "question_id": "Q12",
+        "selected_option": "B",
+        "answer": "5",
+        "correct": false
+      },
+      "wrong_steps": [
+        "3(x−1) − 2(x+2) = 6",
+        "3x − 3 − 2x + 4 = 6",
+        "x + 1 = 6",
+        "x = 5"
+      ],
+      "strategy": "分步颜色拆解 (−2)·x 与 (−2)·2 + 慢速语音 + 鼓励反馈",
+      "transfer": {
+        "q": "4 − 3(x − 2) = 1",
+        "a": "3"
+      },
+      "photo_diagnosis": "第2行 +4 处圈出",
+      "responses": [
+        {
+          "item": "Q1",
+          "response": "2",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 43
+        },
+        {
+          "item": "Q2",
+          "response": "4",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 42
+        },
+        {
+          "item": "Q3",
+          "response": "4",
+          "correct": false,
+          "misconception": "M7",
+          "used_hint": true,
+          "time_sec": 115
+        },
+        {
+          "item": "Q4",
+          "response": "2",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 58
+        },
+        {
+          "item": "Q5",
+          "response": "0",
+          "correct": false,
+          "misconception": "M4",
+          "used_hint": true,
+          "time_sec": 106
+        },
+        {
+          "item": "Q6",
+          "response": "-6",
+          "correct": true,
+          "misconception": null,
+          "used_hint": true,
+          "time_sec": 47
+        },
+        {
+          "item": "Q7",
+          "response": "5",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 75
+        },
+        {
+          "item": "Q8",
+          "response": "4",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 51
+        },
+        {
+          "item": "Q9",
+          "response": "是（代入两边均为5）",
+          "correct": true,
+          "misconception": null,
+          "used_hint": true,
+          "time_sec": 76
+        },
+        {
+          "item": "Q10",
+          "response": "不对",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 63
+        },
+        {
+          "item": "Q11",
+          "response": "x + (x + 5) = 85；x = 40",
+          "correct": true,
+          "misconception": null,
+          "used_hint": true,
+          "time_sec": 85
+        },
+        {
+          "item": "Q12",
+          "response": "5",
+          "correct": false,
+          "misconception": "M4",
+          "used_hint": true,
+          "time_sec": 84
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "name": "小远",
+      "alias": "小远",
+      "tag": "中自信 · 情境型",
+      "grade": "七年级",
+      "learning_preference": "real_life_context",
+      "profile": {
+        "confidence": "medium",
+        "hint_reliance": "medium",
+        "checks_answer": false,
+        "preferred": "real_life_context"
+      },
+      "mastery": 64,
+      "focus_causes": [
+        "M1"
+      ],
+      "latest_attempt": {
+        "question_id": "Q12",
+        "selected_option": "C",
+        "answer": "-1",
+        "correct": false
+      },
+      "wrong_steps": [
+        "3(x−1) − 2(x+2) = 6",
+        "3x − 3 − 2x − 4 = 6",
+        "x − 7 = 6",
+        "x = 6 − 7",
+        "x = −1"
+      ],
+      "strategy": "生活情境微课：天平两边同加7个砝码",
+      "transfer": {
+        "q": "5x − 7 = 2x + 8",
+        "a": "5"
+      },
+      "photo_diagnosis": null,
+      "responses": [
+        {
+          "item": "Q1",
+          "response": "8",
+          "correct": false,
+          "misconception": "M1",
+          "used_hint": true,
+          "time_sec": 116
+        },
+        {
+          "item": "Q2",
+          "response": "4",
+          "correct": true,
+          "misconception": null,
+          "used_hint": true,
+          "time_sec": 53
+        },
+        {
+          "item": "Q3",
+          "response": "-4",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 74
+        },
+        {
+          "item": "Q4",
+          "response": "2",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 60
+        },
+        {
+          "item": "Q5",
+          "response": "2",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 69
+        },
+        {
+          "item": "Q6",
+          "response": "-6",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 55
+        },
+        {
+          "item": "Q7",
+          "response": "5",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 84
+        },
+        {
+          "item": "Q8",
+          "response": "1/3",
+          "correct": false,
+          "misconception": "M1",
+          "used_hint": true,
+          "time_sec": 129
+        },
+        {
+          "item": "Q9",
+          "response": "是（代入两边均为5）",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 76
+        },
+        {
+          "item": "Q10",
+          "response": "不对",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 71
+        },
+        {
+          "item": "Q11",
+          "response": "x + (x + 5) = 85；x = 40",
+          "correct": true,
+          "misconception": null,
+          "used_hint": false,
+          "time_sec": 86
+        },
+        {
+          "item": "Q12",
+          "response": "-1",
+          "correct": false,
+          "misconception": "M1",
+          "used_hint": true,
+          "time_sec": 108
+        }
+      ]
+    }
+  ]
+}

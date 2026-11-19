@@ -1,0 +1,303 @@
+{
+  "model": "qwen3.6:35b",
+  "model_name": "qwen3.6:35b",
+  "elapsed_ms": 142095.1,
+  "prompt_version": "teacher-plan-v1",
+  "role": "assistant",
+  "created_at": "2026-11-17T07:37:45.758920+00:00",
+  "input_hash": "0284432f0d1e12a4157f41ea13c75c1d40498d90272ab8af4dfe88c3db068446",
+  "cache_path": "cache/model/0284432f0d1e12a4157f41ea13c75c1d40498d90272ab8af4dfe88c3db068446.json",
+  "source": "ollama-live",
+  "request": {
+    "user_prompt": "根据输入为当前模拟学生生成面向教师的个别化方案。逐条说明证据来源，使用指定定稿形式，输出提示词要求的严格 JSON。",
+    "context": {
+      "task_prompt_version": "teacher-plan-v1",
+      "content_source": "data/content-v1.1.json · 全部模拟数据",
+      "student": {
+        "id": "S2",
+        "name": "小禾",
+        "demo_answer": "5",
+        "misconception": "M4",
+        "wrong_steps": [
+          "3(x−1) − 2(x+2) = 6",
+          "3x − 3 − 2x + 4 = 6",
+          "x + 1 = 6",
+          "x = 5"
+        ],
+        "traits": {
+          "confidence": "low",
+          "hint_reliance": "high",
+          "checks_answer": true,
+          "preferred": "visual"
+        },
+        "strategy": "分步颜色拆解 (−2)·x 与 (−2)·2 + 慢速语音 + 鼓励反馈",
+        "transfer": {
+          "q": "4 − 3(x − 2) = 1",
+          "a": "3"
+        },
+        "photo_diagnosis": "第2行 +4 处圈出",
+        "responses": [
+          {
+            "item": "Q1",
+            "response": "2",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 43
+          },
+          {
+            "item": "Q2",
+            "response": "4",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 42
+          },
+          {
+            "item": "Q3",
+            "response": "4",
+            "correct": false,
+            "misconception": "M7",
+            "used_hint": true,
+            "time_sec": 115
+          },
+          {
+            "item": "Q4",
+            "response": "2",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 58
+          },
+          {
+            "item": "Q5",
+            "response": "0",
+            "correct": false,
+            "misconception": "M4",
+            "used_hint": true,
+            "time_sec": 106
+          },
+          {
+            "item": "Q6",
+            "response": "-6",
+            "correct": true,
+            "misconception": null,
+            "used_hint": true,
+            "time_sec": 47
+          },
+          {
+            "item": "Q7",
+            "response": "5",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 75
+          },
+          {
+            "item": "Q8",
+            "response": "4",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 51
+          },
+          {
+            "item": "Q9",
+            "response": "是（代入两边均为5）",
+            "correct": true,
+            "misconception": null,
+            "used_hint": true,
+            "time_sec": 76
+          },
+          {
+            "item": "Q10",
+            "response": "不对",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 63
+          },
+          {
+            "item": "Q11",
+            "response": "x + (x + 5) = 85；x = 40",
+            "correct": true,
+            "misconception": null,
+            "used_hint": true,
+            "time_sec": 85
+          },
+          {
+            "item": "Q12",
+            "response": "5",
+            "correct": false,
+            "misconception": "M4",
+            "used_hint": true,
+            "time_sec": 84
+          }
+        ]
+      },
+      "target_form": "逐步变色拆括号：负号逐项分配",
+      "approved_microcourse": {
+        "script": {
+          "title": "拆括号符号不迷路",
+          "total_duration_sec": 48,
+          "scenes": [
+            {
+              "id": "scene-1",
+              "duration_sec": 12,
+              "title": "发现隐藏符号",
+              "narration": "当括号前是负号时，就像给每个项戴上反色眼镜。我们先观察方程结构，准备用颜色标记关键变化。",
+              "subtitle": "括号前负号要逐项分配",
+              "formula_steps": [
+                "原式保留括号结构",
+                "标注括号前负号位置"
+              ]
+            },
+            {
+              "id": "scene-2",
+              "duration_sec": 14,
+              "title": "红色警示线展开",
+              "narration": "用红色虚线连接负号与括号内每一项。记住：正变负，负变正，常数项同样要变身。",
+              "subtitle": "负号分配改变每项符号",
+              "formula_steps": [
+                "将-2乘入第一项得-2x",
+                "将-2乘入第二项得-4"
+              ]
+            },
+            {
+              "id": "scene-3",
+              "duration_sec": 13,
+              "title": "蓝色校验步骤",
+              "narration": "用蓝色箭头验证符号变化。检查每个项是否都经过负号转换，特别注意常数项的符号翻转。",
+              "subtitle": "逐项验证符号正确性",
+              "formula_steps": [
+                "合并同类项整理方程",
+                "标注需移项的数字部分"
+              ]
+            },
+            {
+              "id": "scene-4",
+              "duration_sec": 9,
+              "title": "自主挑战时刻",
+              "narration": "现在请你尝试用颜色拆解法解这道题。记住三步口诀：标负号、逐项变、验符号。",
+              "subtitle": "迁移练习巩固方法",
+              "formula_steps": [
+                "4 - 3(x - 2) = 1",
+                "展开括号并整理方程"
+              ]
+            }
+          ],
+          "transfer_prompt": "用颜色拆解法解方程：5 - 2(y + 3) = 7，写出关键步骤即可"
+        },
+        "review": {
+          "verdict": "approve",
+          "reasons": [
+            "总时长为48秒（12+14+13+9），严格符合45–60秒的时长要求。",
+            "角色与形式完全匹配：小禾的‘逐步变色拆括号’策略通过颜色标记、红色警示线展开、蓝色箭头校验等分镜步骤得到完整且准确的呈现。",
+            "未泄露最终答案，脚本止步于去括号与整理方程阶段，迁移练习也未给出具体解。",
+            "全文未发现M1/M2等内部代号或AI教研指挥舱、缓存、模型名等敏感词汇。",
+            "结构规范，完整包含每场景的formula_steps与subtitle，以及末尾仅给题目的transfer_prompt。",
+            "数学内容符合七年级一元一次方程去括号知识点，强调口诀与颜色对照法引导思维过程，有效避免机械抄写答案。"
+          ],
+          "leak_scan": {
+            "has_final_answer": false,
+            "has_other_answer": false,
+            "internal_terms": []
+          },
+          "math_notes": [
+            "知识点聚焦七年级‘去括号’法则，难度与表述符合课标要求。",
+            "通过颜色标记与口诀引导自主推导，未提供直接抄写的答案路径。"
+          ],
+          "prompt_version": "reviewer-v2-2026-11-16"
+        },
+        "script_cache_path": "cache/model-v2/b775bbe4b9441b407027c0d492ca34cd2e0f10eeda31652068cacfa76df5b0b4.json",
+        "review_cache_path": "cache/model-v2/37794a3ad06e9265fff268505b86386d655d4a7d4de30a66581a6be540cb4e3a.json"
+      },
+      "question": {
+        "id": "Q12",
+        "stem": "解 (x − 1)/2 − (x + 2)/3 = 1",
+        "answer": "13",
+        "wrong_answer_map": {
+          "8": "M2",
+          "5": "M4",
+          "-1": "M1"
+        },
+        "kp": [
+          "K10",
+          "K9",
+          "K8"
+        ]
+      },
+      "rule_precheck": {
+        "source": "规则：Q12 wrong_answer_map 与学生作答匹配，不是模型观察",
+        "cause_id": "M4",
+        "cause_definition": {
+          "id": "M4",
+          "name": "去括号符号错误",
+          "example": "−2(x+2) → −2x+4",
+          "belief": "负号没有分配到括号内每一项",
+          "strategy": "stepwise_diagram",
+          "related_kp": [
+            "K9",
+            "P4",
+            "P2"
+          ]
+        }
+      },
+      "classroom_statistics": {
+        "source": "模拟数据 · 根据30人名单计算",
+        "student_count": 30,
+        "cause_distribution": [
+          {
+            "cause_id": "M1",
+            "label": "移项不变号",
+            "count": 8
+          },
+          {
+            "cause_id": "M2",
+            "label": "去分母漏乘不含分母的项",
+            "count": 8
+          },
+          {
+            "cause_id": "M4",
+            "label": "去括号符号错误",
+            "count": 7
+          },
+          {
+            "cause_id": "M3",
+            "label": "去分母后分子未作整体",
+            "count": 4
+          },
+          {
+            "cause_id": "M10",
+            "label": "等量关系方向弄反",
+            "count": 3
+          }
+        ]
+      }
+    },
+    "image_path": null
+  },
+  "text": "{\n  \"title\": \"引导小禾用逐步变色法修正符号分配\",\n  \"teacher_summary\": \"小禾在解一元一次方程时频繁出现去括号符号错误（M4），典型表现为负号未正确分配至括号内常数项。结合其视觉偏好强、提示依赖度高且自信心偏低的特点，建议采用已核查的“逐步变色拆括号”微课策略。该方案通过颜色标记与分步校验帮助其建立符号逐项分配的直观认知，避免机械记忆。教师可借助模拟班级中同类错因占比数据作为学情参考，重点引导其在观看后自主标注负号走向，并逐步减少提示依赖。\",\n  \"recommendation\": \"建议小禾在复习时直接调用已备好的“拆括号符号不迷路”微课（时长48秒）。观看时请她重点关注第二幕的红色警示线展开过程，对照其错题步骤中-2(x+2)变为-2x+4的符号遗漏处进行圈画。第三幕的蓝色箭头校验可要求她独立复述常数项变号规则，而非直接给出提示。课后迁移练习（如5 - 2(y + 3) = 7）请她先用不同颜色笔标出负号分配路径，再书写步骤。教师下一步可观察其是否能在无提示下完成符号追踪，若仍依赖高频率提示，可引入生活情境与换边动画辅助理解等式平衡，逐步过渡到独立验算。\",\n  \"evidence\": [\n    \"学生作答记录显示第2行将-2(x+2)展开为-2x+4，符合M4（去括号符号错误）定义，来源：规则预检与逐题作答映射\",\n    \"已核查微课脚本明确采用“逐步变色拆括号”策略，包含红色警示线展开与蓝色箭头校验分镜，来源：模型核查通过的微课内容\",\n    \"模拟班级统计显示M4错因在30人样本中出现7次，反映该类符号分配问题具有普遍性，来源：模拟数据·根据30人名单计算\",\n    \"学生特征记录表明其视觉偏好强、提示依赖度高且自信心偏低，适合分步颜色标记与慢速语音引导，来源：学生画像与策略设定\"\n  ],\n  \"student_safe\": true\n}",
+  "parsed": {
+    "title": "引导小禾用逐步变色法修正符号分配",
+    "teacher_summary": "小禾在解一元一次方程时频繁出现去括号符号错误（M4），典型表现为负号未正确分配至括号内常数项。结合其视觉偏好强、提示依赖度高且自信心偏低的特点，建议采用已核查的“逐步变色拆括号”微课策略。该方案通过颜色标记与分步校验帮助其建立符号逐项分配的直观认知，避免机械记忆。教师可借助模拟班级中同类错因占比数据作为学情参考，重点引导其在观看后自主标注负号走向，并逐步减少提示依赖。",
+    "recommendation": "建议小禾在复习时直接调用已备好的“拆括号符号不迷路”微课（时长48秒）。观看时请她重点关注第二幕的红色警示线展开过程，对照其错题步骤中-2(x+2)变为-2x+4的符号遗漏处进行圈画。第三幕的蓝色箭头校验可要求她独立复述常数项变号规则，而非直接给出提示。课后迁移练习（如5 - 2(y + 3) = 7）请她先用不同颜色笔标出负号分配路径，再书写步骤。教师下一步可观察其是否能在无提示下完成符号追踪，若仍依赖高频率提示，可引入生活情境与换边动画辅助理解等式平衡，逐步过渡到独立验算。",
+    "evidence": [
+      "学生作答记录显示第2行将-2(x+2)展开为-2x+4，符合M4（去括号符号错误）定义，来源：规则预检与逐题作答映射",
+      "已核查微课脚本明确采用“逐步变色拆括号”策略，包含红色警示线展开与蓝色箭头校验分镜，来源：模型核查通过的微课内容",
+      "模拟班级统计显示M4错因在30人样本中出现7次，反映该类符号分配问题具有普遍性，来源：模拟数据·根据30人名单计算",
+      "学生特征记录表明其视觉偏好强、提示依赖度高且自信心偏低，适合分步颜色标记与慢速语音引导，来源：学生画像与策略设定"
+    ],
+    "student_safe": true
+  },
+  "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n    - **Role/Task:** Teacher Assistant (\"京师因材\") generating an individualized teaching plan for a specific student based on provided data.\n    - **Input Data:**\n        - `approved_microcourse`: Script for a micro-lesson focused on \"stepwise color-coded bracket removal\" (逐步变色拆括号). It's approved, 48 seconds long, uses color markers/red warning lines/blue arrows, focuses on distributing negative signs to each term. Target student is explicitly mentioned in the prompt: \"小禾的‘逐步变色拆括号’策略...\".\n        - `classroom_statistics`: Simulated data for 30 students. Cause distribution shows M4 (去括号符号错误) has 7 counts. Source is explicitly \"模拟数据 · 根据30人名单计算\".\n        - `question`: Q12, stem: `(x − 1)/2 − (x + 2)/3 = 1`, answer: `13`. Wrong answer map: `-1` -> M1, `5` -> M4, `8` -> M2.\n        - `rule_precheck`: Matches student's wrong answer `5` to cause `M4` (去括号符号错误). Explicitly states: \"规则：Q12 wrong_answer_map 与学生作答匹配，不是模型观察\".\n        - `student`: ID S2, name \"小禾\", misconception M4. Demo answer: `5`. Wrong steps show: `3(x−1) − 2(x+2) = 6` -> `3x − 3 − 2x + 4 = 6` (Wait, the original equation is `(x-1)/2 - (x+2)/3 = 1`. Multiplying by 6 gives `3(x-1) - 2(x+2) = 6`. The student's step `3x - 3 - 2x + 4 = 6` shows they changed `-2(x+2)` to `-2x + 4`, which is a sign error for the constant term inside the bracket. This matches M4: \"负号没有分配到括号内每一项\", example: `−2(x+2) → −2x+4`.\n        - `target_form`: \"逐步变色拆括号：负号逐项分配\". Matches the micro-course script.\n        - `traits`: checks_answer=true, confidence=low, hint_reliance=high, preferred=visual.\n    - **Constraints:**\n        - Generate independent advice for the current student (小禾).\n        - Follow the approved micro-course direction: \"逐步变色拆括号\" (stepwise color-coded bracket removal).\n        - Explain *why* this method is chosen based on actual records.\n        - Do NOT rewrite the micro-course, do NOT reuse other students' advice.\n        - Output only strict JSON. No markdown code blocks.\n        - Fields: `title` (<24 chars), `teacher_summary`, `recommendation`, `evidence` (array of strings with source), `student_safe`: true.\n        - Do not give final answers, do not leak other students' answers, avoid institutional names.\n        - Clearly mark classroom stats as simulated.\n        - Evidence must cite sources correctly (rule precheck, student records, micro-course approval, simulated stats).\n\n2.  **Deconstruct Requirements & Map to Output:**\n    - `title`: Needs to be concise (<24 chars), focused on the strategy for 小禾. E.g., \"针对小禾去括号符号错误的变色拆解建议\" or \"引导小禾用逐步变色法修正符号分配\". Let's aim for ~15-20 chars.\n    - `teacher_summary`: A complete summary of learning status and strategy for the teacher. Should mention M4 misconception, visual preference, high hint reliance, low confidence, and why the color-coded method fits.\n    - `recommendation`: Actionable advice for the teacher. Explain how to use the approved micro-course (\"逐步变色拆括号\") with 小禾. Point out specific error in her steps (`-2(x+2) → -2x+4`). Suggest next steps: pause at scene 2, ask her to trace the red line, verify constant term sign, encourage self-checking without over-relying on hints.\n    - `evidence`: Array of strings. Each must state the evidence and its source.\n        - Evidence 1: Student's wrong step `-2(x+2) → -2x+4` matches M4 (去括号符号错误). Source: 学生作答记录与规则预检映射。\n        - Evidence 2: Micro-course script approved for \"逐步变色拆括号\", focusing on red warning lines and blue arrows for sign distribution. Source: 已核查微课脚本。\n        - Evidence 3: Classroom statistics show M4 accounts for 7/30 cases, indicating a common need for visual sign-tracking. Source: 模拟班级统计（30人名单计算）。\n        - Evidence 4: Student traits show high hint reliance and low confidence, preferring visual methods. Source: 学生特征记录。\n    - `student_safe`: true (checked against constraints).\n\n3.  **Draft Generation (Mental Refinement):**\n    *Title*: 引导小禾用逐步变色法修正符号分配\n    *Teacher Summary*: 小禾在解一元一次方程时频繁出现去括号符号错误（M4），典型表现为负号未正确分配至括号内常数项（如将-2(x+2)误作-2x+4）。结合其视觉偏好强、提示依赖度高且自信心偏低的特点，建议采用已核查的“逐步变色拆括号”微课策略。该方案通过颜色标记与分步校验帮助其建立符号逐项分配的直观认知，避免机械记忆。教师可借助模拟班级中同类错因占比数据作为学情参考，重点引导其在观看后自主标注负号走向，并逐步减少提示依赖。\n    *Recommendation*: 建议小禾在复习时直接调用已备好的“拆括号符号不迷路”微课（时长48秒）。观看时请她重点关注第二幕的红色警示线展开过程，对照其错题步骤中`-2(x+2)`变为`-2x+4`的符号遗漏处进行圈画。第三幕的蓝色箭头校验可要求她独立复述常数项变号规则，而非直接给出提示。课后迁移练习（如`5 - 2(y + 3) = 7`）请她先用不同颜色笔标出负号分配路径，再书写步骤。教师下一步可观察其是否能在无提示下完成符号追踪，若仍依赖高频率提示，可引入实物天平图解辅助理解等式平衡，逐步过渡到独立验算。\n    *Evidence*: [\n      \"学生作答记录显示第2行将-2(x+2)展开为-2x+4，符合M4（去括号符号错误）定义，来源：规则预检与逐题作答映射\",\n      \"已核查微课脚本明确采用“逐步变色拆括号”策略，包含红色警示线展开与蓝色箭头校验分镜，来源：模型核查通过的微课内容\",\n      \"模拟班级统计显示M4错因在30人样本中出现7次，反映该类符号分配问题具有普遍性，来源：模拟数据·根据30人名单计算\",\n      \"学生特征记录表明其视觉偏好强、提示依赖度高且自信心偏低，适合分步颜色标记与慢速语音引导，来源：学生画像与策略设定\"\n    ]\n    *student_safe*: true\n\n    Check constraints:\n    - Strict JSON? Yes.\n    - No markdown code blocks? I will output raw JSON.\n    - Title < 24 chars? \"引导小禾用逐步变色法修正符号分配\" (18 chars) - OK.\n    - Teacher summary complete? Yes.\n    - Recommendation actionable, explains why, points to next steps, doesn't rewrite micro-course, doesn't use other students' advice? Yes.\n    - Evidence cites sources correctly? Yes. Explicitly marks simulated data. Distinguishes rule precheck from model observation.\n    - No final answers leaked? Checked. Only mentions the process and a transfer prompt from the script without solving it.\n    - `student_safe`: true.\n\n    One minor adjustment: Ensure the JSON structure exactly matches the prompt.\n    Prompt says: `{\"title\":\"...\",\"teacher_summary\":\"...\",\"recommendation\":\"...\",\"evidence\":[\"...\"],\"student_safe\":true}`\n    I will format it carefully. Escape quotes if necessary, but keep it clean.\n    Check evidence strings: They need to be clear. I'll make sure they explicitly state the source as requested.\n    \"学生作答记录显示第2行将-2(x+2)展开为-2x+4，符合M4（去括号符号错误）定义，来源：规则预检与逐题作答映射\" -> Good.\n    \"已核查微课脚本明确采用“逐步变色拆括号”策略，包含红色警示线展开与蓝色箭头校验分镜，来源：模型核查通过的微课内容\" -> Good.\n    \"模拟班级统计显示M4错因在30人样本中出现7次，反映该类符号分配问题具有普遍性，来源：模拟数据·根据30人名单计算\" -> Good.\n    \"学生特征记录表明其视觉偏好强、提示依赖度高且自信心偏低，适合分步颜色标记与慢速语音引导，来源：学生画像与策略设定\" -> Good.\n\n    All constraints met. I will generate the raw JSON string directly.\n    Double check the prompt: \"只返回严格 JSON，不使用 Markdown 代码块：\"\n    I will output exactly the JSON object.\n    One detail: `student_safe` should be a boolean `true`.\n    The prompt says: `{\"title\":\"不超过24字的建议标题\",\"teacher_summary\":\"面向教师的完整学情与策略摘要\",\"recommendation\":\"完整、可审核、可修改的教学建议原文\",\"evidence\":[\"证据1及其来源\",\"证据2及其来源\"],\"student_safe\":true}`\n    I will construct it carefully.\n    Let's verify the content against the input:\n    - Student: 小禾 (S2)\n    - Misconception: M4 (去括号符号错误)\n    - Wrong step: `3x − 3 − 2x + 4 = 6` (from `3(x−1) − 2(x+2) = 6`). The error is indeed `-2(x+2)` becoming `-2x + 4`. Correct.\n    - Micro-course: Approved, 48s, focuses on color coding for bracket removal. Target form matches.\n    - Stats: Simulated, 30 students, M4 count 7.\n    - Rule precheck: Explicitly states it's a rule match, not model observation. I will reflect this in evidence.\n    - Traits: visual preference, high hint reliance, low confidence.\n    All aligns perfectly.\n\n    Draft JSON:\n    {\n      \"title\": \"引导小禾用逐步变色法修正符号分配\",\n      \"teacher_summary\": \"小禾在解一元一次方程时频繁出现去括号符号错误（M4），典型表现为负号未正确分配至括号内常数项。结合其视觉偏好强、提示依赖度高且自信心偏低的特点，建议采用已核查的“逐步变色拆括号”微课策略。该方案通过颜色标记与分步校验帮助其建立符号逐项分配的直观认知，避免机械记忆。教师可借助模拟班级中同类错因占比数据作为学情参考，重点引导其在观看后自主标注负号走向，并逐步减少提示依赖。\",\n      \"recommendation\": \"建议小禾在复习时直接调用已备好的“拆括号符号不迷路”微课（时长48秒）。观看时请她重点关注第二幕的红色警示线展开过程，对照其错题步骤中-2(x+2)变为-2x+4的符号遗漏处进行圈画。第三幕的蓝色箭头校验可要求她独立复述常数项变号规则，而非直接给出提示。课后迁移练习（如5 - 2(y + 3) = 7）请她先用不同颜色笔标出负号分配路径，再书写步骤。教师下一步可观察其是否能在无提示下完成符号追踪，若仍依赖高频率提示，可引入生活情境与换边动画辅助理解等式平衡，逐步过渡到独立验算。\",\n      \"evidence\": [\n        \"学生作答记录显示第2行将-2(x+2)展开为-2x+4，符合M4（去括号符号错误）定义，来源：规则预检与逐题作答映射\",\n        \"已核查微课脚本明确采用“逐步变色拆括号”策略，包含红色警示线展开与蓝色箭头校验分镜，来源：模型核查通过的微课内容\",\n        \"模拟班级统计显示M4错因在30人样本中出现7次，反映该类符号分配问题具有普遍性，来源：模拟数据·根据30人名单计算\",\n        \"学生特征记录表明其视觉偏好强、提示依赖度高且自信心偏低，适合分步颜色标记与慢速语音引导，来源：学生画像与策略设定\"\n      ],\n      \"student_safe\": true\n    }\n\n    Check constraints again:\n    - \"不代替教师作最终决定\" -> The tone is advisory.\n    - \"区分这些来源，不能把规则映射或模拟班级统计声称为自己观察到的真实调查\" -> Explicitly labeled in evidence and summary.\n    - \"不得编造学生答题过程、人数或研究结论\" -> Used only provided data.\n    - \"形式遵循输入中的定稿方向：小安采用天平图解...小禾采用逐步变色拆括号...\" -> Followed for 小禾.\n    - \"微课内容已通过核查，你应根据学生实际记录解释选择这些方法的理由与教师下一步可以做的事，不必重新编写微课，也不要复用其他学生的建议。\" -> Checked.\n    - \"输出仅供教师审核。不要直接给出演示题的最终答案，不要泄露其他学生的答案，不使用“北师大”“教育学部”“官方”等机构归属表述。建议明确且可操作，避免不必要的夸张和口号。班级统计必须注明为模拟数据。\" -> Checked.\n    - \"只返回严格 JSON，不使用 Markdown 代码块：\" -> Will output raw JSON.\n\n    One minor thing: The prompt says `{\"title\":\"不超过24字的建议标题\",...}`. I'll make sure the title is strictly under 24 Chinese characters. \"引导小禾用逐步变色法修正符号分配\" is 18 chars. Good.\n    Evidence strings format: \"证据及其来源\". I'll adjust slightly to match exactly: \"学生作答记录显示第2行将-2(x+2)展开为-2x+4，符合M4定义，来源：规则预检与逐题作答映射\" etc.\n    All good. Proceeding. \n    Output matches the draft exactly. No extra text. Raw JSON only.✅\n    Self-Correction/Verification during thought:\n    - Check `student_safe` field: The prompt says `student_safe表示你检查了建议是否不含最终答案、其他学生答案和内部实现代号；它不代表已经得到教师采纳，也不授权把教师原文直接下发给学生。` I will set it to `true`.\n    - Check evidence format: The prompt says `[\"证据1及其来源\",\"证据2及其来源\"]`. I will ensure each string clearly states the evidence and its source.\n    - Check tone: Professional, advisory, strictly based on input.\n    - Check JSON syntax: Valid.\n    - Ready. \n    Output generation. \n    [Output Generation] -> *Proceeds*\n    *(Self-Correction/Refinement during drafting)*: I notice the prompt says `{\"title\":\"不超过24字的建议标题\",\"teacher_summary\":\"...\",\"recommendation\":\"...\",\"evidence\":[\"...\"],\"student_safe\":true}`. I will strictly output this structure. I will ensure no markdown formatting is used around the JSON block as requested. I will double-check the exact wording for evidence to match the prompt's instruction \"逐条说明证据来源\".\n    All set. \n    Output matches the refined draft. \n    Proceeds. \n    [Output Generation] (simulated)\n    {\n      \"title\": \"引导小禾用逐步变色法修正符号分配\",\n      \"teacher_summary\": \"小禾在解一元一次方程时频繁出现去括号符号错误（M4），典型表现为负号未正确分配至括号内常数项。结合其视觉偏好强、提示依赖度高且自信心偏低的特点，建议采用已核查的“逐步变色拆括号”微课策略。该方案通过颜色标记与分步校验帮助其建立符号逐项分配的直观认知，避免机械记忆。教师可借助模拟班级中同类错因占比数据作为学情参考，重点引导其在观看后自主标注负号走向，并逐步减少提示依赖。\",\n      \"recommendation\": \"建议小禾在复习时直接调用已备好的“拆括号符号不迷路”微课（时长48秒）。观看时请她重点关注第二幕的红色警示线展开过程，对照其错题步骤中-2(x+2)变为-2x+4的符号遗漏处进行圈画。第三幕的蓝色箭头校验可要求她独立复述常数项变号规则，而非直接给出提示。课后迁移练习（如5 - 2(y + 3) = 7）请她先用不同颜色笔标出负号分配路径，再书写步骤。教师下一步可观察其是否能在无提示下完成符号追踪，若仍依赖高频率提示，可引入生活情境与换边动画辅助理解等式平衡，逐步过渡到独立验算。\",\n      \"evidence\": [\n        \"学生作答记录显示第2行将-2(x+2)展开为-2x+4，符合M4（去括号符号错误）定义，来源：规则预检与逐题作答映射\",\n        \"已核查微课脚本明确采用“逐步变色拆括号”策略，包含红色警示线展开与蓝色箭头校验分镜，来源：模型核查通过的微课内容\",\n        \"模拟班级统计显示M4错因在30人样本中出现7次，反映该类符号分配问题具有普遍性，来源：模拟数据·根据30人名单计算\",\n        \"学生特征记录表明其视觉偏好强、提示依赖度高且自信心偏低，适合分步颜色标记与慢速语音引导，来源：学生画像与策略设定\"\n      ],\n      \"student_safe\": true\n    }\n    Matches all constraints. Output matches exactly. No extra text. Proceeds. \n    *Self-Correction/Note during thought*: The prompt says `{\"title\":\"不超过24字的建议标题\",...}`. I will make sure the JSON is strictly valid. I will output it directly.\n    All good. \n    [Output Generation] -> *Proceeds* (produces the exact JSON string)\n    *(Done.)*",
+  "usage": {
+    "prompt_tokens": 2389,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens": 4610,
+    "total_tokens": 6999
+  },
+  "finish_reason": "stop"
+}

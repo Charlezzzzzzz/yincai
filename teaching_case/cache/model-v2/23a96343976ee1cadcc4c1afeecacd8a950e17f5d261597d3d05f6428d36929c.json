@@ -1,0 +1,75 @@
+{
+  "model": "qwen3.6:35b",
+  "elapsed_ms": 35726,
+  "prompt_version": "microcourse-v2-2026-11-16",
+  "timestamp": "2026-11-16T18:44:12.179058+00:00",
+  "input_hash": "23a96343976ee1cadcc4c1afeecacd8a950e17f5d261597d3d05f6428d36929c",
+  "cache_path": "cache/model-v2/23a96343976ee1cadcc4c1afeecacd8a950e17f5d261597d3d05f6428d36929c.json",
+  "request": {
+    "model": "qwen3.6:35b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是“京师因材”的微课编剧。请只返回一个 JSON 对象，不要 Markdown 代码围栏。\n\n目标：为一个七年级学生写一份 45–60 秒中文微课分镜。内容只围绕一元一次方程的解题方法，不显示最终答案，不显示其他学生答案，不显示内部错因编号（例如 M1、M2、M4），不提“AI 教研指挥舱”等内部实现名称。\n\nJSON 结构必须是：\n{\n  \"title\": \"面向学生的标题\",\n  \"total_duration_sec\": 48,\n  \"scenes\": [\n    {\n      \"id\": \"scene-1\",\n      \"duration_sec\": 12,\n      \"title\": \"学生能看懂的标题\",\n      \"narration\": \"适合 macOS 中文合成音的旁白，不能泄露最终答案\",\n      \"subtitle\": \"烧录字幕，单行不超过 20 个汉字\",\n      \"formula_steps\": [\"第一步公式或动作\", \"第二步公式或动作\"]\n    }\n  ],\n  \"transfer_prompt\": \"结尾给学生的一道迁移题，只给题目，不给答案\"\n}\n\n规则：\n1. 小安使用“天平动画图解”：强调等式两边同乘，每一项都要乘，常数项也要乘；画面用天平、砝码或等式两边，不给答案。\n2. 小禾使用“逐步变色拆括号”：把括号前的负号逐项分配，颜色变化必须在 formula_steps 中表达；不出现错因编号。\n3. 小远使用“生活情境 + 换边动画”：用天平或两边同时做相同操作解释移项变号；只呈现方法和迁移题。\n4. 每份至少 4 个 scene，总时长 45–60 秒；公式应在多个 formula_steps 中逐步进入。\n5. 不要使用内部字段名、缓存、模型名、智能体名称或评审术语。\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"meta\": {\"unit\": \"一元一次方程（七年级）\", \"version\": \"v1.1\", \"note\": \"全部为模拟学生数据；数学内容待 Charles 复核\", \"author\": \"选题与方案策划\", \"changelog\": \"v1.1：每位模拟学生新增 responses（Q1–Q12 逐题作答记录：作答、对错、错因、是否用提示、用时秒数；全部为模拟数据，错误答案均取自题目 wrong_answer_map）\"}, \"demo_item\": {\"id\": \"Q12\", \"stem\": \"解 (x − 1)/2 − (x + 2)/3 = 1\", \"kp\": [\"K10\", \"K9\", \"K8\"]}, \"student\": {\"id\": \"S1\", \"name\": \"小安\", \"demo_answer\": \"8\", \"misconception\": \"M2\", \"wrong_steps\": [\"3(x−1) − 2(x+2) = 1\", \"3x − 3 − 2x − 4 = 1\", \"x − 7 = 1\", \"x = 8\"], \"traits\": {\"confidence\": \"high\", \"hint_reliance\": \"low\", \"checks_answer\": false, \"preferred\": \"rule_clear\"}, \"strategy\": \"代入检验制造认知冲突（x=8 代回左边=1/6≠1）+天平图“每份都乘6”\", \"transfer\": {\"q\": \"(2x + 1)/3 − 1 = x/2\", \"a\": \"4\"}, \"disagree_demo\": \"我本来就会去分母 → 验证题 → 模型改为“会方法但不检验”\", \"responses\": [{\"item\": \"Q1\", \"response\": \"2\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 49}, {\"item\": \"Q2\", \"response\": \"4\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 43}, {\"item\": \"Q3\", \"response\": \"-4\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 74}, {\"item\": \"Q4\", \"response\": \"2\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 77}, {\"item\": \"Q5\", \"response\": \"2\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 72}, {\"item\": \"Q6\", \"response\": \"-1\", \"correct\": false, \"misconception\": \"M2\", \"used_hint\": false, \"time_sec\": 85}, {\"item\": \"Q7\", \"response\": \"5\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 44}, {\"item\": \"Q8\", \"response\": \"4\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 75}, {\"item\": \"Q9\", \"response\": \"是（代入两边均为5）\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 92}, {\"item\": \"Q10\", \"response\": \"不对\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 54}, {\"item\": \"Q11\", \"response\": \"x + (x + 5) = 85；x = 40\", \"correct\": true, \"misconception\": null, \"used_hint\": false, \"time_sec\": 77}, {\"item\": \"Q12\", \"response\": \"8\", \"correct\": false, \"misconception\": \"M2\", \"used_hint\": false, \"time_sec\": 116}]}, \"requirements\": {\"target_form\": \"天平动画图解\", \"strategy\": \"两边同乘，每一项都要乘，常数项也要乘\", \"forbidden_terms\": [\"-1\", \"13\", \"5\", \"AI 教研指挥舱\", \"M1\", \"M10\", \"M2\", \"M3\", \"M4\", \"M5\", \"M6\", \"M7\", \"M8\", \"M9\", \"智能体\", \"模型名\", \"缓存\"], \"hard_rule\": \"任何可见旁白、字幕、公式步骤都不得出现字符串 13，也不得写答案 5、答案 -1 或其他学生的结果\"}}"
+      }
+    ],
+    "temperature": 0.25,
+    "max_tokens": 4096,
+    "stream": false
+  },
+  "response": {
+    "title": "天平解题法：轻松突破一元一次方程",
+    "total_duration_sec": 48,
+    "scenes": [
+      {
+        "id": "scene-1",
+        "duration_sec": 12,
+        "title": "等式如天平，平衡需牢记",
+        "narration": "解方程就像维护天平平衡，等号两边必须始终相等。今天用天平思维拆解复杂方程！",
+        "subtitle": "等式如天平，平衡需牢记",
+        "formula_steps": [
+          "观察方程结构",
+          "标记等号两侧"
+        ]
+      },
+      {
+        "id": "scene-2",
+        "duration_sec": 12,
+        "title": "去分母：每项都要乘最小公倍数",
+        "narration": "遇到分数先找公分母！天平两边同时乘以所有分母的最小公倍数，常数项也不能漏掉哦。",
+        "subtitle": "去分母每项乘公倍数",
+        "formula_steps": [
+          "确定各分母数值",
+          "两侧同乘最小公倍数"
+        ]
+      },
+      {
+        "id": "scene-3",
+        "duration_sec": 12,
+        "title": "拆括号：负号分配要仔细",
+        "narration": "括号前是负号时，像分糖果一样逐项变号！颜色变化提示每项都要重新计算。",
+        "subtitle": "拆括号注意符号变",
+        "formula_steps": [
+          "识别括号前符号",
+          "逐项分配并变色"
+        ]
+      },
+      {
+        "id": "scene-4",
+        "duration_sec": 12,
+        "title": "移项如换边，变号要牢记",
+        "narration": "把未知数移到天平左侧，常数移到右侧。记住：跨过等号就要改变符号！",
+        "subtitle": "移项过等号必变号",
+        "formula_steps": [
+          "识别目标变量项",
+          "跨等号移动并变号"
+        ]
+      }
+    ],
+    "transfer_prompt": "尝试用天平法解方程：(3x-2)/4 + 1 = (x+5)/2，记录每一步的天平操作过程。"
+  }
+}

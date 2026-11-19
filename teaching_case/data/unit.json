@@ -1,0 +1,194 @@
+{
+  "id": "linear-equations-7",
+  "title": "一元一次方程（七年级）",
+  "subject": "数学",
+  "grade": "七年级",
+  "status": "content-v1.1",
+  "source": "data/content-v1.1.json",
+  "knowledge_points": [
+    {
+      "id": "P1",
+      "title": "用字母表示数、代数式",
+      "prerequisites": [],
+      "group": "prereq"
+    },
+    {
+      "id": "P2",
+      "title": "有理数运算（含符号法则）",
+      "prerequisites": [],
+      "group": "prereq"
+    },
+    {
+      "id": "P3",
+      "title": "合并同类项",
+      "prerequisites": [
+        "P1"
+      ],
+      "group": "prereq"
+    },
+    {
+      "id": "P4",
+      "title": "去括号法则",
+      "prerequisites": [
+        "P2",
+        "P3"
+      ],
+      "group": "prereq"
+    },
+    {
+      "id": "P5",
+      "title": "最小公倍数与分数的基本性质",
+      "prerequisites": [],
+      "group": "prereq"
+    },
+    {
+      "id": "P6",
+      "title": "等式与等号的意义",
+      "prerequisites": [],
+      "group": "prereq"
+    },
+    {
+      "id": "K1",
+      "title": "方程的概念",
+      "prerequisites": [
+        "P1",
+        "P6"
+      ],
+      "group": "core"
+    },
+    {
+      "id": "K2",
+      "title": "一元一次方程的概念",
+      "prerequisites": [
+        "K1"
+      ],
+      "group": "core"
+    },
+    {
+      "id": "K3",
+      "title": "方程的解与检验",
+      "prerequisites": [
+        "K1",
+        "P2"
+      ],
+      "group": "core"
+    },
+    {
+      "id": "K4",
+      "title": "等式的性质1（两边同加减）",
+      "prerequisites": [
+        "P6"
+      ],
+      "group": "core"
+    },
+    {
+      "id": "K5",
+      "title": "等式的性质2（两边同乘除非零数）",
+      "prerequisites": [
+        "P6"
+      ],
+      "group": "core"
+    },
+    {
+      "id": "K6",
+      "title": "系数化为1",
+      "prerequisites": [
+        "K5",
+        "P2"
+      ],
+      "group": "solve"
+    },
+    {
+      "id": "K7",
+      "title": "合并同类项解方程",
+      "prerequisites": [
+        "P3",
+        "K6"
+      ],
+      "group": "solve"
+    },
+    {
+      "id": "K8",
+      "title": "移项",
+      "prerequisites": [
+        "K4"
+      ],
+      "group": "solve"
+    },
+    {
+      "id": "K9",
+      "title": "去括号解方程",
+      "prerequisites": [
+        "P4",
+        "K8"
+      ],
+      "group": "solve"
+    },
+    {
+      "id": "K10",
+      "title": "去分母解方程",
+      "prerequisites": [
+        "P5",
+        "K5",
+        "K9"
+      ],
+      "group": "solve"
+    },
+    {
+      "id": "K11",
+      "title": "解一元一次方程的一般步骤",
+      "prerequisites": [
+        "K6",
+        "K7",
+        "K8",
+        "K9",
+        "K10"
+      ],
+      "group": "solve"
+    },
+    {
+      "id": "K12",
+      "title": "设未知数、找等量关系",
+      "prerequisites": [
+        "K1"
+      ],
+      "group": "apply"
+    },
+    {
+      "id": "K13",
+      "title": "和差倍分问题",
+      "prerequisites": [
+        "K12",
+        "K11"
+      ],
+      "group": "apply"
+    },
+    {
+      "id": "K14",
+      "title": "行程问题",
+      "prerequisites": [
+        "K12",
+        "K11"
+      ],
+      "group": "apply"
+    },
+    {
+      "id": "K15",
+      "title": "工程问题",
+      "prerequisites": [
+        "K12",
+        "K11"
+      ],
+      "group": "apply"
+    },
+    {
+      "id": "K16",
+      "title": "解的合理性检验",
+      "prerequisites": [
+        "K3",
+        "K12"
+      ],
+      "group": "apply"
+    }
+  ]
+}

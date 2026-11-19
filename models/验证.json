@@ -1,0 +1,881 @@
+{
+  "version": "v7.1",
+  "verified_utc": "2026-11-18T11:51:47+00:00",
+  "kind": "从本版源场景和交付文件重新核验",
+  "blender_version": [
+    5,
+    2,
+    2
+  ],
+  "source_scene_sha256": "b50f039c861dd878ee50e3559bdb146433c0637ad3d10110971c52e00bfa28a6",
+  "summary": {
+    "source_collections": 8,
+    "glbs_reopened": 8,
+    "agent_joint_checks": 54,
+    "sole_support_checks": 16,
+    "byte_identical_v7_teacher_glbs": 2
+  },
+  "teacher_source_note": "两位教师沿用 v7 的 GLB。v7 与 v7.1 源文件的完整仿射变换均保留非等比父缩放带来的切变；旧导出器将各部件矩阵拆为平移、旋转、缩放后合并，袖管等处有微小偏差。报告分别记录源显示几何与真实导出变换的误差。",
+  "axes": "glTF +Y 向上，脸朝 +Z；距离以模型单位计。",
+  "measurement": "头高为头部可见最高顶点至颏底或胡须下缘，身高从底座上缘至同一头顶。鞋底中心垂线必须命中底座实体，报告高差为有符号距离。两个方向的最近顶点最大误差比对源文件求值几何与导出 GLB。六位智能体的九处接合以独立列出的组件和实际求值后网格表面相交验证。",
+  "assets": {
+    "analyst": {
+      "sha256": "77bdbd68cab99de10c7599fbdcdc4526aa42cd9cbf05ecc493c9626beabe6c3d",
+      "bytes": 1239888,
+      "meshes": 1,
+      "material_count": 20,
+      "vertices": 35148,
+      "indexed_triangles": 63196,
+      "bounds_gltf_min": [
+        -0.79643,
+        0.0,
+        -0.615
+      ],
+      "bounds_gltf_max": [
+        0.81654,
+        2.59314,
+        0.615
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          166,
+          102,
+          639,
+          870
+        ],
+        "transparent_pixels_percent": 67.03
+      },
+      "editable_parts": 60,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底": 7e-09,
+        "贴地鞋底.001": 7e-09
+      },
+      "foot_to_base_max_gap": 7e-09,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.42668,
+        0.42668
+      ],
+      "figure_height": 2.46914,
+      "head_crown_to_chin": 1.29876,
+      "figure_height_in_head_units": 1.9012,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 2.9886e-07,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.9886e-07,
+      "body_contacts": [
+        {
+          "joint": "胸针与衣身",
+          "parts": [
+            "analyst-bell-backing",
+            "analyst-garment"
+          ],
+          "intersecting_polygon_pairs": 60
+        },
+        {
+          "joint": "抬起侧肩袖与衣身",
+          "parts": [
+            "analyst-holding-sleeve",
+            "analyst-garment"
+          ],
+          "intersecting_polygon_pairs": 99
+        },
+        {
+          "joint": "抬起侧袖口与手",
+          "parts": [
+            "analyst-holding-sleeve",
+            "analyst-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 49
+        },
+        {
+          "joint": "持物手与道具",
+          "parts": [
+            "analyst-holding-hand",
+            "analyst-tablet-frame"
+          ],
+          "intersecting_polygon_pairs": 42
+        },
+        {
+          "joint": "拇指与手掌",
+          "parts": [
+            "analyst-holding-thumb",
+            "analyst-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 58
+        },
+        {
+          "joint": "下垂侧肩袖与衣身",
+          "parts": [
+            "analyst-relaxed-sleeve",
+            "analyst-garment"
+          ],
+          "intersecting_polygon_pairs": 78
+        },
+        {
+          "joint": "下垂侧袖口与手",
+          "parts": [
+            "analyst-relaxed-sleeve",
+            "analyst-relaxed-hand"
+          ],
+          "intersecting_polygon_pairs": 44
+        },
+        {
+          "joint": "颈部与面部",
+          "parts": [
+            "analyst-neck",
+            "手塑面部"
+          ],
+          "intersecting_polygon_pairs": 102
+        },
+        {
+          "joint": "衣身与髋部",
+          "parts": [
+            "analyst-garment",
+            "裤腰及髋部"
+          ],
+          "intersecting_polygon_pairs": 40
+        }
+      ],
+      "blender_reimported": true
+    },
+    "expert": {
+      "sha256": "b4326fcd1ef785399f04553c895ba9a331791111938b2e5a2aa09d2cdc9f4d3e",
+      "bytes": 1244012,
+      "meshes": 1,
+      "material_count": 18,
+      "vertices": 35199,
+      "indexed_triangles": 63940,
+      "bounds_gltf_min": [
+        -0.77001,
+        0.0,
+        -0.615
+      ],
+      "bounds_gltf_max": [
+        0.75215,
+        2.55277,
+        0.615
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          174,
+          113,
+          620,
+          870
+        ],
+        "transparent_pixels_percent": 68.78
+      },
+      "editable_parts": 62,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底.002": 7e-09,
+        "贴地鞋底.003": 7e-09
+      },
+      "foot_to_base_max_gap": 7e-09,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.42571,
+        0.42571
+      ],
+      "figure_height": 2.42877,
+      "head_crown_to_chin": 1.25726,
+      "figure_height_in_head_units": 1.9318,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 2.46208e-07,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.46208e-07,
+      "body_contacts": [
+        {
+          "joint": "胸针与衣身",
+          "parts": [
+            "expert-bell-backing",
+            "expert-garment"
+          ],
+          "intersecting_polygon_pairs": 60
+        },
+        {
+          "joint": "抬起侧肩袖与衣身",
+          "parts": [
+            "expert-holding-sleeve",
+            "expert-garment"
+          ],
+          "intersecting_polygon_pairs": 101
+        },
+        {
+          "joint": "抬起侧袖口与手",
+          "parts": [
+            "expert-holding-sleeve",
+            "expert-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 46
+        },
+        {
+          "joint": "持物手与道具",
+          "parts": [
+            "expert-holding-hand",
+            "expert-book-cover"
+          ],
+          "intersecting_polygon_pairs": 50
+        },
+        {
+          "joint": "拇指与手掌",
+          "parts": [
+            "expert-holding-thumb",
+            "expert-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 58
+        },
+        {
+          "joint": "下垂侧肩袖与衣身",
+          "parts": [
+            "expert-relaxed-sleeve",
+            "expert-garment"
+          ],
+          "intersecting_polygon_pairs": 78
+        },
+        {
+          "joint": "下垂侧袖口与手",
+          "parts": [
+            "expert-relaxed-sleeve",
+            "expert-relaxed-hand"
+          ],
+          "intersecting_polygon_pairs": 44
+        },
+        {
+          "joint": "颈部与面部",
+          "parts": [
+            "expert-neck",
+            "手塑面部.001"
+          ],
+          "intersecting_polygon_pairs": 98
+        },
+        {
+          "joint": "衣身与髋部",
+          "parts": [
+            "expert-garment",
+            "裤腰及髋部.001"
+          ],
+          "intersecting_polygon_pairs": 40
+        }
+      ],
+      "blender_reimported": true
+    },
+    "designer": {
+      "sha256": "5f16375813c67dd912a859216c0ff2de114278d1f20d90b1c1dd577dbdc78946",
+      "bytes": 1166056,
+      "meshes": 1,
+      "material_count": 15,
+      "vertices": 32833,
+      "indexed_triangles": 60848,
+      "bounds_gltf_min": [
+        -0.77508,
+        0.0,
+        -0.615
+      ],
+      "bounds_gltf_max": [
+        0.74437,
+        2.72666,
+        0.615
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          173,
+          62,
+          617,
+          870
+        ],
+        "transparent_pixels_percent": 67.48
+      },
+      "editable_parts": 59,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底.004": 7e-09,
+        "贴地鞋底.005": 7e-09
+      },
+      "foot_to_base_max_gap": 7e-09,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.42668,
+        0.42668
+      ],
+      "figure_height": 2.60266,
+      "head_crown_to_chin": 1.4332,
+      "figure_height_in_head_units": 1.816,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 2.81549e-07,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.81549e-07,
+      "body_contacts": [
+        {
+          "joint": "胸针与衣身",
+          "parts": [
+            "designer-bell-backing",
+            "designer-garment"
+          ],
+          "intersecting_polygon_pairs": 60
+        },
+        {
+          "joint": "抬起侧肩袖与衣身",
+          "parts": [
+            "designer-holding-sleeve",
+            "designer-garment"
+          ],
+          "intersecting_polygon_pairs": 104
+        },
+        {
+          "joint": "抬起侧袖口与手",
+          "parts": [
+            "designer-holding-sleeve",
+            "designer-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 44
+        },
+        {
+          "joint": "持物手与道具",
+          "parts": [
+            "designer-holding-hand",
+            "designer-sketch-card"
+          ],
+          "intersecting_polygon_pairs": 42
+        },
+        {
+          "joint": "拇指与手掌",
+          "parts": [
+            "designer-holding-thumb",
+            "designer-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 58
+        },
+        {
+          "joint": "下垂侧肩袖与衣身",
+          "parts": [
+            "designer-relaxed-sleeve",
+            "designer-garment"
+          ],
+          "intersecting_polygon_pairs": 78
+        },
+        {
+          "joint": "下垂侧袖口与手",
+          "parts": [
+            "designer-relaxed-sleeve",
+            "designer-relaxed-hand"
+          ],
+          "intersecting_polygon_pairs": 44
+        },
+        {
+          "joint": "颈部与面部",
+          "parts": [
+            "designer-neck",
+            "手塑面部.002"
+          ],
+          "intersecting_polygon_pairs": 96
+        },
+        {
+          "joint": "衣身与髋部",
+          "parts": [
+            "designer-garment",
+            "裤腰及髋部.002"
+          ],
+          "intersecting_polygon_pairs": 40
+        }
+      ],
+      "blender_reimported": true
+    },
+    "producer": {
+      "sha256": "07db15b71f33255feff03e767c796c1e0794744d280326657e55fe8aa4d8c76b",
+      "bytes": 1147428,
+      "meshes": 1,
+      "material_count": 15,
+      "vertices": 32384,
+      "indexed_triangles": 59508,
+      "bounds_gltf_min": [
+        -0.7787,
+        0.0,
+        -0.615
+      ],
+      "bounds_gltf_max": [
+        0.78066,
+        2.67059,
+        0.615
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          172,
+          77,
+          628,
+          870
+        ],
+        "transparent_pixels_percent": 66.63
+      },
+      "editable_parts": 55,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底.006": 7e-09,
+        "贴地鞋底.007": 7e-09
+      },
+      "foot_to_base_max_gap": 7e-09,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.42668,
+        0.42668
+      ],
+      "figure_height": 2.54659,
+      "head_crown_to_chin": 1.37621,
+      "figure_height_in_head_units": 1.8504,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 2.70283e-07,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.70283e-07,
+      "body_contacts": [
+        {
+          "joint": "胸针与衣身",
+          "parts": [
+            "producer-bell-backing",
+            "producer-garment"
+          ],
+          "intersecting_polygon_pairs": 60
+        },
+        {
+          "joint": "抬起侧肩袖与衣身",
+          "parts": [
+            "producer-holding-sleeve",
+            "producer-garment"
+          ],
+          "intersecting_polygon_pairs": 102
+        },
+        {
+          "joint": "抬起侧袖口与手",
+          "parts": [
+            "producer-holding-sleeve",
+            "producer-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 46
+        },
+        {
+          "joint": "持物手与道具",
+          "parts": [
+            "producer-holding-hand",
+            "producer-play-plaque"
+          ],
+          "intersecting_polygon_pairs": 42
+        },
+        {
+          "joint": "拇指与手掌",
+          "parts": [
+            "producer-holding-thumb",
+            "producer-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 58
+        },
+        {
+          "joint": "下垂侧肩袖与衣身",
+          "parts": [
+            "producer-relaxed-sleeve",
+            "producer-garment"
+          ],
+          "intersecting_polygon_pairs": 79
+        },
+        {
+          "joint": "下垂侧袖口与手",
+          "parts": [
+            "producer-relaxed-sleeve",
+            "producer-relaxed-hand"
+          ],
+          "intersecting_polygon_pairs": 48
+        },
+        {
+          "joint": "颈部与面部",
+          "parts": [
+            "producer-neck",
+            "手塑面部.003"
+          ],
+          "intersecting_polygon_pairs": 102
+        },
+        {
+          "joint": "衣身与髋部",
+          "parts": [
+            "producer-garment",
+            "裤腰及髋部.003"
+          ],
+          "intersecting_polygon_pairs": 40
+        }
+      ],
+      "blender_reimported": true
+    },
+    "checker": {
+      "sha256": "c89e242752d9a300fe4ea198b30a563ed55c7f54a9f82651b1b910531f237e26",
+      "bytes": 1124396,
+      "meshes": 1,
+      "material_count": 17,
+      "vertices": 31530,
+      "indexed_triangles": 58816,
+      "bounds_gltf_min": [
+        -0.7714,
+        0.0,
+        -0.615
+      ],
+      "bounds_gltf_max": [
+        0.82618,
+        2.59314,
+        0.615
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          174,
+          102,
+          641,
+          870
+        ],
+        "transparent_pixels_percent": 67.59
+      },
+      "editable_parts": 55,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底.008": 7e-09,
+        "贴地鞋底.009": 7e-09
+      },
+      "foot_to_base_max_gap": 7e-09,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.42668,
+        0.42668
+      ],
+      "figure_height": 2.46914,
+      "head_crown_to_chin": 1.29876,
+      "figure_height_in_head_units": 1.9012,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 2.66976e-07,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.66976e-07,
+      "body_contacts": [
+        {
+          "joint": "胸针与衣身",
+          "parts": [
+            "checker-bell-backing",
+            "checker-garment"
+          ],
+          "intersecting_polygon_pairs": 60
+        },
+        {
+          "joint": "抬起侧肩袖与衣身",
+          "parts": [
+            "checker-holding-sleeve",
+            "checker-garment"
+          ],
+          "intersecting_polygon_pairs": 99
+        },
+        {
+          "joint": "抬起侧袖口与手",
+          "parts": [
+            "checker-holding-sleeve",
+            "checker-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 46
+        },
+        {
+          "joint": "持物手与道具",
+          "parts": [
+            "checker-holding-hand",
+            "checker-magnifier-handle"
+          ],
+          "intersecting_polygon_pairs": 56
+        },
+        {
+          "joint": "拇指与手掌",
+          "parts": [
+            "checker-holding-thumb",
+            "checker-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 58
+        },
+        {
+          "joint": "下垂侧肩袖与衣身",
+          "parts": [
+            "checker-relaxed-sleeve",
+            "checker-garment"
+          ],
+          "intersecting_polygon_pairs": 78
+        },
+        {
+          "joint": "下垂侧袖口与手",
+          "parts": [
+            "checker-relaxed-sleeve",
+            "checker-relaxed-hand"
+          ],
+          "intersecting_polygon_pairs": 44
+        },
+        {
+          "joint": "颈部与面部",
+          "parts": [
+            "checker-neck",
+            "手塑面部.004"
+          ],
+          "intersecting_polygon_pairs": 102
+        },
+        {
+          "joint": "衣身与髋部",
+          "parts": [
+            "checker-garment",
+            "裤腰及髋部.004"
+          ],
+          "intersecting_polygon_pairs": 40
+        }
+      ],
+      "blender_reimported": true
+    },
+    "assistant": {
+      "sha256": "c421f039624fb1698f81296aec3a5d784a793bd56dffdb265c83222317049563",
+      "bytes": 1122436,
+      "meshes": 1,
+      "material_count": 17,
+      "vertices": 31698,
+      "indexed_triangles": 57844,
+      "bounds_gltf_min": [
+        -0.78844,
+        0.0,
+        -0.615
+      ],
+      "bounds_gltf_max": [
+        0.74385,
+        2.71573,
+        0.615
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          169,
+          66,
+          617,
+          870
+        ],
+        "transparent_pixels_percent": 68.3
+      },
+      "editable_parts": 53,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底.010": 7e-09,
+        "贴地鞋底.011": 7e-09
+      },
+      "foot_to_base_max_gap": 7e-09,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.42522,
+        0.42522
+      ],
+      "figure_height": 2.59173,
+      "head_crown_to_chin": 1.42261,
+      "figure_height_in_head_units": 1.8218,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 2.46208e-07,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.46208e-07,
+      "body_contacts": [
+        {
+          "joint": "胸针与衣身",
+          "parts": [
+            "assistant-bell-backing",
+            "assistant-garment"
+          ],
+          "intersecting_polygon_pairs": 60
+        },
+        {
+          "joint": "抬起侧肩袖与衣身",
+          "parts": [
+            "assistant-holding-sleeve",
+            "assistant-garment"
+          ],
+          "intersecting_polygon_pairs": 89
+        },
+        {
+          "joint": "抬起侧袖口与手",
+          "parts": [
+            "assistant-holding-sleeve",
+            "assistant-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 52
+        },
+        {
+          "joint": "持物手与道具",
+          "parts": [
+            "assistant-holding-hand",
+            "assistant-speech-bubble"
+          ],
+          "intersecting_polygon_pairs": 85
+        },
+        {
+          "joint": "拇指与手掌",
+          "parts": [
+            "assistant-holding-thumb",
+            "assistant-holding-hand"
+          ],
+          "intersecting_polygon_pairs": 58
+        },
+        {
+          "joint": "下垂侧肩袖与衣身",
+          "parts": [
+            "assistant-relaxed-sleeve",
+            "assistant-garment"
+          ],
+          "intersecting_polygon_pairs": 79
+        },
+        {
+          "joint": "下垂侧袖口与手",
+          "parts": [
+            "assistant-relaxed-sleeve",
+            "assistant-relaxed-hand"
+          ],
+          "intersecting_polygon_pairs": 48
+        },
+        {
+          "joint": "颈部与面部",
+          "parts": [
+            "assistant-neck",
+            "手塑面部.005"
+          ],
+          "intersecting_polygon_pairs": 96
+        },
+        {
+          "joint": "衣身与髋部",
+          "parts": [
+            "assistant-garment",
+            "裤腰及髋部.005"
+          ],
+          "intersecting_polygon_pairs": 40
+        }
+      ],
+      "blender_reimported": true
+    },
+    "teacher-female": {
+      "sha256": "60d155d9baea0c1ee0c87736d27760684bacc92ca6601454ad1ac9fe8c4f214e",
+      "bytes": 785084,
+      "meshes": 1,
+      "material_count": 15,
+      "vertices": 22948,
+      "indexed_triangles": 36960,
+      "bounds_gltf_min": [
+        -0.64,
+        0.0,
+        -0.64
+      ],
+      "bounds_gltf_max": [
+        0.64,
+        3.07168,
+        0.64
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          226,
+          47,
+          573,
+          896
+        ],
+        "transparent_pixels_percent": 74.62
+      },
+      "front_face_avatar": {
+        "dimensions": [
+          640,
+          640
+        ],
+        "alpha_bbox_ltrb": [
+          111,
+          55,
+          526,
+          639
+        ],
+        "transparent_pixels_percent": 56.06
+      },
+      "v7_glb_byte_identical": true,
+      "v7_glb_sha256": "60d155d9baea0c1ee0c87736d27760684bacc92ca6601454ad1ac9fe8c4f214e",
+      "editable_parts": 57,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底.012": 0.0,
+        "贴地鞋底.013": 0.0
+      },
+      "foot_to_base_max_gap": 0.0,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.33378,
+        0.33378
+      ],
+      "figure_height": 2.94768,
+      "head_crown_to_chin": 1.16836,
+      "figure_height_in_head_units": 2.5229,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 0.016486,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.52881e-07,
+      "blender_reimported": true
+    },
+    "teacher-male": {
+      "sha256": "a96d36609d56c6d7d6de23218fa452b1251938a333afab211ac9029bd4280487",
+      "bytes": 765892,
+      "meshes": 1,
+      "material_count": 14,
+      "vertices": 22708,
+      "indexed_triangles": 34852,
+      "bounds_gltf_min": [
+        -0.64,
+        0.0,
+        -0.64
+      ],
+      "bounds_gltf_max": [
+        0.64,
+        3.10324,
+        0.64
+      ],
+      "png": {
+        "dimensions": [
+          800,
+          920
+        ],
+        "alpha_bbox_ltrb": [
+          226,
+          47,
+          573,
+          896
+        ],
+        "transparent_pixels_percent": 75.07
+      },
+      "front_face_avatar": {
+        "dimensions": [
+          640,
+          640
+        ],
+        "alpha_bbox_ltrb": [
+          111,
+          45,
+          524,
+          639
+        ],
+        "transparent_pixels_percent": 57.05
+      },
+      "v7_glb_byte_identical": true,
+      "v7_glb_sha256": "a96d36609d56c6d7d6de23218fa452b1251938a333afab211ac9029bd4280487",
+      "editable_parts": 55,
+      "foot_to_base_signed_gaps": {
+        "贴地鞋底.014": 0.0,
+        "贴地鞋底.015": 0.0
+      },
+      "foot_to_base_max_gap": 0.0,
+      "face_direction_checked": "+Z (glTF)",
+      "eye_forward_offsets": [
+        0.34056,
+        0.34056
+      ],
+      "figure_height": 2.97924,
+      "head_crown_to_chin": 1.19992,
+      "figure_height_in_head_units": 2.4829,
+      "source_full_affine_glb_bidirectional_vertex_max_error": 0.016486,
+      "source_export_bake_glb_bidirectional_vertex_max_error": 2.81155e-07,
+      "blender_reimported": true
+    }
+  }
+}

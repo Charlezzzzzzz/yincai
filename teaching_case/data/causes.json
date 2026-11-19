@@ -1,0 +1,137 @@
+{
+  "status": "content-v1.1",
+  "source": "data/content-v1.1.json",
+  "causes": [
+    {
+      "id": "M1",
+      "name": "移项不变号",
+      "short_name": "移项不变号",
+      "description": "把移项当机械搬家，不知道来自两边同减",
+      "repair_step": "balance+context",
+      "example": "x+3=5 → x=5+3",
+      "related_kp": [
+        "K8",
+        "K4"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M2",
+      "name": "去分母漏乘不含分母的项",
+      "short_name": "分母漏乘不含分母的项",
+      "description": "以为只有带分母的项要乘",
+      "repair_step": "substitute_conflict+balance",
+      "example": "x/2+1=x/3 ×6 → 3x+1=2x",
+      "related_kp": [
+        "K10",
+        "K5"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M3",
+      "name": "去分母后分子未作整体",
+      "short_name": "分母后分子未作整体",
+      "description": "没意识到分数线有括号作用",
+      "repair_step": "diagram+contrast",
+      "example": "(x−1)/2 ×6 → 3x−1",
+      "related_kp": [
+        "K10",
+        "P4"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M4",
+      "name": "去括号符号错误",
+      "short_name": "括号符号错误",
+      "description": "负号没有分配到括号内每一项",
+      "repair_step": "stepwise_diagram",
+      "example": "−2(x+2) → −2x+4",
+      "related_kp": [
+        "K9",
+        "P4",
+        "P2"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M5",
+      "name": "去括号漏乘",
+      "short_name": "括号漏乘",
+      "description": "分配律只作用第一项",
+      "repair_step": "area_model",
+      "example": "2(x+3) → 2x+3",
+      "related_kp": [
+        "K9",
+        "P4"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M6",
+      "name": "系数化为1除反",
+      "short_name": "系数化为1除反",
+      "description": "分不清谁除以谁",
+      "repair_step": "substitute_conflict+balance",
+      "example": "3x=12 → x=3/12 或 36",
+      "related_kp": [
+        "K6",
+        "K5"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M7",
+      "name": "负系数丢符号",
+      "short_name": "负系数丢符号",
+      "description": "只看系数绝对值",
+      "repair_step": "substitute_conflict",
+      "example": "−2x=8 → x=4",
+      "related_kp": [
+        "K6",
+        "P2"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M8",
+      "name": "等号当作“得到结果”",
+      "short_name": "等号当作“得到结果”",
+      "description": "等号理解为运算结果而非相等关系",
+      "repair_step": "balance+discussion",
+      "example": "2x+4=10=2x=6=x=3",
+      "related_kp": [
+        "P6",
+        "K1"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M9",
+      "name": "不理解方程的解",
+      "short_name": "不理解方程的解",
+      "description": "把解当过程终点，不会代入",
+      "repair_step": "substitute_habit",
+      "example": "判断x=2是否为解时坚持先解方程",
+      "related_kp": [
+        "K3"
+      ],
+      "confidence": "规则命中"
+    },
+    {
+      "id": "M10",
+      "name": "等量关系方向弄反",
+      "short_name": "等量关系方向弄反",
+      "description": "按字面顺序翻译",
+      "repair_step": "segment_diagram+check",
+      "example": "甲比乙多5，设乙x，写甲=x−5",
+      "related_kp": [
+        "K12",
+        "K13",
+        "K16"
+      ],
+      "confidence": "规则命中"
+    }
+  ]
+}

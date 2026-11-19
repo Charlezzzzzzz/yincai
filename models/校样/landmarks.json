@@ -1,0 +1,54 @@
+{
+  "analyst-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "expert-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "designer-old": {
+    "chin_y": 455.2,
+    "prop_bottom_y": 565.59
+  },
+  "producer-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "checker-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "assistant-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "analyst-front": {
+    "chin_y": 484.09,
+    "prop_bottom_y": 637.94
+  },
+  "expert-front": {
+    "chin_y": 486.38,
+    "prop_bottom_y": 631.03
+  },
+  "designer-front": {
+    "chin_y": 484.43,
+    "prop_bottom_y": 627.35
+  },
+  "producer-front": {
+    "chin_y": 484.09,
+    "prop_bottom_y": 629.26
+  },
+  "checker-front": {
+    "chin_y": 484.09,
+    "prop_bottom_y": 646.72
+  },
+  "assistant-front": {
+    "chin_y": 484.51,
+    "prop_bottom_y": 656.46
+  },
+  "assistant-three": {
+    "chin_y": 483.75,
+    "prop_bottom_y": 656.35
+  }
+}
