@@ -1,14 +1,20 @@
-/* Teacher conversations. Keep local geometry stable while model requests are in flight. */
+/* The header and the composer share the actual viewport height. */
+body[data-view="chat"] {
+  height:100vh; height:100dvh; display:grid; grid-template-rows:auto minmax(0,1fr);
+}
+body[data-view="chat"] > #work {display:flex; flex-direction:column; min-height:0}
+
 .cc-app {
   --cc-rule:#d9d9d1; --cc-nav:#e8e8df; --cc-fog:#eeeee8; --cc-ink:#14213d;
-  width:min(1280px,calc(100% - 8vw));margin:auto;color:var(--cc-ink);padding:0 0 22px;
+  width:min(1280px,calc(100% - 8vw)); margin:0 auto; color:var(--cc-ink);
+  display:flex; flex:1; flex-direction:column; min-height:0; padding-bottom:max(10px,env(safe-area-inset-bottom));
 }
 .cc-app button,.cc-app textarea {font-family:var(--sans);color:inherit}
 .cc-app [hidden] {display:none!important}
 .cc-page-top,.cc-side-top,.cc-contact,.cc-compose-foot,.cc-evidence-line>div {
   display:flex;align-items:center;justify-content:space-between;gap:12px
 }
-.cc-page-top {padding:clamp(18px,3.2vh,40px) 1px 18px}
+.cc-page-top {flex:none;padding:clamp(18px,3.2vh,40px) 1px 18px}
 .cc-page-top h1 {font:650 clamp(29px,2.7vw,41px)/1.2 var(--serif);margin:4px 0 0;letter-spacing:.025em}
 .cc-kicker,.cc-contact-name small,.cc-person small,.cc-side-top>span,.cc-meta,.cc-compose-foot {color:#5c6569}
 .cc-kicker {font-size:11px;letter-spacing:.08em}
@@ -28,7 +34,7 @@
 .cc-var code {font-size:11px;letter-spacing:.015em}
 .cc-var span {font-size:11px;color:#596269}
 .cc-text-action {border:0;background:none;color:#2c5169!important;font-size:12px;font-weight:650;padding:5px 0;text-decoration:underline;text-underline-offset:3px}
-.cc-board {height:clamp(495px,calc(100dvh - 218px),795px);display:grid;grid-template-columns:clamp(212px,23%,285px) minmax(0,1fr);
+.cc-board {flex:1;min-height:0;display:grid;grid-template-columns:clamp(212px,23%,285px) minmax(0,1fr);
   overflow:hidden;border:1px solid #d4d5ca;border-radius:22px;background:#fdfcf8;box-shadow:0 9px 30px -19px #28364738}
 .cc-side {padding:18px 12px;min-height:0;overflow:auto;background:#eeeee6;border-right:1px solid var(--cc-rule)}
 .cc-side-top {padding:1px 9px 14px;align-items:baseline}
@@ -99,10 +105,10 @@
 .cc-app button:focus-visible {outline:2px solid #395f74;outline-offset:2px}
 .cc-app button:active:not(:disabled) {transform:translateY(1px)}
 @media (max-width:740px) {
-  .cc-app {width:min(100% - 22px,650px);padding-bottom:8px}
+  .cc-app {width:min(100% - 22px,650px);padding-bottom:max(4px,env(safe-area-inset-bottom))}
   .cc-page-top {padding:15px 4px 12px}
   .cc-connect-btn {font-size:11px}
-  .cc-board {display:flex;flex-direction:column;height:max(535px,calc(100dvh - 182px));max-height:790px;border-radius:16px}
+  .cc-board {display:flex;flex-direction:column;border-radius:16px}
   .cc-side {padding:6px 7px 5px;border:0;border-bottom:1px solid var(--cc-rule);overflow:hidden;flex:none}
   .cc-side-top {display:none}
   .cc-roster {display:flex;overflow-x:auto;scrollbar-width:thin;gap:3px}
@@ -117,12 +123,12 @@
   .cc-contact-name small {font-size:10px}
   .cc-record-btn {padding:6px 9px;font-size:11px}
   .cc-log {padding:11px}
-  .cc-compose {padding:6px 9px 8px}
+  .cc-compose {padding:6px 9px 4px}
   .cc-bubble {font-size:14px}
   .cc-entry textarea {font-size:16px}
   .cc-bubble,.cc-error {max-width:90%}
   .cc-answer {max-width:100%}
-  .cc-compose-foot {font-size:9px}
+  .cc-compose-foot {font-size:9px;margin-top:4px}
 }
 @media (prefers-reduced-motion:reduce) {
   .cc-typing i {animation:none}
