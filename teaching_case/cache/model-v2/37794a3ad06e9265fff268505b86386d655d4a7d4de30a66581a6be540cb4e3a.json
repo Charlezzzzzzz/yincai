@@ -1,0 +1,45 @@
+{
+  "model": "qwen3.6:35b",
+  "elapsed_ms": 62614,
+  "prompt_version": "reviewer-v2-2026-11-16",
+  "timestamp": "2026-11-16T16:42:23.427638+00:00",
+  "input_hash": "37794a3ad06e9265fff268505b86386d655d4a7d4de30a66581a6be540cb4e3a",
+  "cache_path": "cache/model-v2/37794a3ad06e9265fff268505b86386d655d4a7d4de30a66581a6be540cb4e3a.json",
+  "request": {
+    "model": "qwen3.6:35b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是“京师因材”的微课核查员。请只返回一个 JSON 对象，不要 Markdown 代码围栏。\n\n输入是一份已经生成的学生微课分镜。请检查：\n1. 总时长是否在 45–60 秒。\n2. 是否真的符合指定形式：小安天平逐项同乘、小禾逐步变色拆括号、小远生活情境换边动画。\n3. 是否泄露最终答案或其他学生答案。\n4. 是否出现内部代号（M1/M2/M4 等）、AI 教研指挥舱、缓存、模型名等内部词。\n5. 是否包含逐步进入的 formula_steps、烧录字幕需要的 subtitle 和只给题目的 transfer_prompt。\n6. 数学表达是否适合七年级且不鼓励直接抄答案。\n\n返回结构：\n{\n  \"verdict\": \"approve\" 或 \"reject\",\n  \"reasons\": [\"逐条说明核查依据\"],\n  \"leak_scan\": {\"has_final_answer\": false, \"has_other_answer\": false, \"internal_terms\": []},\n  \"math_notes\": [\"数学表达检查\"],\n  \"prompt_version\": \"reviewer-v2-2026-11-16\"\n}\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"student\": {\"id\": \"S2\", \"name\": \"小禾\", \"form\": \"逐步变色拆括号\", \"strategy\": \"括号前负号逐项分配并用颜色对照\"}, \"script\": {\"title\": \"拆括号符号不迷路\", \"total_duration_sec\": 48, \"scenes\": [{\"id\": \"scene-1\", \"duration_sec\": 12, \"title\": \"发现隐藏符号\", \"narration\": \"当括号前是负号时，就像给每个项戴上反色眼镜。我们先观察方程结构，准备用颜色标记关键变化。\", \"subtitle\": \"括号前负号要逐项分配\", \"formula_steps\": [\"原式保留括号结构\", \"标注括号前负号位置\"]}, {\"id\": \"scene-2\", \"duration_sec\": 14, \"title\": \"红色警示线展开\", \"narration\": \"用红色虚线连接负号与括号内每一项。记住：正变负，负变正，常数项同样要变身。\", \"subtitle\": \"负号分配改变每项符号\", \"formula_steps\": [\"将-2乘入第一项得-2x\", \"将-2乘入第二项得-4\"]}, {\"id\": \"scene-3\", \"duration_sec\": 13, \"title\": \"蓝色校验步骤\", \"narration\": \"用蓝色箭头验证符号变化。检查每个项是否都经过负号转换，特别注意常数项的符号翻转。\", \"subtitle\": \"逐项验证符号正确性\", \"formula_steps\": [\"合并同类项整理方程\", \"标注需移项的数字部分\"]}, {\"id\": \"scene-4\", \"duration_sec\": 9, \"title\": \"自主挑战时刻\", \"narration\": \"现在请你尝试用颜色拆解法解这道题。记住三步口诀：标负号、逐项变、验符号。\", \"subtitle\": \"迁移练习巩固方法\", \"formula_steps\": [\"4 - 3(x - 2) = 1\", \"展开括号并整理方程\"]}], \"transfer_prompt\": \"用颜色拆解法解方程：5 - 2(y + 3) = 7，写出关键步骤即可\"}}"
+      }
+    ],
+    "temperature": 0.25,
+    "max_tokens": 8192,
+    "stream": false
+  },
+  "response": {
+    "verdict": "approve",
+    "reasons": [
+      "总时长为48秒（12+14+13+9），严格符合45–60秒的时长要求。",
+      "角色与形式完全匹配：小禾的‘逐步变色拆括号’策略通过颜色标记、红色警示线展开、蓝色箭头校验等分镜步骤得到完整且准确的呈现。",
+      "未泄露最终答案，脚本止步于去括号与整理方程阶段，迁移练习也未给出具体解。",
+      "全文未发现M1/M2等内部代号或AI教研指挥舱、缓存、模型名等敏感词汇。",
+      "结构规范，完整包含每场景的formula_steps与subtitle，以及末尾仅给题目的transfer_prompt。",
+      "数学内容符合七年级一元一次方程去括号知识点，强调口诀与颜色对照法引导思维过程，有效避免机械抄写答案。"
+    ],
+    "leak_scan": {
+      "has_final_answer": false,
+      "has_other_answer": false,
+      "internal_terms": []
+    },
+    "math_notes": [
+      "知识点聚焦七年级‘去括号’法则，难度与表述符合课标要求。",
+      "通过颜色标记与口诀引导自主推导，未提供直接抄写的答案路径。"
+    ],
+    "prompt_version": "reviewer-v2-2026-11-16"
+  }
+}

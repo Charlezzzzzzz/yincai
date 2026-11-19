@@ -1,0 +1,34 @@
+.cc-bubble.cc-rich {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.65;
+  min-width: 0;
+}
+.cc-rich > :first-child {margin-top: 0}
+.cc-rich > :last-child {margin-bottom: 0}
+.cc-rich p, .cc-rich ul, .cc-rich ol, .cc-rich blockquote,
+.cc-rich pre, .cc-rich .cc-table-wrap {margin: .55em 0}
+.cc-rich ul, .cc-rich ol {padding-inline-start: 1.65em; list-style-position: outside}
+.cc-rich ul {list-style-type: disc}
+.cc-rich ol {list-style-type: decimal}
+.cc-rich li + li {margin-top: .24em}
+.cc-rich li > :first-child {margin-top: 0}
+.cc-rich li > :last-child {margin-bottom: 0}
+.cc-rich h1, .cc-rich h2, .cc-rich h3, .cc-rich h4, .cc-rich h5, .cc-rich h6 {
+  font: 700 1.06em/1.45 var(--serif); margin: .82em 0 .3em;
+}
+.cc-rich strong {font-weight: 700}
+.cc-rich blockquote {border-inline-start: 3px solid currentColor; padding-inline-start: .8em}
+.cc-rich blockquote p {margin: .2em 0}
+.cc-rich a {color: inherit; text-decoration: underline; text-underline-offset: .18em}
+.cc-rich code {font: .92em/1.5 ui-monospace, monospace; background: rgb(65 77 73 / 9%); border-radius: .2em; padding: .04em .22em}
+.cc-rich pre {max-width: 100%; overflow-x: auto; background: rgb(65 77 73 / 8%); border-radius: .4em; padding: .5em .65em; white-space: pre}
+.cc-rich pre code {padding: 0; background: transparent}
+.cc-rich .cc-table-wrap {overflow-x: auto; max-width: 100%}
+.cc-rich table {width: max-content; max-width: none; border-collapse: collapse; font-size: .92em}
+.cc-rich th, .cc-rich td {border: 1px solid rgb(112 128 120 / 55%); padding: .25em .5em; text-align: start}
+.cc-rich hr {border: 0; border-top: 1px solid currentColor; opacity: .28; margin: .7em 0}
+.cc-out .cc-rich code, .cc-out .cc-rich pre {background: rgb(255 255 255 / 13%)}
+
+.cc-rich .katex-display {display: block; overflow-x: auto; padding: .3em 0}
+.cc-rich math {font-family: math; font-size: 1.06em}

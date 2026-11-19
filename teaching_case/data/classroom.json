@@ -1,0 +1,251 @@
+{
+  "status": "content-v1.1",
+  "label": "演示数据 · 模拟学生",
+  "source": "data/content-v1.1.json + content package frequency bands",
+  "classroom": {
+    "id": "class-7-demo",
+    "name": "七年级演示班",
+    "student_count": 30,
+    "unit_id": "linear-equations-7",
+    "synthetic": true,
+    "roster": [
+      {
+        "id": "S1",
+        "name": "小安",
+        "synthetic": true,
+        "mastery": 58,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S2",
+        "name": "小禾",
+        "synthetic": true,
+        "mastery": 51,
+        "top_cause": "M4"
+      },
+      {
+        "id": "S3",
+        "name": "小远",
+        "synthetic": true,
+        "mastery": 64,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S03",
+        "name": "同学 04",
+        "synthetic": true,
+        "mastery": 81,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S04",
+        "name": "同学 05",
+        "synthetic": true,
+        "mastery": 88,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S05",
+        "name": "同学 06",
+        "synthetic": true,
+        "mastery": 64,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S06",
+        "name": "同学 07",
+        "synthetic": true,
+        "mastery": 71,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S07",
+        "name": "同学 08",
+        "synthetic": true,
+        "mastery": 78,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S08",
+        "name": "同学 09",
+        "synthetic": true,
+        "mastery": 85,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S09",
+        "name": "同学 10",
+        "synthetic": true,
+        "mastery": 61,
+        "top_cause": "M1"
+      },
+      {
+        "id": "S10",
+        "name": "同学 11",
+        "synthetic": true,
+        "mastery": 68,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S11",
+        "name": "同学 12",
+        "synthetic": true,
+        "mastery": 75,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S12",
+        "name": "同学 13",
+        "synthetic": true,
+        "mastery": 82,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S13",
+        "name": "同学 14",
+        "synthetic": true,
+        "mastery": 89,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S14",
+        "name": "同学 15",
+        "synthetic": true,
+        "mastery": 65,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S15",
+        "name": "同学 16",
+        "synthetic": true,
+        "mastery": 72,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S16",
+        "name": "同学 17",
+        "synthetic": true,
+        "mastery": 79,
+        "top_cause": "M2"
+      },
+      {
+        "id": "S17",
+        "name": "同学 18",
+        "synthetic": true,
+        "mastery": 86,
+        "top_cause": "M4"
+      },
+      {
+        "id": "S18",
+        "name": "同学 19",
+        "synthetic": true,
+        "mastery": 62,
+        "top_cause": "M4"
+      },
+      {
+        "id": "S19",
+        "name": "同学 20",
+        "synthetic": true,
+        "mastery": 69,
+        "top_cause": "M4"
+      },
+      {
+        "id": "S20",
+        "name": "同学 21",
+        "synthetic": true,
+        "mastery": 76,
+        "top_cause": "M4"
+      },
+      {
+        "id": "S21",
+        "name": "同学 22",
+        "synthetic": true,
+        "mastery": 83,
+        "top_cause": "M4"
+      },
+      {
+        "id": "S22",
+        "name": "同学 23",
+        "synthetic": true,
+        "mastery": 90,
+        "top_cause": "M4"
+      },
+      {
+        "id": "S23",
+        "name": "同学 24",
+        "synthetic": true,
+        "mastery": 66,
+        "top_cause": "M3"
+      },
+      {
+        "id": "S24",
+        "name": "同学 25",
+        "synthetic": true,
+        "mastery": 73,
+        "top_cause": "M3"
+      },
+      {
+        "id": "S25",
+        "name": "同学 26",
+        "synthetic": true,
+        "mastery": 80,
+        "top_cause": "M3"
+      },
+      {
+        "id": "S26",
+        "name": "同学 27",
+        "synthetic": true,
+        "mastery": 87,
+        "top_cause": "M3"
+      },
+      {
+        "id": "S27",
+        "name": "同学 28",
+        "synthetic": true,
+        "mastery": 63,
+        "top_cause": "M10"
+      },
+      {
+        "id": "S28",
+        "name": "同学 29",
+        "synthetic": true,
+        "mastery": 70,
+        "top_cause": "M10"
+      },
+      {
+        "id": "S29",
+        "name": "同学 30",
+        "synthetic": true,
+        "mastery": 77,
+        "top_cause": "M10"
+      }
+    ],
+    "cause_distribution": [
+      {
+        "cause_id": "M1",
+        "label": "移项不变号",
+        "count": 8
+      },
+      {
+        "cause_id": "M2",
+        "label": "去分母漏乘不含分母的项",
+        "count": 8
+      },
+      {
+        "cause_id": "M4",
+        "label": "去括号符号错误",
+        "count": 7
+      },
+      {
+        "cause_id": "M3",
+        "label": "去分母后分子未作整体",
+        "count": 4
+      },
+      {
+        "cause_id": "M10",
+        "label": "等量关系方向弄反",
+        "count": 3
+      }
+    ]
+  }
+}

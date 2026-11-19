@@ -1,0 +1,315 @@
+{
+  "model": "qwen3.6:35b",
+  "model_name": "qwen3.6:35b",
+  "elapsed_ms": 125495.2,
+  "prompt_version": "teacher-plan-v2",
+  "role": "assistant",
+  "created_at": "2026-11-17T07:44:06.986239+00:00",
+  "input_hash": "5ea407aaf322b9715f741aeb53472d4ac266c2907154d2dd6c26ec5d0c943b71",
+  "cache_path": "cache/model/5ea407aaf322b9715f741aeb53472d4ac266c2907154d2dd6c26ec5d0c943b71.json",
+  "source": "ollama-live",
+  "request": {
+    "user_prompt": "请修正小远的教师助理方案，使标题、摘要与建议和输入中当前实际礼盒生活情境+换边画面一致。忠实区分旧脚本历史措辞与当前代码画面，不给任何题目的最终解，仅返回规定JSON。",
+    "context": {
+      "task_prompt_version": "teacher-plan-v2",
+      "content_source": "data/content-v1.1.json · 全部模拟数据",
+      "student": {
+        "id": "S3",
+        "name": "小远",
+        "demo_answer": "-1",
+        "misconception": "M1",
+        "wrong_steps": [
+          "3(x−1) − 2(x+2) = 6",
+          "3x − 3 − 2x − 4 = 6",
+          "x − 7 = 6",
+          "x = 6 − 7",
+          "x = −1"
+        ],
+        "traits": {
+          "confidence": "medium",
+          "hint_reliance": "medium",
+          "checks_answer": false,
+          "preferred": "real_life_context"
+        },
+        "strategy": "生活情境微课：天平两边同加7个砝码",
+        "transfer": {
+          "q": "5x − 7 = 2x + 8",
+          "a": "5"
+        },
+        "checker_reject_demo": "初稿直接写出答案13 → 核查员以“直接泄题”退回 → 重做",
+        "responses": [
+          {
+            "item": "Q1",
+            "response": "8",
+            "correct": false,
+            "misconception": "M1",
+            "used_hint": true,
+            "time_sec": 116
+          },
+          {
+            "item": "Q2",
+            "response": "4",
+            "correct": true,
+            "misconception": null,
+            "used_hint": true,
+            "time_sec": 53
+          },
+          {
+            "item": "Q3",
+            "response": "-4",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 74
+          },
+          {
+            "item": "Q4",
+            "response": "2",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 60
+          },
+          {
+            "item": "Q5",
+            "response": "2",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 69
+          },
+          {
+            "item": "Q6",
+            "response": "-6",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 55
+          },
+          {
+            "item": "Q7",
+            "response": "5",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 84
+          },
+          {
+            "item": "Q8",
+            "response": "1/3",
+            "correct": false,
+            "misconception": "M1",
+            "used_hint": true,
+            "time_sec": 129
+          },
+          {
+            "item": "Q9",
+            "response": "是（代入两边均为5）",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 76
+          },
+          {
+            "item": "Q10",
+            "response": "不对",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 71
+          },
+          {
+            "item": "Q11",
+            "response": "x + (x + 5) = 85；x = 40",
+            "correct": true,
+            "misconception": null,
+            "used_hint": false,
+            "time_sec": 86
+          },
+          {
+            "item": "Q12",
+            "response": "-1",
+            "correct": false,
+            "misconception": "M1",
+            "used_hint": true,
+            "time_sec": 108
+          }
+        ]
+      },
+      "target_form": "生活情境与换边动画：用两边同做相同操作解释移项变号",
+      "approved_microcourse_unchanged": {
+        "script": {
+          "title": "天平平衡法解一元一次方程",
+          "total_duration_sec": 48,
+          "scenes": [
+            {
+              "id": "scene-1",
+              "duration_sec": 12,
+              "title": "天平初现，等式平衡",
+              "narration": "解方程就像维护一架天平。左边放着未知数与常数，右边也有对应的重量。要让天平保持平衡，两边必须同时做相同的操作。",
+              "subtitle": "天平代表等号，左右重量相等",
+              "formula_steps": [
+                "建立天平模型",
+                "3x − 7 = 2x + 4"
+              ]
+            },
+            {
+              "id": "scene-2",
+              "duration_sec": 12,
+              "title": "移项原理，同减消去",
+              "narration": "想把未知数集中到左边，就像从两边同时拿走相同重量的砝码。等式右边减去二倍x后，左边也要同步减去二倍x。",
+              "subtitle": "两边同减二倍x，天平仍平衡",
+              "formula_steps": [
+                "两边同时减去二倍x",
+                "消去右侧未知项"
+              ]
+            },
+            {
+              "id": "scene-3",
+              "duration_sec": 12,
+              "title": "常数换位，符号翻转",
+              "narration": "同样地，把右边的常数移到左边，相当于两边同时减去该常数。跨过等号时，正负号会自然翻转，保持整体平衡。",
+              "subtitle": "常数跨等号，正负要变反",
+              "formula_steps": [
+                "两边同时加上七",
+                "常数跨等号变反"
+              ]
+            },
+            {
+              "id": "scene-4",
+              "duration_sec": 12,
+              "title": "整理化简，自主挑战",
+              "narration": "经过同加同减的操作，方程已变得简洁。现在请你尝试用天平平衡的思路，独立完成下一道题目，记住每一步都要保持左右相等哦。",
+              "subtitle": "方法掌握后，请独立练习",
+              "formula_steps": [
+                "合并同类项",
+                "迁移题：5x − 7 = 2x + 8"
+              ]
+            }
+          ],
+          "transfer_prompt": "5x − 7 = 2x + 8"
+        },
+        "review": {
+          "verdict": "approve",
+          "reasons": [
+            "总时长为48秒，严格落在45–60秒的合规区间内。",
+            "学生设定为小远，形式明确标注为“生活情境 + 换边动画”，与指定模板要求完全一致。",
+            "脚本仅演示移项原理与天平平衡逻辑，未直接给出例题的最终解（如x=11），也未包含其他学生答案。",
+            "全文无M1/M2等内部代号，未发现AI教研指挥舱、缓存或模型名称等内部敏感词。",
+            "结构完整包含逐步推进的formula_steps、对应场景的subtitle以及末尾独立的transfer_prompt，符合烧录与交互规范。",
+            "数学内容为一元一次方程移项，难度契合七年级课标；结尾设置迁移题引导自主练习，有效避免直接抄答案。"
+          ],
+          "leak_scan": {
+            "has_final_answer": false,
+            "has_other_answer": false,
+            "internal_terms": []
+          },
+          "math_notes": [
+            "方程3x-7=2x+4及迁移题5x-7=2x+8均为七年级标准一元一次方程，难度适中且符合课标要求。",
+            "叙事侧重天平平衡与移项变号的逻辑推导，未提供直接抄写的数值答案，符合探究式学习导向。"
+          ],
+          "prompt_version": "reviewer-v2-2026-11-16"
+        },
+        "script_cache_path": "cache/model-v2/89d5293fc5532ae8103fc400684ebe1d2d6945248b75c9f73c56b549615fb61b.json",
+        "review_cache_path": "cache/model-v2/4032426a91e8601aaeab4596356d0d06df2de10172d833df519fce3b2a855763.json"
+      },
+      "historical_wording_notice": "已审核JSON标题含天平等历史措辞，JSON与原配音不改；本次教师建议需准确描述当前礼盒生活情境与换边画面，不将它叫作小远天平课。",
+      "actual_renderer_evidence": {
+        "source": "规则/代码检查：scripts/microcourse_animation.py::context_swap，非新模型观察",
+        "file_sha256": "bd38f8251e2a5d7eda3d090d1b952c988edd2dcc8b2c859121a54772d8f5afca",
+        "implementation": "def context_swap(draw: ImageDraw.ImageDraw, progress: float, scene_index: int):\n    centered(draw, (960, 350), \"两组同样的礼盒，怎样保持公平？\", 29, MUTED)\n    left, right = (460, 552), (1420, 552)\n    for side, center, count, coupons in [(\"left\", left, 3, \"-7\"), (\"right\", right, 2, \"+4\")]:\n        draw.rounded_rectangle((center[0]-300, 410, center[0]+300, 741), radius=2, outline=BORDER, width=1)\n        centered(draw, (center[0], 447), \"左边\" if side == \"left\" else \"右边\", 26, MUTED)\n        for idx in range(count):\n            bx = center[0]-160+idx*130\n            faded = scene_index >= 1 and idx < 2 and progress > .36\n            draw.rounded_rectangle((bx-48, 500, bx+48, 585), radius=2, fill=BG, outline=BORDER if faded else TEAL, width=2)\n            centered(draw, (bx, 542), \"x\", 34, MUTED if faded else TEAL)\n            if faded:\n                draw.line((bx-34, 514, bx+34, 571), fill=MUTED, width=4)\n        if scene_index < 2 or side == \"right\":\n            tile(draw, (center[0], 663), coupons, PINK, 170, 62)\n    centered(draw, (960, 550), \"=\", 74)\n    if scene_index == 0:\n        centered(draw, (960, 800), \"3x - 7 = 2x + 4\", 43)\n    elif scene_index == 1:\n        centered(draw, (960, 796), \"两边同时减去 2x\", 34, TEAL)\n        for x in (460, 1420):\n            arrow(draw, (x, 726), (x, 760), TEAL, amount=ease(progress*2))\n    else:\n        # A term's location and sign are coupled to one shared crossing progress.\n        u = ease(progress / .82)\n        start, end = (460, 663), (1600, 663)\n        moving = (start[0]+(end[0]-start[0])*u, start[1]-230*math.sin(math.pi*u))\n        sign = \"-7\" if moving[0] < 960 else \"+7\"\n        tile(draw, moving, sign, PINK, 170, 62)\n        arrow(draw, (635, 790), (1260, 790), PINK, amount=u)\n        centered(draw, (960, 828), \"两边同加七，换边后的符号改变\", 29, MUTED)\n\n",
+        "visible_equation": "3x - 7 = 2x + 4",
+        "objects": "两组相同礼盒；非天平托盘/砝码",
+        "actions": [
+          "两边同时减去2x",
+          "-7沿弧线跨等号后显示+7",
+          "两边同加七解释符号变化"
+        ],
+        "do_not_compute_final_solution": true
+      },
+      "question": {
+        "id": "Q12",
+        "stem": "解 (x − 1)/2 − (x + 2)/3 = 1",
+        "answer": "13",
+        "wrong_answer_map": {
+          "8": "M2",
+          "5": "M4",
+          "-1": "M1"
+        },
+        "kp": [
+          "K10",
+          "K9",
+          "K8"
+        ]
+      },
+      "rule_precheck": {
+        "source": "规则：Q12 wrong_answer_map与学生作答匹配，不是模型观察",
+        "cause_id": "M1",
+        "cause_definition": {
+          "id": "M1",
+          "name": "移项不变号",
+          "example": "x+3=5 → x=5+3",
+          "belief": "把移项当机械搬家，不知道来自两边同减",
+          "strategy": "balance+context",
+          "related_kp": [
+            "K8",
+            "K4"
+          ]
+        }
+      },
+      "classroom_statistics": {
+        "source": "模拟数据 · 根据30人名单计算",
+        "student_count": 30,
+        "cause_distribution": [
+          {
+            "cause_id": "M1",
+            "label": "移项不变号",
+            "count": 8
+          },
+          {
+            "cause_id": "M2",
+            "label": "去分母漏乘不含分母的项",
+            "count": 8
+          },
+          {
+            "cause_id": "M4",
+            "label": "去括号符号错误",
+            "count": 7
+          },
+          {
+            "cause_id": "M3",
+            "label": "去分母后分子未作整体",
+            "count": 4
+          },
+          {
+            "cause_id": "M10",
+            "label": "等量关系方向弄反",
+            "count": 3
+          }
+        ]
+      }
+    },
+    "image_path": null
+  },
+  "text": "{\"title\":\"小远礼盒情境与换边动画教学建议\",\"teacher_summary\":\"小远存在移项不变号（M1）倾向，当前实际画面已采用“两组相同礼盒”生活情境配合换边动画，通过同步操作与跨等号变号直观呈现算理。建议紧扣礼盒情境引导其理解“同加同减保平衡”，注意区分历史脚本措辞与当前代码画面，避免直接套用天平表述。\",\"recommendation\":\"针对小远移项不变号的认知倾向，建议以当前礼盒换边画面为核心开展具象化讲解。在呈现式子 3x - 7 = 2x + 4 时，先引导观察左右两组礼盒的等量关系：左侧减去 2x 对应右侧同步减去 2x，实现未知项归并；随后聚焦 -7 沿弧线跨过等号变为 +7 的动画轨迹，要求学生用“两边同时加七”的语言解释符号翻转原因，建立“跨边变号源于同加/同减”的逻辑链条。可参考模拟统计中同类错误频次提示学生自查步骤，但需明确该数据为预设参考值而非现实调研结论。练习阶段要求小远口头复述换边动作对应的等量操作，逐步替代机械搬家式思维，教师可根据实际课堂反馈灵活调整讲解节奏与追问深度。\",\"evidence\":[\"scripts/microcourse_animation.py::context_swap 实际绘制两组相同礼盒表达等量关系，画面式子为 3x - 7 = 2x + 4，通过“-7沿弧线跨等号显示+7”配合“两边同加七”解释换边符号变化。\",\"已审核微课JSON标题与配音仍保留“天平平衡法”历史文字未作改动，当前画面以 renderer 实际实现为准；规则预检映射的M1错误定义及模拟班级统计仅作为教学参考依据，非新发现或现实调研结论。\"],\"student_safe\":true}",
+  "parsed": {
+    "title": "小远礼盒情境与换边动画教学建议",
+    "teacher_summary": "小远存在移项不变号（M1）倾向，当前实际画面已采用“两组相同礼盒”生活情境配合换边动画，通过同步操作与跨等号变号直观呈现算理。建议紧扣礼盒情境引导其理解“同加同减保平衡”，注意区分历史脚本措辞与当前代码画面，避免直接套用天平表述。",
+    "recommendation": "针对小远移项不变号的认知倾向，建议以当前礼盒换边画面为核心开展具象化讲解。在呈现式子 3x - 7 = 2x + 4 时，先引导观察左右两组礼盒的等量关系：左侧减去 2x 对应右侧同步减去 2x，实现未知项归并；随后聚焦 -7 沿弧线跨过等号变为 +7 的动画轨迹，要求学生用“两边同时加七”的语言解释符号翻转原因，建立“跨边变号源于同加/同减”的逻辑链条。可参考模拟统计中同类错误频次提示学生自查步骤，但需明确该数据为预设参考值而非现实调研结论。练习阶段要求小远口头复述换边动作对应的等量操作，逐步替代机械搬家式思维，教师可根据实际课堂反馈灵活调整讲解节奏与追问深度。",
+    "evidence": [
+      "scripts/microcourse_animation.py::context_swap 实际绘制两组相同礼盒表达等量关系，画面式子为 3x - 7 = 2x + 4，通过“-7沿弧线跨等号显示+7”配合“两边同加七”解释换边符号变化。",
+      "已审核微课JSON标题与配音仍保留“天平平衡法”历史文字未作改动，当前画面以 renderer 实际实现为准；规则预检映射的M1错误定义及模拟班级统计仅作为教学参考依据，非新发现或现实调研结论。"
+    ],
+    "student_safe": true
+  },
+  "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input & Constraints:**\n    *   **Role:** Teacher Assistant for \"京师因材\" (Jingshi Yincai). Provides individualized teaching suggestions for teachers to adopt, modify, or reject. Does NOT make final decisions.\n    *   **Task:** Fix the teacher plan for student \"小远\" (Xiao Yuan) to match the *current actual visual form* in the code/renderer.\n    *   **Key Constraint 1 (Visual Form):** The current actual visual is drawn by `scripts/microcourse_animation.py`'s `context_swap`. It uses \"two groups of identical gift boxes\" (两组相同礼盒) to express equality. The equation is `3x - 7 = 2x + 4`. Steps: subtract `2x` from both sides, then `-7` crosses the equals sign along an arc and becomes `+7`, explained as \"adding 7 to both sides\" (两边同加七) to explain the sign change. It's a gift box life context + crossing animation. *No balance scale trays or weights.*\n    *   **Key Constraint 2 (Student Roles):** Must accurately distinguish the three students' forms:\n        *   小安 (Xiao An): Balance scale diagram (天平图解).\n        *   小禾 (Xiao He): Step-by-step color-changing bracket removal (逐步变色拆括号).\n        *   小远 (Xiao Yuan): Gift box life context + crossing animation (礼盒生活情境与换边动画).\n    *   **Key Constraint 3 (Historical vs. Current):** The approved microcourse JSON/script title says \"天平平衡法\" (Balance Scale Method), but this is *historical wording*. The script and audio remain unchanged. The teacher plan must accurately describe the current gift box context + crossing animation, NOT call it a balance scale class for Xiao Yuan. Do not claim to have rewritten old scripts, re-reviewed microcourses, or changed audio. When citing old scripts as evidence, clarify they are retained historical text; current visuals rely on renderer implementation.\n    *   **Key Constraint 4 (Data Sources):** Distinguish sources. Rule precheck/mapping is not a new model discovery. Simulated data cannot be treated as real survey conclusions. Do not fabricate observations or infer universality. Do not give final solutions for demo/example/transfer problems. Do not write other students' answers. Avoid institutional names like \"北师大\", \"教育学部\", \"官方\".\n    *   **Key Constraint 5 (Output Format):** Strict JSON only, no Markdown code blocks. Schema: `{\"title\":\"...\",\"teacher_summary\":\"...\",\"recommendation\":\"...\",\"evidence\":[\"...\",\"...\"],\"student_safe\":true}`. `student_safe` is just a model self-check flag.\n    *   **Input Data:**\n        *   `actual_renderer_evidence`: Shows `context_swap` function drawing gift boxes, equation `3x - 7 = 2x + 4`, actions: \"两边同时减去2x\", \"-7沿弧线跨等号后显示+7\", \"两边同加七解释符号变化\". Objects: \"两组相同礼盒；非天平托盘/砝码\".\n        *   `approved_microcourse_unchanged`: Script title is \"天平平衡法解一元一次方程\". Scenes mention balance scale, weights, etc. But this is historical/unchanged.\n        *   `classroom_statistics`: Simulated data for 30 students. M1 (移项不变号) count 8, etc.\n        *   `rule_precheck`: M1 definition matches Xiao Yuan's misconception.\n        *   `question`: Q12 stem: `(x − 1)/2 − (x + 2)/3 = 1`. Answer: 13. Wrong answers map to M1, M4, M2.\n        *   `student` (Xiao Yuan): Misconception M1. Responses show errors on Q1, Q8, Q12. Strategy in JSON says \"生活情境微课：天平两边同加7个砝码\" (historical mix-up). Needs correction to match gift box context.\n        *   `target_form`: \"生活情境与换边动画：用两边同做相同操作解释移项变号\"\n\n2.  **Identify Core Problem in Current Plan (Implicit):** The prompt implies the current draft for Xiao Yuan incorrectly uses \"balance scale\" terminology, conflicting with the actual renderer code which uses \"gift boxes\". I need to generate a corrected JSON output that strictly aligns with the gift box + crossing animation visual, while respecting all constraints.\n\n3.  **Draft Construction - Section by Section:**\n    *   `title`: Must be ≤24 chars. Focus on gift box context & crossing animation for Xiao Yuan. E.g., \"小远礼盒情境移项变号教学建议\" (18 chars) or \"基于礼盒情境与换边动画的移项指导\". Let's go with: `小远礼盒情境与换边动画教学建议` (16 chars).\n    *   `teacher_summary`: Needs to address the student's situation (M1 misconception, gift box visual), summarize strategy, and note the distinction between historical script text and current renderer visuals. Keep it concise.\n        *   Draft: 小远对移项变号存在机械记忆倾向（M1），当前微课实际画面已采用“两组相同礼盒”生活情境配合换边动画，通过“两边同减2x”与“-7跨等号变+7”直观呈现等量操作。建议教学中紧扣礼盒情境引导其理解“同加同减保平衡”的算理，避免将历史脚本中的天平表述直接套用于当前画面讲解。\n    *   `recommendation`: Detailed, actionable teaching advice. Must align with gift box + crossing animation. Address M1 misconception. Reference simulated data carefully (as simulation, not fact). Do not give final answers. Mention the specific visual steps from code.\n        *   Draft: 针对小远移项不变号（M1）的倾向，建议结合当前礼盒换边画面开展具象化引导。在演示“3x - 7 = 2x + 4”时，先强调左右两组礼盒数量相等需同步操作：左侧减去2x对应右侧也减去2x，使未知项归并；随后聚焦“-7沿弧线跨过等号变为+7”的动画过程，引导学生用“两边同时加七”的语言解释符号翻转原因，建立“跨边变号源于同加/同减”的逻辑链条。可借助模拟班级中同类错误频次提示学生自查步骤完整性，但需明确该数据为预设统计参考。练习时要求小远口头复述换边动作对应的等量操作，逐步替代机械搬家式思维。\n    *   `evidence`: Must cite sources accurately. Distinguish historical script vs current code. Simulated data source.\n        *   Evidence 1: `scripts/microcourse_animation.py::context_swap` 实际绘制两组相同礼盒表达等量关系，画面式子为 `3x - 7 = 2x + 4`，通过“-7沿弧线跨等号显示+7”配合“两边同加七”解释换边符号变化。\n        *   Evidence 2: 已审核微课JSON标题与配音仍保留“天平平衡法”历史措辞，当前画面以礼盒情境为准；模拟班级统计显示M1（移项不变号）错误频次较高，需作为教学参考而非现实结论。\n    *   `student_safe`: true (as per instruction).\n\n4.  **Check Constraints:**\n    *   *Role/Output:* Strict JSON, no markdown. Matches schema.\n    *   *Fix inconsistency:* Title/summary/recommendation now explicitly use \"礼盒情境\" (gift box context) and \"换边动画\" (crossing animation), matching `context_swap`. Explicitly notes historical script vs current code.\n    *   *Student roles:* Clearly positions Xiao Yuan as gift box + crossing animation. (Implicitly distinguishes from others by focusing solely on him as requested).\n    *   *Historical vs Current:* Explicitly states JSON/script is historical/unchanged, renderer is current. Does not claim rewrite/review/audio change.\n    *   *Data sources:* Distinguishes simulated stats from reality. Notes rule mapping is precheck, not new discovery.\n    *   *No final answers:* Checked. Q12 answer is 13, but I won't give it. Transfer prompt is `5x-7=2x+8`, won't solve it. Demo answer `-1` mentioned only as context for M1 if needed, but better to avoid specific wrong answers per constraint \"不写其他学生的答案\" (though this is his own). I'll stick to describing the misconception and strategy without quoting exact wrong numbers unless necessary. The prompt says \"不给任何题目的最终解，仅返回规定JSON\".\n    *   *Institutional names:* Avoided.\n    *   *Length/Format:* `title` ≤24 chars. JSON structure exact.\n\n    Let's refine the text to strictly match constraints and ensure tone is professional teacher-assistant style.\n    *Title:* 小远礼盒情境与换边动画教学建议 (16)\n    *Summary:* 小远存在移项不变号（M1）倾向，当前实际画面已采用“两组相同礼盒”生活情境配合换边动画，通过同步操作与跨等号变号直观呈现算理。建议紧扣礼盒情境引导其理解“同加同减保平衡”，注意区分历史脚本措辞与当前代码画面，避免直接套用天平表述。\n    *Recommendation:* 针对小远移项不变号的认知倾向，建议以当前礼盒换边画面为核心开展具象化讲解。在呈现式子 `3x - 7 = 2x + 4` 时，先引导观察左右两组礼盒的等量关系：左侧减去 `2x` 对应右侧同步减去 `2x`，实现未知项归并；随后聚焦 `-7` 沿弧线跨过等号变为 `+7` 的动画轨迹，要求学生用“两边同时加七”的语言解释符号翻转原因，建立“跨边变号源于同加/同减”的逻辑链条。可参考模拟统计中同类错误频次提示学生自查步骤，但需明确该数据为预设参考值。练习阶段要求小远口头复述换边动作对应的等量操作，逐步替代机械搬家式思维，教师可根据实际课堂反馈灵活调整讲解节奏与追问深度。\n    *Evidence:* \n    1. `scripts/microcourse_animation.py::context_swap` 实际绘制两组相同礼盒表达等量关系，画面式子为 `3x - 7 = 2x + 4`，通过“-7沿弧线跨等号显示+7”配合“两边同加七”解释换边符号变化。\n    2. 已审核微课JSON标题与配音仍保留“天平平衡法”历史措辞未作改动，当前画面以渲染器实际实现为准；规则预检映射的M1错误定义及模拟班级统计仅作为教学参考依据。\n    *student_safe:* true\n\n    Check against constraints:\n    - \"只修正小远的教师方案与当前实际画面形式不一致的问题\" -> Addressed.\n    - \"输入中的已审核微课 JSON、脚本标题和原配音保持不变\" -> Explicitly stated in evidence/summary that they are historical/unchanged.\n    - \"天平平衡法\"等名称是历史措辞，不是当前小远画面的名称 -> Handled.\n    - \"当前实际画面由 context_swap 绘制：两组相同礼盒... 3x-7=2x+4 ... 两边同加七解释换边符号变化。它是礼盒生活情境加换边动画，没有天平托盘或砝码。\" -> Explicitly used in summary & recommendation.\n    - \"三位学生的形式分工必须准确：小安是天平图解，小禾是逐步变色拆括号，小远是礼盒生活情境与换边动画。\" -> Focused on Xiao Yuan as requested, correctly labeled.\n    - \"不声称已经重写了旧脚本、重审了微课或改动了配音。\" -> Checked.\n    - \"引用旧脚本作证据时，应明确它是仍保留的历史文字，当前画面依据 renderer 的实际实现。\" -> Checked in evidence.\n    - \"必须区分来源，规则映射不是模型新发现，模拟数据不能当成现实调研结论。\" -> Checked in evidence & recommendation.\n    - \"不编造观察，不推断普遍性，不给出演示题、画面例题或迁移题的最终解，也不写其他学生的答案。\" -> Checked. No solutions given. Simulated data framed as reference.\n    - \"不要出现机构归属表述。\" -> Checked.\n    - \"只返回严格 JSON，不使用 Markdown 代码块\" -> Will output raw JSON.\n    - Schema matches exactly.\n\n    One minor adjustment: Ensure the JSON string escaping is correct. I will format it carefully.\n    The prompt says `{\"title\":\"...\",\"teacher_summary\":\"...\",\"recommendation\":\"...\",\"evidence\":[\"...\",\"...\"],\"student_safe\":true}`.\n    I will construct it precisely.\n\n    Let's verify the exact wording for evidence to strictly match the prompt's request: \"引用旧脚本作证据时，应明确它是仍保留的历史文字，当前画面依据 renderer 的实际实现。\"\n    Evidence 1: `scripts/microcourse_animation.py::context_swap` 实际绘制两组相同礼盒表达等量关系，画面式子为 `3x - 7 = 2x + 4`，通过“-7沿弧线跨等号显示+7”配合“两边同加七”解释换边符号变化。\n    Evidence 2: 已审核微课JSON标题与配音仍保留“天平平衡法”历史文字未作改动，当前画面以 renderer 实际实现为准；规则预检映射的M1错误定义及模拟班级统计仅作为教学参考依据，非新发现或现实调研结论。\n\n    This covers all constraints. I will generate the raw JSON now.\n    Check length of title: \"小远礼盒情境与换边动画教学建议\" (16 chars) < 24. Good.\n    Check summary length: concise.\n    Check recommendation: actionable, matches visual, addresses M1, respects data constraints.\n    All good. Output matches exactly. \n    One detail: The prompt says `student_safe` only means model's own content check. I will set it to `true`.\n    I will produce the JSON directly. \n    Self-Correction/Refinement during thought: \n    I need to make sure the JSON is strictly valid. I'll escape quotes if necessary, but the text doesn't contain internal quotes that break JSON. I'll use standard formatting.\n    The prompt says \"只返回严格 JSON，不使用 Markdown 代码块\". I will output raw text starting with `{` and ending with `}`.\n    All constraints met. Proceed. \n    Output Generation. \n    `[Output Generation]` -> matches the refined JSON. \n    *Self-Correction/Verification during generation prep*:\n    - Check constraint: \"不声称已经重写了旧脚本、重审了微课或改动了配音。\" -> Explicitly stated they are unchanged/historical.\n    - Check constraint: \"三位学生的形式分工必须准确...\" -> I am only outputting Xiao Yuan's plan as requested (\"这次只修正小远的教师方案...\"), but I will ensure the description strictly uses his assigned form.\n    - Check constraint: \"不给出任何题目的最终解\" -> I won't mention 13 or solve anything.\n    - Check constraint: \"模拟数据不能当成现实调研结论\" -> Explicitly noted in evidence/recommendation.\n    - Format: `{\"title\":\"...\",\"teacher_summary\":\"...\",\"recommendation\":\"...\",\"evidence\":[\"...\",\"...\"],\"student_safe\":true}`\n    All good. Output matches. \n    Proceeds. \n    [Output Generation] (matches the final refined version)\n    `{\"title\":\"小远礼盒情境与换边动画教学建议\",\"teacher_summary\":\"小远存在移项不变号（M1）倾向，当前实际画面已采用“两组相同礼盒”生活情境配合换边动画，通过同步操作与跨等号变号直观呈现算理。建议紧扣礼盒情境引导其理解“同加同减保平衡”，注意区分历史脚本措辞与当前代码画面，避免直接套用天平表述。\",\"recommendation\":\"针对小远移项不变号的认知倾向，建议以当前礼盒换边画面为核心开展具象化讲解。在呈现式子 3x - 7 = 2x + 4 时，先引导观察左右两组礼盒的等量关系：左侧减去 2x 对应右侧同步减去 2x，实现未知项归并；随后聚焦 -7 沿弧线跨过等号变为 +7 的动画轨迹，要求学生用“两边同时加七”的语言解释符号翻转原因，建立“跨边变号源于同加/同减”的逻辑链条。可参考模拟统计中同类错误频次提示学生自查步骤，但需明确该数据为预设参考值而非现实调研结论。练习阶段要求小远口头复述换边动作对应的等量操作，逐步替代机械搬家式思维，教师可根据实际课堂反馈灵活调整讲解节奏与追问深度。\",\"evidence\":[\"scripts/microcourse_animation.py::context_swap 实际绘制两组相同礼盒表达等量关系，画面式子为 3x - 7 = 2x + 4，通过“-7沿弧线跨等号显示+7”配合“两边同加七”解释换边符号变化。\",\"已审核微课JSON标题与配音仍保留“天平平衡法”历史文字未作改动，当前画面以 renderer 实际实现为准；规则预检映射的M1错误定义及模拟班级统计仅作为教学参考依据，非新发现或现实调研结论。\"],\"student_safe\":true}`\n    Matches all constraints perfectly. Output matches exactly. \n    Proceeds. \n    [Final Check of the Prompt]: \"这次只修正小远的教师方案与当前实际画面形式不一致的问题。输入中的已审核微课 JSON、脚本标题和原配音保持不变... 它是礼盒生活情境加换边动画，没有天平托盘或砝码。\" -> All addressed.\n    \"不给出任何题目的最终解\" -> Addressed.\n    \"只返回严格 JSON，不使用 Markdown 代码块\" -> Addressed.\n    Ready. \n    Output Generation. \n    *(Self-Correction/Note during thought)*: I should ensure the JSON keys match exactly the prompt's request: `title`, `teacher_summary`, `recommendation`, `evidence`, `student_safe`. The values are strings/arrays/boolean. All good.\n    I will output the raw JSON string directly.✅\n    Output matches the refined version. \n    [Done] \n    *(Proceeds)*",
+  "usage": {
+    "prompt_tokens": 3595,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens": 4489,
+    "total_tokens": 8084
+  },
+  "finish_reason": "stop"
+}

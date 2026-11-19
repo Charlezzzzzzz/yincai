@@ -1,0 +1,82 @@
+[
+  {
+    "step": "01 学情分析师诊断 / diagnose",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 46122.1,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T15:42:02.524962+00:00",
+    "input_hash": "693ee195f5dc7839bbf3cd30c32e1549f9bf6a9bcb75f524322905f630869f80",
+    "cache_path": "cache/model/693ee195f5dc7839bbf3cd30c32e1549f9bf6a9bcb75f524322905f630869f80.json"
+  },
+  {
+    "step": "02 学科专家校验 / validate",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 49718.5,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T15:42:52.252797+00:00",
+    "input_hash": "7b570f814b6b590e42a3ae405daecb79d685b3165d90cc1ac510ce68c7736c14",
+    "cache_path": "cache/model/7b570f814b6b590e42a3ae405daecb79d685b3165d90cc1ac510ce68c7736c14.json"
+  },
+  {
+    "step": "03 教学设计师设计 / design",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 94000.4,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T15:44:26.264142+00:00",
+    "input_hash": "2acc49d26d9115125ac036d0d551497d23a8bf68de9732a46aa63be6080d68f9",
+    "cache_path": "cache/model/2acc49d26d9115125ac036d0d551497d23a8bf68de9732a46aa63be6080d68f9.json"
+  },
+  {
+    "step": "04 多模态制作人初稿 / produce",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 87617.8,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T15:45:53.900058+00:00",
+    "input_hash": "f8776d913a2af1f2615070a5dc74520ed980ac80a8e743f812fc64d747e1534a",
+    "cache_path": "cache/model/f8776d913a2af1f2615070a5dc74520ed980ac80a8e743f812fc64d747e1534a.json"
+  },
+  {
+    "step": "05 核查员退回 / review",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 52763.2,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T15:46:46.692128+00:00",
+    "input_hash": "66e95691748f5c26db7869869df02f91b484a0ef776efba133c0711d1c456c42",
+    "cache_path": "cache/model/66e95691748f5c26db7869869df02f91b484a0ef776efba133c0711d1c456c42.json"
+  },
+  {
+    "step": "06 多模态制作人修订 / repair",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 74270.6,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T15:58:49.973685+00:00",
+    "input_hash": "369e5d36b3e3a7b404be52e99c3503b5443fc58610f3993830878e36420ac918",
+    "cache_path": "cache/model/369e5d36b3e3a7b404be52e99c3503b5443fc58610f3993830878e36420ac918.json"
+  },
+  {
+    "step": "07 核查员通过 / review_final",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 62628.9,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T16:08:21.260915+00:00",
+    "input_hash": "a9a5d380b45332f23102a2ba2826c7b8b58888ab409ce465c57af4b93d36c457",
+    "cache_path": "cache/model/a9a5d380b45332f23102a2ba2826c7b8b58888ab409ce465c57af4b93d36c457.json"
+  },
+  {
+    "step": "08 教师助理交付 / deliver",
+    "source": "真实跑出的缓存",
+    "model": "qwen3.6:35b",
+    "elapsed_ms": 59691.5,
+    "prompt_version": "v2.1-context-audited",
+    "generated_at": "2026-11-16T16:13:18.624936+00:00",
+    "input_hash": "5687d567c72c4a070e9cede796c35dcf2ac92e1280d26142a06aa1bd5d3d673f",
+    "cache_path": "cache/model/5687d567c72c4a070e9cede796c35dcf2ac92e1280d26142a06aa1bd5d3d673f.json"
+  }
+]

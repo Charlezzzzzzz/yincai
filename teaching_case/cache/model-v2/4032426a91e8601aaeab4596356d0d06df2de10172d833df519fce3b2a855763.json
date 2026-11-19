@@ -1,0 +1,45 @@
+{
+  "model": "qwen3.6:35b",
+  "elapsed_ms": 44643,
+  "prompt_version": "reviewer-v2-2026-11-16",
+  "timestamp": "2026-11-16T16:47:14.610300+00:00",
+  "input_hash": "4032426a91e8601aaeab4596356d0d06df2de10172d833df519fce3b2a855763",
+  "cache_path": "cache/model-v2/4032426a91e8601aaeab4596356d0d06df2de10172d833df519fce3b2a855763.json",
+  "request": {
+    "model": "qwen3.6:35b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是“京师因材”的微课核查员。请只返回一个 JSON 对象，不要 Markdown 代码围栏。\n\n输入是一份已经生成的学生微课分镜。请检查：\n1. 总时长是否在 45–60 秒。\n2. 是否真的符合指定形式：小安天平逐项同乘、小禾逐步变色拆括号、小远生活情境换边动画。\n3. 是否泄露最终答案或其他学生答案。\n4. 是否出现内部代号（M1/M2/M4 等）、AI 教研指挥舱、缓存、模型名等内部词。\n5. 是否包含逐步进入的 formula_steps、烧录字幕需要的 subtitle 和只给题目的 transfer_prompt。\n6. 数学表达是否适合七年级且不鼓励直接抄答案。\n\n返回结构：\n{\n  \"verdict\": \"approve\" 或 \"reject\",\n  \"reasons\": [\"逐条说明核查依据\"],\n  \"leak_scan\": {\"has_final_answer\": false, \"has_other_answer\": false, \"internal_terms\": []},\n  \"math_notes\": [\"数学表达检查\"],\n  \"prompt_version\": \"reviewer-v2-2026-11-16\"\n}\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"student\": {\"id\": \"S3\", \"name\": \"小远\", \"form\": \"生活情境 + 换边动画\", \"strategy\": \"两边同时做相同操作来解释移项变号\"}, \"script\": {\"title\": \"天平平衡法解一元一次方程\", \"total_duration_sec\": 48, \"scenes\": [{\"id\": \"scene-1\", \"duration_sec\": 12, \"title\": \"天平初现，等式平衡\", \"narration\": \"解方程就像维护一架天平。左边放着未知数与常数，右边也有对应的重量。要让天平保持平衡，两边必须同时做相同的操作。\", \"subtitle\": \"天平代表等号，左右重量相等\", \"formula_steps\": [\"建立天平模型\", \"3x − 7 = 2x + 4\"]}, {\"id\": \"scene-2\", \"duration_sec\": 12, \"title\": \"移项原理，同减消去\", \"narration\": \"想把未知数集中到左边，就像从两边同时拿走相同重量的砝码。等式右边减去二倍x后，左边也要同步减去二倍x。\", \"subtitle\": \"两边同减二倍x，天平仍平衡\", \"formula_steps\": [\"两边同时减去二倍x\", \"消去右侧未知项\"]}, {\"id\": \"scene-3\", \"duration_sec\": 12, \"title\": \"常数换位，符号翻转\", \"narration\": \"同样地，把右边的常数移到左边，相当于两边同时减去该常数。跨过等号时，正负号会自然翻转，保持整体平衡。\", \"subtitle\": \"常数跨等号，正负要变反\", \"formula_steps\": [\"两边同时加上七\", \"常数跨等号变反\"]}, {\"id\": \"scene-4\", \"duration_sec\": 12, \"title\": \"整理化简，自主挑战\", \"narration\": \"经过同加同减的操作，方程已变得简洁。现在请你尝试用天平平衡的思路，独立完成下一道题目，记住每一步都要保持左右相等哦。\", \"subtitle\": \"方法掌握后，请独立练习\", \"formula_steps\": [\"合并同类项\", \"迁移题：5x − 7 = 2x + 8\"]}], \"transfer_prompt\": \"5x − 7 = 2x + 8\"}}"
+      }
+    ],
+    "temperature": 0.25,
+    "max_tokens": 8192,
+    "stream": false
+  },
+  "response": {
+    "verdict": "approve",
+    "reasons": [
+      "总时长为48秒，严格落在45–60秒的合规区间内。",
+      "学生设定为小远，形式明确标注为“生活情境 + 换边动画”，与指定模板要求完全一致。",
+      "脚本仅演示移项原理与天平平衡逻辑，未直接给出例题的最终解（如x=11），也未包含其他学生答案。",
+      "全文无M1/M2等内部代号，未发现AI教研指挥舱、缓存或模型名称等内部敏感词。",
+      "结构完整包含逐步推进的formula_steps、对应场景的subtitle以及末尾独立的transfer_prompt，符合烧录与交互规范。",
+      "数学内容为一元一次方程移项，难度契合七年级课标；结尾设置迁移题引导自主练习，有效避免直接抄答案。"
+    ],
+    "leak_scan": {
+      "has_final_answer": false,
+      "has_other_answer": false,
+      "internal_terms": []
+    },
+    "math_notes": [
+      "方程3x-7=2x+4及迁移题5x-7=2x+8均为七年级标准一元一次方程，难度适中且符合课标要求。",
+      "叙事侧重天平平衡与移项变号的逻辑推导，未提供直接抄写的数值答案，符合探究式学习导向。"
+    ],
+    "prompt_version": "reviewer-v2-2026-11-16"
+  }
+}

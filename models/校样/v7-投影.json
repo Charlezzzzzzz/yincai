@@ -1,0 +1,26 @@
+{
+  "analyst-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "expert-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "designer-old": {
+    "chin_y": 455.2,
+    "prop_bottom_y": 565.59
+  },
+  "producer-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "checker-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  },
+  "assistant-old": {
+    "chin_y": 454.82,
+    "prop_bottom_y": 573.97
+  }
+}

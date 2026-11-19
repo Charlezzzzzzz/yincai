@@ -1,0 +1,200 @@
+/* Public navigation and provenance legend */
+body[data-view] > :is(.masthead, .colophon) {
+  --studio-gutter: clamp(22px, 4.5vw, 80px);
+  background: #f8f6ef; color: #414c52; border-color: #a0a69d;
+}
+body[data-view] > .masthead .mast-inner {
+  max-width: 1510px; min-height: 66px; gap: clamp(12px, 3vw, 44px);
+  padding-inline: var(--studio-gutter);
+}
+body[data-view] > .masthead .signature { min-height: 44px; color: #17253a; white-space: nowrap; }
+body[data-view] > .masthead .project-tag { color: #414c52; white-space: nowrap; }
+body[data-view] > .masthead #main-nav { gap: clamp(1px, 1vw, 16px); }
+body[data-view] > .masthead #main-nav button {
+  min-height: 44px; padding: 0 8px; color: #414c52; font-size: 13px; white-space: nowrap;
+}
+body[data-view] > .masthead #main-nav button:enabled:hover { background: #e9ece6; color: #17253a; }
+body[data-view] > .masthead #main-nav button[aria-current="page"] { background: #e5e9e2; color: #17253a; }
+body[data-view] > .masthead #main-nav button[aria-current="page"]::after { height: 2px; inset-inline: 8px; }
+body[data-view] > .masthead #main-nav button:focus-visible { outline-offset: -4px; }
+body[data-view] > .colophon { padding: 12px var(--studio-gutter); flex-wrap: wrap; gap: 4px 24px; font-size: 12px; }
+
+/* Shared paper and ink, limited to the four existing work views */
+body:is([data-view="cockpit"], [data-view="teacher"], [data-view="student"], [data-view="cast"]) > #work {
+  --ink: #17253a; --muted: #414c52; --sheet: #fcfaf3; --hair: #b0b6af;
+  --studio-desk: #f5f2e9; --studio-sage: #e4e9df; --studio-blue: #e8edf0;
+  --studio-inset: clamp(14px, 3.3vw, 54px);
+  --studio-leaves: 0 3px 0 -1px #e5e4da, 0 5px 0 -2px #b0b6af;
+  background: var(--studio-desk); color: var(--ink);
+}
+body[data-view] > #work :is(.cockpit, .reviewroom, .castroom) .page-top { padding-block: clamp(16px, 2vw, 28px) 12px; }
+body[data-view] > #work :is(.cockpit, .reviewroom, .castroom, .yincai-student) :is(h1, h2) { text-wrap: balance; }
+body[data-view] > #work :is(.cockpit, .reviewroom, .castroom) :is(.quiet, .solid, .adopt) { min-height: 44px; border-radius: 3px; }
+body[data-view] > #work :is(.cockpit, .reviewroom, .castroom) :is(.ink-link, summary) { min-height: 40px; align-content: center; }
+body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits),
+body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits) button { border-radius: 2px; }
+body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits) button { min-height: 40px; }
+
+/* Six seats share one quiet table edge. All controls follow the scene in document flow. */
+.atelier { margin: 4px 0 12px; }
+.table-scene { position: relative; isolation: isolate; padding: 0 3% 17px; }
+.table-scene::before {
+  content: ''; position: absolute; z-index: -1; inset-inline: 1%; bottom: 4px;
+  height: clamp(49px, 5.6vw, 78px); border-radius: 50%;
+  background: linear-gradient(#e6e9de, #d0d8c9);
+  border-bottom: 2px solid #adb9a9; box-shadow: 0 7px 11px -10px #6a7965;
+}
+.ensemble { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: end; }
+.figure {
+  --seat-lift: 0px;
+  min-width: 0; margin-bottom: var(--seat-lift); display: grid; justify-items: center;
+  gap: 5px; color: var(--ink); border-radius: 12px;
+}
+.figure:nth-child(2), .figure:nth-child(5) { --seat-lift: 13px; }
+.figure:nth-child(3), .figure:nth-child(4) { --seat-lift: 23px; }
+.figure-art {
+  display: block; position: relative; width: 100%; height: clamp(135px, 13.6vw, 198px);
+}
+.figure-art > img, .figure-art > .live-figure {
+  display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+}
+.figure-art.has-mesh > img { visibility: hidden; }
+.figure-name {
+  display: inline-grid; place-items: center; padding: 4px 12px; line-height: 1.4;
+  font-size: clamp(12px, 1vw, 14px); font-weight: 550; border-radius: 100px;
+  white-space: nowrap; background: #f6f5ef; color: var(--ink);
+}
+.figure[aria-pressed="true"] .figure-name { background: var(--ink); color: #fff; }
+.figure:focus-visible { outline-offset: 0; }
+.figure.drop-target .figure-name, #main-nav .drop-target { outline: 2px dashed var(--ink); outline-offset: 3px; }
+.table-toolbar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  margin: 8px 0 0; padding: 7px 0; gap: 10px 22px;
+}
+.stage-caption, .role-actions, .handoff-action, .turn-controls { display: flex; flex-wrap: wrap; align-items: center; }
+.stage-caption { gap: 8px 20px; }
+.current-role { display: flex; align-items: baseline; gap: 8px; }
+.current-role > span, .handoff-note { color: var(--muted); font-size: 12px; }
+.current-role strong { color: var(--ink); font: 650 clamp(16px, 1.35vw, 21px)/1.35 var(--serif); }
+.role-actions { gap: 3px; }
+.role-actions button {
+  border: 0; border-radius: 6px; padding: 6px 9px; min-height: 40px;
+  color: var(--ink); font: 500 13px/1.35 var(--sans); white-space: nowrap;
+}
+.turn-controls { gap: 0; margin-inline-start: 6px; border-radius: 7px; background: #e7ebe2; }
+.turn-controls[hidden] { display: none; }
+.turn-controls button { min-width: 40px; color: #405047; }
+.handoff-action { gap: 7px 12px; }
+.docket {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 42px; padding: 8px 14px; border-radius: 8px;
+  background: var(--ink); color: #fff; font: 550 13px/1.4 var(--sans); white-space: nowrap; cursor: grab;
+}
+.docket:active { cursor: grabbing; }
+.flat .table-scene { padding: 3px 0; }
+.flat .table-scene::before { display: none; }
+.flat .ensemble { gap: 5px; align-items: stretch; }
+.flat .figure {
+  margin-bottom: 0; grid-template-columns: auto auto; align-items: center; justify-content: center;
+  gap: 6px; padding: 4px; min-height: 44px; border-radius: 8px; background: #e9ece3;
+}
+.flat .figure-art { width: 30px; height: 30px; }
+.flat .figure-art img { border-radius: 50%; }
+.flat .figure-name { background: none; color: inherit; padding: 0; font-size: 13px; }
+.flat .figure[aria-pressed="true"] { background: var(--ink); color: white; }
+.flat .figure[aria-pressed="true"] .figure-name { background: none; }
+body[data-view="cockpit"] :is(.track, .case-strip, .manuscript) { border-inline: 1px solid var(--hair); }
+body[data-view="cockpit"] .track { margin: 10px 0 0; border-top: 2px solid var(--ink); background: #eaece4; }
+body[data-view="cockpit"] .track button {
+  min-height: 46px; align-items: center; padding: 7px 2px; border: 0; border-inline-end: 1px solid var(--hair);
+}
+body[data-view="cockpit"] .track button:last-child { border-inline-end: 0; }
+body[data-view="cockpit"] .track button[aria-pressed="true"] { background: var(--sheet); box-shadow: inset 0 3px var(--ink); }
+body[data-view="cockpit"] .track button:focus-visible { outline-offset: -5px; }
+body[data-view="cockpit"] .case-strip {
+  margin: 0; padding: 9px var(--studio-inset); gap: 4px 14px;
+  flex-wrap: wrap; background: var(--studio-sage);
+}
+body[data-view="cockpit"] .case-time { white-space: nowrap; }
+body[data-view="cockpit"] .manuscript { padding-inline: var(--studio-inset); box-shadow: var(--studio-leaves); }
+body[data-view="cockpit"] .proof {
+  padding: 9px 12px; border-inline-start: 2px solid #788d7d;
+  background: linear-gradient(90deg, var(--studio-sage), transparent);
+}
+body[data-view="cockpit"] .folio-acts { flex-wrap: wrap; }
+
+/* Teacher: attached bookmarks, a separate ledger and one adoption accent */
+body[data-view="teacher"] .teacher-desk::before {
+  inset: 26% 0 0; border-radius: 0; border: 0; border-top: 1px solid #a7b3a7;
+  background: linear-gradient(165deg, #edf0e8, #d4ded2);
+}
+body[data-view="teacher"] .review-ledger { padding-inline-start: 12px; border-inline-start: 1px solid #88998c; }
+body[data-view="teacher"] .review-ledger strong { font-variant-numeric: tabular-nums; }
+body[data-view="teacher"] .bookmarks { gap: 4px; margin-top: 0; background: #d4ded2; }
+body[data-view="teacher"] .bookmarks button { min-height: 46px; border-radius: 3px 3px 0 0; border-color: #8e9c8f; background: #e9ede4; }
+body[data-view="teacher"] .bookmarks button[aria-pressed="true"] { background: var(--sheet); box-shadow: inset 0 3px var(--ink); font-weight: 700; }
+body[data-view="teacher"] .bookmarks button:focus-visible { outline-offset: -5px; }
+body[data-view="teacher"] .review-leaf { border: 1px solid var(--hair); padding-inline: var(--studio-inset); box-shadow: var(--studio-leaves); }
+body[data-view="teacher"] .adopt { background: #d5ae60; border-color: #8c6527; }
+body[data-view="teacher"] .adopt:enabled:hover { background: #c9a053; }
+body[data-view="teacher"] .written-state.accepted { border-color: #946827; }
+
+/* Student: keep the open spread and deepen the binding and margin */
+body[data-view="student"] .yincai-student {
+  --ys-ink: var(--ink); --ys-leaf: var(--sheet); --ys-paper: var(--studio-desk); --ys-muted: var(--muted); --ys-rule: #a5ada7;
+}
+body[data-view="student"] .ys-tab { border-radius: 3px 3px 0 0; background: var(--studio-sage); }
+body[data-view="student"] .ys-student-page { box-shadow: var(--studio-leaves); }
+body[data-view="student"] :is(.ys-margin, .ys-media) { background-color: #f0f1e9; }
+body[data-view="student"] .ys-button--quiet { border-color: #788980; }
+
+/* Handbook: model board, facing notes and a portrait index */
+body[data-view="cast"] .sculpture-ground { gap: 0; border-block: 1px solid var(--hair); background: var(--sheet); }
+body[data-view="cast"] .sculpture-view {
+  border-inline-end: 1px solid var(--hair);
+  background: radial-gradient(ellipse at 50% 35%, #f8f8f1 8%, var(--studio-blue) 82%);
+}
+body[data-view="cast"] #gl-model:focus-visible { outline-offset: -4px; }
+body[data-view="cast"] .turn-ring { background: #cfdace; border-color: #899b8c; box-shadow: 0 4px #a0b0a1; }
+body[data-view="cast"] .rotate-keys button { min-width: 44px; height: 44px; border-radius: 2px; }
+body[data-view="cast"] .casting-notes { max-width: none; padding: clamp(18px, 4vw, 58px); }
+body[data-view="cast"] .cast-acts { align-items: center; }
+body[data-view="cast"] .cast-acts a { display: inline-flex; align-items: center; }
+body[data-view="cast"] .casting-strip button { min-height: 56px; }
+body[data-view="cast"] .casting-strip button[aria-pressed="true"] { background: var(--studio-blue); font-weight: 650; }
+@media (hover: hover) {
+  body[data-view="cockpit"] .track button[aria-pressed="false"]:hover,
+  body[data-view="teacher"] .bookmarks button[aria-pressed="false"]:enabled:hover,
+  body[data-view="cast"] .casting-strip button[aria-pressed="false"]:hover { background: #dbe3df; }
+  .figure[aria-pressed="false"]:hover .figure-name, .role-actions button:hover { background: #dce4d8; }
+  .flat .figure[aria-pressed="false"]:hover { background: #dce4d8; }
+  .flat .figure[aria-pressed="false"]:hover .figure-name { background: none; }
+  .docket:hover { background: #304058; }
+}
+@media (max-width: 720px) {
+  body[data-view] > :is(.masthead, .colophon) { --studio-gutter: 15px; }
+  body[data-view] > .masthead .mast-inner { min-height: 0; gap: 0; padding-block: 4px 0; }
+  body[data-view] > .masthead #main-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); width: 100%; gap: 0; }
+  body[data-view] > .masthead #main-nav button { padding-inline: 1px; font-size: clamp(10px, 3.4vw, 13px); white-space: normal; }
+  .atelier { margin-block-end: 8px; }
+  .table-scene { padding: 2px 0 9px; }
+  .ensemble { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 5px; }
+  .table-scene .figure { margin-bottom: 0; }
+  .figure-art { height: clamp(84px, 20vw, 115px); }
+  .figure-name { padding: 4px 7px; }
+  .flat .figure { gap: 4px; }
+  .flat .figure-art { width: 25px; height: 25px; }
+  .flat .figure-name { font-size: clamp(11px, 2.8vw, 13px); }
+  .table-toolbar { display: grid; grid-template-columns: 1fr; gap: 7px; padding-block: 5px 0; }
+  .stage-caption { justify-content: space-between; gap: 4px 9px; }
+  .role-actions button { min-height: 44px; padding-inline: 6px; }
+  .handoff-action { justify-content: space-between; }
+  .docket { min-height: 44px; }
+  body[data-view="cockpit"] .track button { flex-direction: column; gap: 0; }
+  body[data-view="cockpit"] .track button:nth-child(4) { border-inline-end: 0; }
+  body[data-view="cockpit"] .track button:nth-child(n+5) { border-block-start: 1px solid var(--hair); }
+  body[data-view="teacher"] .bookmarks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding-inline: 4px; }
+  body[data-view="teacher"] .bookmarks button span { display: block; }
+  body[data-view="teacher"] .review-heading { flex-wrap: wrap; gap: 8px 16px; }
+  body[data-view="cast"] .sculpture-view { border-inline-end: 0; border-block-end: 1px solid var(--hair); }
+}
