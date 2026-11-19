@@ -50,5 +50,21 @@
       return md.utils.escapeHtml(meta.literal);
     }
   };
-  window.YincaiMarkdown = Object.freeze({render: value => md.render(String(value ?? ''))});
+  // The contact list shows a one-line excerpt of the same message. Read text
+  // tokens to avoid both Markdown markers and duplicated MathML annotations.
+  function preview(value) {
+    const chunks = [];
+    function collect(token) {
+      if (token.children?.length) {
+        token.children.forEach(collect);
+      } else if (['text', 'code_inline', 'code_block', 'fence', 'classroom_math'].includes(token.type)) {
+        chunks.push(token.content);
+      } else if (['softbreak', 'hardbreak'].includes(token.type) || (token.block && token.nesting === -1)) {
+        chunks.push(' ');
+      }
+    }
+    md.parse(String(value ?? ''), {}).forEach(collect);
+    return chunks.join('').replace(/\s+/g, ' ').trim();
+  }
+  window.YincaiMarkdown = Object.freeze({render: value => md.render(String(value ?? '')), preview});
 })();

@@ -150,7 +150,7 @@
     const nav=q('.cc-roster'); if(!nav)return;
     nav.innerHTML=people.map(p=>{
       const t=threads[p.id], last=t.turns.at(-1);
-      const subtitle=t.flight?'等待模型回复…':last?.state==='failed'||last?.state==='expired'?'上次请求待处理':last?.state==='live'?last.reply:p.duty;
+      const subtitle=t.flight?'等待模型回复…':last?.state==='failed'||last?.state==='expired'?'上次请求待处理':last?.state==='live'?(window.YincaiMarkdown?.preview?.(last.reply) ?? last.reply):p.duty;
       return `<button type="button" data-person="${p.id}" aria-pressed="${selected===p.id}">${avatar(p.id)}
       <span class="cc-person"><strong>${p.name}</strong><small>${escape(subtitle)}</small></span><span class="cc-active-mark" aria-hidden="true"></span></button>`;
     }).join('');

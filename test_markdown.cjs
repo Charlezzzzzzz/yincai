@@ -35,3 +35,11 @@ test('renders classroom TeX to offline MathML and leaves literal code intact', (
   assert.doesNotMatch(render('`$x=13$`'), /<math\b/);
   assert.doesNotMatch(render('单价 $50 和 $100'), /<math\b/);
 });
+
+test('contact previews use readable text without Markdown markers or duplicate math', () => {
+  const preview = window.YincaiMarkdown.preview;
+  assert.equal(preview('**课堂追问**\n用蓝笔圈出常数项。'), '课堂追问 用蓝笔圈出常数项。');
+  assert.equal(preview('1. **核验**\n2. 代回'), '核验 代回');
+  assert.equal(preview('建议 $x=13$ 。'), '建议 x=13 。');
+  assert.equal(preview('学生写 `**原话**`'), '学生写 **原话**');
+});
