@@ -152,7 +152,7 @@ def create_app(database: Path, web_root: Path = WEB_ROOT, *, chat_provider: Prov
 
     @app.get("/api/health")
     def health():
-        return {"status": "ok", "service": "yincai-v8.3.0", "teacher_only": True}
+        return {"status": "ok", "service": "yincai-v8.4.0", "teacher_only": True}
 
     app.add_api_route("/api/bootstrap", lambda: display_alias(bootstrap()), methods=["GET"])
 
@@ -272,8 +272,12 @@ def create_app(database: Path, web_root: Path = WEB_ROOT, *, chat_provider: Prov
             ".png", ".jpg", ".jpeg", ".webp", ".svg", ".glb", ".gltf", ".bin", ".woff", ".woff2", ".js", ".css",
         }
         cover_file = len(parts) == 2 and parts[0] == "cover" and relative.suffix.lower() in {".webp", ".png", ".mp4"}
+        roundtable_file = asset in {
+            "roundtable/assembly.glb", "roundtable/hero.png", "roundtable/camera.json",
+            "roundtable/scene.mjs", "roundtable/three-viewer.mjs",
+        }
         candidate = (web_root / relative).resolve()
-        if (not (root_file or asset_file or cover_file or asset in AVATARS) or any(p.startswith(".") for p in parts)
+        if (not (root_file or asset_file or cover_file or roundtable_file or asset in AVATARS) or any(p.startswith(".") for p in parts)
                 or candidate != web_root / relative or not candidate.is_relative_to(web_root)
                 or candidate == database or not candidate.is_file()):
             raise HTTPException(404)

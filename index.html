@@ -6,13 +6,15 @@
   <meta name="color-scheme" content="light">
   <title>因才 · 教育多智能体架构</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css?v=8.3.2">
+  <link rel="stylesheet" href="style.css?v=8.4.0">
   <link rel="stylesheet" href="student.css">
-  <link rel="stylesheet" href="studio.css?v=8.3.2">
+  <link rel="stylesheet" href="studio.css?v=8.4.0">
   <link rel="stylesheet" href="cover.css?v=8.3.2">
-  <link rel="stylesheet" href="chat.css?v=8.3.2">
+  <link rel="stylesheet" href="chat.css?v=8.3.3">
   <link rel="stylesheet" href="markdown.css?v=8.3.0">
   <link rel="stylesheet" href="settings.css">
+  <link rel="stylesheet" href="roundtable.css?v=8.4.0">
+  <link rel="stylesheet" href="review.css?v=8.4.0">
 </head>
 <body data-view="cover">
   <header class="masthead"><div class="mast-inner">
@@ -22,10 +24,65 @@
     </nav>
     <button type="button" class="model-settings-link" data-view="settings">模型设置</button>
   </div></header>
+  <template id="roundtable-template"><div class="roundtable-room">
+<section id="workspace" class="workspace" aria-labelledby="stage-title">
+      <div class="workspace-title"><div><p class="kicker">个案教研 <span aria-hidden="true">/</span> □ 模拟案例 · 小川</p><h1 id="stage-title" tabindex="-1">协作圆桌</h1></div>
+      <div class="workspace-tools"><span id="elapsed"></span><button type="button" class="secondary" id="flat" data-plane aria-pressed="false">平面阅读</button></div></div>
+
+      <div class="spread">
+        <section class="scene-leaf" aria-label="圆桌角色">
+          <div class="leaf-head"><span class="rubric">协作席位</span><span class="stage-hint">点角色查页 · 点书心翻页</span><button class="text-btn" id="orbit" type="button" aria-pressed="false">转动模型 <span aria-hidden="true">↗</span></button></div>
+          <div class="scene" id="scene"><img src="roundtable/hero.png" id="hero" width="1720" height="790" alt="六位 Q 版智能体在同一张低矮的胡桃木长圆桌后呈浅弧排列，面向教师。摊开的备课簿放在前方桌面。"><div id="actors" class="actors"><span id="active-actor" aria-hidden="true" hidden></span><button type="button" id="book-hotspot" hidden></button></div><canvas id="model" tabindex="0" aria-label="圆桌三维模型。方向键转动，Home 复位。" hidden></canvas></div>
+          <div class="role-index" id="roles" aria-label="按岗位查阅"></div>
+          <div class="seat-links"><a id="ask-seat">与该岗位对话</a><a id="view-seat">查看形象</a></div>
+          <p id="viewer-status" class="viewer-status" role="status"></p>
+        </section>
+        <article class="evidence-leaf" id="step-record" aria-labelledby="evidence-title" aria-live="polite">
+          <div class="leaf-head"><span class="rubric" id="folio"></span><span class="cache-label">○ 真实缓存</span></div>
+          <h2 id="evidence-title"></h2><p class="byline" id="owner"></p>
+          <p id="warning" class="warning" hidden>演示反例 · 初稿直接泄露答案</p>
+          <blockquote id="excerpt"></blockquote>
+          <div class="handoff"><p class="rubric">□ 交接规则</p><h3 id="recipient"></h3><p id="assignment"></p></div>
+          <button type="button" id="next" data-pass draggable="true" class="page-turn"></button>
+          <a id="teacher" class="page-turn" href="#teacher" hidden>进入教师批阅 <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+      <nav class="flow" aria-labelledby="flow-title">
+        <div class="flow-head">
+          <h2 id="flow-title">教案流转</h2>
+          <div class="flow-transfer">
+            <span class="flow-source">□ 交接</span>
+            <span class="flow-person"><img id="flow-from-image" alt="" width="25" height="25"><span id="flow-from"></span></span>
+            <span class="transfer-arrow" aria-hidden="true">⟶</span>
+            <a class="flow-person flow-to" id="flow-to-link"><img id="flow-to-image" alt="" width="25" height="25"><span id="teacher-mark" aria-hidden="true" hidden>师</span><span id="flow-to"></span></a>
+          </div>
+        </div>
+        <div id="steps" class="folio-tabs" aria-label="八步协作目录"></div>
+      </nav>
+      <section class="proof-compare" id="comparison" hidden aria-labelledby="comparison-title">
+        <header class="proof-caption">
+          <h2 id="comparison-title">同段对读</h2>
+          <p>教案第 2 步 · 代入检验</p>
+          <span>○ 真实缓存摘录</span>
+        </header>
+        <figure class="proof-draft">
+          <figcaption><strong>初稿</strong><span>演示反例 · 泄露答案</span></figcaption>
+          <blockquote><span id="old-quote"></span></blockquote>
+        </figure>
+        <figure class="proof-revision">
+          <figcaption><strong>修订稿</strong><span>引导验算</span></figcaption>
+          <blockquote id="new-quote"></blockquote>
+        </figure>
+      </section>
+    <details id="record-more" class="record-more"><summary>查阅本步教案与缓存来源</summary>
+        <div id="dossier-content"></div>
+      </details>
+    </section>
+  </div></template>
   <main id="work" tabindex="-1"></main>
   <div id="announce" class="screen-reader" role="status" aria-live="polite"></div>
   <script src="evidence.js"></script><script src="lesson.js"></script><script src="viewer.js"></script>
-  <script src="student.js"></script><script src="review.js"></script><script src="vendor/markdown-it.umd.min.js?v=8.3.0"></script><script src="vendor/katex.min.js?v=8.3.0"></script><script src="markdown.js?v=8.3.1"></script><script src="recording.js"></script><script src="attachments.js?v=8.3.0"></script><script src="chat.js?v=8.3.1"></script>
-  <script src="cover.js?v=8.1"></script><script src="settings.js"></script><script src="app.js?v=8.3.2"></script>
+  <script src="student.js"></script><script src="review.js?v=8.4.0-folio"></script><script src="vendor/markdown-it.umd.min.js?v=8.3.0"></script><script src="vendor/katex.min.js?v=8.3.0"></script><script src="markdown.js?v=8.3.1"></script><script src="recording.js"></script><script src="attachments.js?v=8.3.0"></script><script src="chat.js?v=8.3.1"></script>
+  <script src="cover.js?v=8.1"></script><script src="settings.js"></script><script src="roundtable.js?v=8.4.0"></script><script src="app.js?v=8.4.0"></script>
 </body>
 </html>

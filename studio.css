@@ -30,9 +30,9 @@ body[data-view] > #work :is(.cockpit, .reviewroom, .castroom) .page-top { paddin
 body[data-view] > #work :is(.cockpit, .reviewroom, .castroom, .yincai-student) :is(h1, h2) { text-wrap: balance; }
 body[data-view] > #work :is(.cockpit, .reviewroom, .castroom) :is(.quiet, .solid, .adopt) { min-height: 44px; border-radius: 3px; }
 body[data-view] > #work :is(.cockpit, .reviewroom, .castroom) :is(.ink-link, summary) { min-height: 40px; align-content: center; }
-body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits),
-body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits) button { border-radius: 2px; }
-body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-outfits) button { min-height: 40px; }
+body[data-view] > #work :is(.cockpit, .reviewroom) .switch-pair,
+body[data-view] > #work :is(.cockpit, .reviewroom) .switch-pair button { border-radius: 2px; }
+body[data-view] > #work :is(.cockpit, .reviewroom) .switch-pair button { min-height: 40px; }
 
 /* Six seats share one quiet table edge. All controls follow the scene in document flow. */
 .atelier { margin: 4px 0 12px; }
@@ -54,7 +54,7 @@ body[data-view] > #work :is(.cockpit, .reviewroom) :is(.switch-pair, .teacher-ou
 .figure-art {
   display: block; position: relative; width: 100%; height: clamp(135px, 13.6vw, 198px);
 }
-.figure-art > img, .figure-art > .live-figure {
+.figure-art > img {
   display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
 }
 .figure-art.has-mesh > img { visibility: hidden; }
@@ -122,22 +122,6 @@ body[data-view="cockpit"] .proof {
 }
 body[data-view="cockpit"] .folio-acts { flex-wrap: wrap; }
 
-/* Teacher: attached bookmarks, a separate ledger and one adoption accent */
-body[data-view="teacher"] .teacher-desk::before {
-  inset: 26% 0 0; border-radius: 0; border: 0; border-top: 1px solid #a7b3a7;
-  background: linear-gradient(165deg, #edf0e8, #d4ded2);
-}
-body[data-view="teacher"] .review-ledger { padding-inline-start: 12px; border-inline-start: 1px solid #88998c; }
-body[data-view="teacher"] .review-ledger strong { font-variant-numeric: tabular-nums; }
-body[data-view="teacher"] .bookmarks { gap: 4px; margin-top: 0; background: #d4ded2; }
-body[data-view="teacher"] .bookmarks button { min-height: 46px; border-radius: 3px 3px 0 0; border-color: #8e9c8f; background: #e9ede4; }
-body[data-view="teacher"] .bookmarks button[aria-pressed="true"] { background: var(--sheet); box-shadow: inset 0 3px var(--ink); font-weight: 700; }
-body[data-view="teacher"] .bookmarks button:focus-visible { outline-offset: -5px; }
-body[data-view="teacher"] .review-leaf { border: 1px solid var(--hair); padding-inline: var(--studio-inset); box-shadow: var(--studio-leaves); }
-body[data-view="teacher"] .adopt { background: #d5ae60; border-color: #8c6527; }
-body[data-view="teacher"] .adopt:enabled:hover { background: #c9a053; }
-body[data-view="teacher"] .written-state.accepted { border-color: #946827; }
-
 /* Student: keep the open spread and deepen the binding and margin */
 body[data-view="student"] .yincai-student {
   --ys-ink: var(--ink); --ys-leaf: var(--sheet); --ys-paper: var(--studio-desk); --ys-muted: var(--muted); --ys-rule: #a5ada7;
@@ -163,7 +147,6 @@ body[data-view="cast"] .casting-strip button { min-height: 56px; }
 body[data-view="cast"] .casting-strip button[aria-pressed="true"] { background: var(--studio-blue); font-weight: 650; }
 @media (hover: hover) {
   body[data-view="cockpit"] .track button[aria-pressed="false"]:hover,
-  body[data-view="teacher"] .bookmarks button[aria-pressed="false"]:enabled:hover,
   body[data-view="cast"] .casting-strip button[aria-pressed="false"]:hover { background: #dbe3df; }
   .figure[aria-pressed="false"]:hover .figure-name, .role-actions button:hover { background: #dce4d8; }
   .flat .figure[aria-pressed="false"]:hover { background: #dce4d8; }
@@ -192,8 +175,5 @@ body[data-view="cast"] .casting-strip button[aria-pressed="true"] { background: 
   body[data-view="cockpit"] .track button { flex-direction: column; gap: 0; }
   body[data-view="cockpit"] .track button:nth-child(4) { border-inline-end: 0; }
   body[data-view="cockpit"] .track button:nth-child(n+5) { border-block-start: 1px solid var(--hair); }
-  body[data-view="teacher"] .bookmarks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding-inline: 4px; }
-  body[data-view="teacher"] .bookmarks button span { display: block; }
-  body[data-view="teacher"] .review-heading { flex-wrap: wrap; gap: 8px 16px; }
   body[data-view="cast"] .sculpture-view { border-inline-end: 0; border-block-end: 1px solid var(--hair); }
 }

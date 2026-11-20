@@ -7,14 +7,14 @@ body[data-view="chat"] > #work {display:flex; flex-direction:column; min-height:
 .cc-app {
   --cc-rule:#d9d9d1; --cc-nav:#e8e8df; --cc-fog:#eeeee8; --cc-ink:#14213d;
   width:min(1280px,calc(100% - 8vw)); margin:0 auto; color:var(--cc-ink);
-  display:flex; flex:1; flex-direction:column; min-height:0; padding-bottom:max(10px,env(safe-area-inset-bottom));
+  display:flex; flex:1; flex-direction:column; min-height:0; padding-bottom:max(25px,env(safe-area-inset-bottom));
 }
 .cc-app button,.cc-app textarea {font-family:var(--sans);color:inherit}
 .cc-app [hidden] {display:none!important}
 .cc-page-top,.cc-side-top,.cc-contact,.cc-compose-foot,.cc-evidence-line>div {
   display:flex;align-items:center;justify-content:space-between;gap:12px
 }
-.cc-page-top {flex:none;padding:clamp(18px,3.2vh,40px) 1px 18px}
+.cc-page-top {flex:none;padding:calc(clamp(18px,3.2vh,40px) - 12px) 1px 15px}
 .cc-page-top h1 {font:650 clamp(29px,2.7vw,41px)/1.2 var(--serif);margin:4px 0 0;letter-spacing:.025em}
 .cc-kicker,.cc-contact-name small,.cc-person small,.cc-side-top>span,.cc-meta,.cc-compose-foot {color:#5c6569}
 .cc-kicker {font-size:11px;letter-spacing:.08em}
@@ -105,8 +105,8 @@ body[data-view="chat"] > #work {display:flex; flex-direction:column; min-height:
 .cc-app button:focus-visible {outline:2px solid #395f74;outline-offset:2px}
 .cc-app button:active:not(:disabled) {transform:translateY(1px)}
 @media (max-width:740px) {
-  .cc-app {width:min(100% - 22px,650px);padding-bottom:max(4px,env(safe-area-inset-bottom))}
-  .cc-page-top {padding:15px 4px 12px}
+  .cc-app {width:min(100% - 22px,650px);padding-bottom:max(12px,env(safe-area-inset-bottom))}
+  .cc-page-top {padding:9px 4px 10px}
   .cc-connect-btn {font-size:11px}
   .cc-board {display:flex;flex-direction:column;border-radius:16px}
   .cc-side {padding:6px 7px 5px;border:0;border-bottom:1px solid var(--cc-rule);overflow:hidden;flex:none}

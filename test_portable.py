@@ -10,9 +10,28 @@ from unittest.mock import patch
 from app.case_files import ROOT, case_index, read_cache_bytes
 from app.cockpit_comparison import build_cockpit_comparison
 from app.teacher_case import bootstrap, microcourses, overview
+from serve import create_app
+from test_review import request
 
 
 class PortableCaseTests(unittest.TestCase):
+    def test_roundtable_static_assets_and_private_source(self):
+        seats = {"analyst", "expert", "designer", "producer", "checker", "assistant"}
+        with tempfile.TemporaryDirectory() as directory:
+            app = create_app(Path(directory) / "private.sqlite3")
+            status, camera = request(app, "GET", "/roundtable/camera.json")
+            self.assertEqual(status, 200)
+            self.assertEqual(set(camera["projectedActors"]), seats)
+            for target in [*camera["projectedActors"].values(), camera["bookPage"]]:
+                self.assertEqual(len(target["bounds"]), 4)
+                self.assertGreater(len(target["hitPolygon"]), 3)
+            for name in ("assembly.glb", "hero.png", "scene.mjs", "three-viewer.mjs"):
+                status, content = request(app, "GET", "/roundtable/" + name)
+                self.assertEqual(status, 200, name)
+                self.assertTrue(content, name)
+            for name in ("source/layout.json", "source/build.py", "../serve.py"):
+                self.assertEqual(request(app, "GET", "/roundtable/" + name)[0], 404, name)
+
     def test_checkout_at_new_path_without_upstream(self):
         with tempfile.TemporaryDirectory() as directory, patch("socket.socket.connect", side_effect=AssertionError("unexpected network call")):
             case = Path(directory) / "独立 案例"
