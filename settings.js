@@ -24,7 +24,7 @@
     const recording = window.YincaiRecording;
     work.innerHTML = `<article class="model-settings">
       <header class="ms-heading"><div><button type="button" class="ms-back">← 返回工作区</button><h1>模型设置</h1>
-      <p>为六位智能体选择对话模型。</p></div><div class="ms-current" hidden><span>当前使用</span><strong></strong><small></small></div></header>
+      <p>为六个智能体选择对话模型。</p></div><div class="ms-current" hidden><span>当前使用</span><strong></strong><small></small></div></header>
       <div class="ms-private-intro"><div><h2>连接你的模型</h2><p>选择服务商与模型，在本机输入密钥。保存只更新配置。</p></div>
       <button type="button" data-private-config disabled>配置模型连接</button></div>
       <p class="ms-feedback" role="status" aria-live="polite">正在读取本机配置…</p>

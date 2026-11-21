@@ -23,7 +23,7 @@
         <section class="yc-jacket-scene" aria-labelledby="yc-jacket-title">
           <div class="yc-jacket-intro">
             <h1 id="yc-jacket-title">因才</h1>
-            <p class="yc-jacket-description">六位智能体协作备课，<br>由任课教师逐条审阅、定稿。</p>
+            <p class="yc-jacket-description">六个智能体协作备课，<br>由任课教师逐条审阅、定稿。</p>
             <div class="yc-jacket-actions">
               <button class="yc-entry" type="button" data-cover-enter>进入协作圆桌 <span aria-hidden="true">→</span></button>
               <button class="yc-chat-entry" type="button" data-cover-chat>与智能体对话 <span aria-hidden="true">↗</span></button>
@@ -32,7 +32,7 @@
           <figure class="yc-tableau">
             <div class="yc-tableau-media">
               <img class="yc-tableau-still" width="1344" height="944" src="cover/studio.webp?v=8.1" fetchpriority="high"
-                alt="六位 Q 版智能体围着一本打开的备课手记。">
+                alt="六个智能体以 Q 版形象围在打开的备课手记旁。">
               <video class="yc-camera-move" aria-hidden="true" muted playsinline preload="none" tabindex="-1"></video>
             </div>
           </figure>

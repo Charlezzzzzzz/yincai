@@ -377,7 +377,7 @@
     panel.innerHTML=`<div class="cc-page-top"><div><span class="cc-kicker">教师工作空间</span><h1>教研对话</h1></div><div class="cc-connect-wrap">
       <button type="button" class="cc-connect-btn" data-cc="settings" aria-expanded="false" aria-controls="cc-settings">连接设置</button>
       <aside id="cc-settings" class="cc-settings" aria-label="模型连接设置" hidden></aside></div></div>
-      <div class="cc-board"><aside class="cc-side"><div class="cc-side-top"><h2>会话</h2><span>6 位智能体</span></div><nav class="cc-roster" aria-label="选择角色"></nav></aside>
+      <div class="cc-board"><aside class="cc-side"><div class="cc-side-top"><h2>会话</h2><span>六个智能体</span></div><nav class="cc-roster" aria-label="选择角色"></nav></aside>
       <div class="cc-detail"></div></div>`;
     work.replaceChildren(panel);panel.addEventListener('click',onClick);
     panel.addEventListener('input',e=>{if(e.target.tagName==='TEXTAREA'){current().draft=e.target.value;syncComposer();persist();}});
