@@ -77,7 +77,8 @@ test('sending, failing, retrying and switching roles preserve the exact file mes
   assert.match(app.field('.cc-log').innerHTML,/cc-sent-file/);
   const restored=setup(saved);
   assert.match(restored.field('.cc-log').innerHTML,/<strong>教师复核<\/strong>/);
-  assert.match(restored.field('.cc-log').innerHTML,/历史对话/);
+  assert.match(restored.field('.cc-log').innerHTML,/data-model-receipt>fixture<\/small>/);
+  assert.doesNotMatch(restored.field('.cc-log').innerHTML,/历史对话|历史读取/);
 });
 
 test('reload requires an explicit matching file or removal; changed bytes start a new request',async()=>{

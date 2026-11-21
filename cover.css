@@ -1,6 +1,7 @@
 /* The artwork and the entry film use the same studio, lens and paper background. */
 body.yincai-cover-open{background:#f3f0e8}
 body.yincai-cover-open .masthead{display:none}
+body.yincai-cover-open > .screen-reader{inset-block-start:0;inset-inline-start:0}
 #work:has(.yc-cover){width:100%;max-width:none;padding:0;margin:0}
 .yc-cover{--cover-ink:#14213d;--cover-mute:#52645f;position:relative;isolation:isolate;min-height:100svh;max-width:1720px;margin:0 auto;padding:0 clamp(26px,5vw,84px) 30px;color:var(--cover-ink);font-family:var(--sans);box-sizing:border-box;display:flex;flex-direction:column}
 .yc-jacket-head{display:flex;justify-content:space-between;align-items:center;min-height:82px;border-bottom:1px solid #18243826;gap:14px}
@@ -39,6 +40,12 @@ body.yincai-cover-open .masthead{display:none}
 .yc-departing .yc-jacket-cast{opacity:.2}
 .yc-camera-playing .yc-tableau-media video{opacity:1}
 .yc-fallback-camera .yc-tableau-media{transition:transform .51s cubic-bezier(.35,.05,.52,1);transform:translate3d(0,-2%,60px) scale(1.11)}
+/* Reserve the lower shelf for all six contacts while the studio artwork scales with the viewport. */
+@media(min-width:761px){
+  .yc-jacket-scene{flex:none;min-height:0}
+  .yc-tableau{width:100%;margin:0;justify-self:center}
+  .yc-tableau-media{max-height:min(63svh,680px)}
+}
 @media(min-width:1500px){.yc-jacket-head{min-height:92px}.yc-jacket-cast{padding-bottom:8px}.yc-cast-links img{width:48px;height:48px}}
 @media(max-width:1390px){
   .yc-cast-links i{display:none}

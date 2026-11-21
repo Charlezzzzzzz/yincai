@@ -103,9 +103,7 @@ test('closing without saving clears the form and never authorizes a recording', 
   assert.deepEqual(calls, [['/api/chat/settings','GET']]);
 });
 
-test('an explicit question and a handoff carry independent model receipts; a third question is blocked', async () => {
-  const page = tab();
-  page.window.YincaiRecording.confirmSettings();
+function chatFixture(page) {
   const controls = new Map();
   function field(selector) {
     if (!controls.has(selector)) controls.set(selector, {
@@ -118,15 +116,22 @@ test('an explicit question and a handoff carry independent model receipts; a thi
   page.localStorage = {getItem: () => null};
   page.crypto = require('node:crypto');
   page.matchMedia = () => ({matches:true});
+  field('.cc-evidence').hidden = true;
+  return field;
+}
+
+test('an explicit question and a handoff carry independent model receipts; a third question is blocked', async () => {
+  const page=tab(), field=chatFixture(page);
+  page.window.YincaiRecording.confirmSettings();
   const messages = [];
   page.fetch = async (url, options) => {
     if (url === '/api/chat/status') return {ok:true, json:async()=>({configured:true,provider:'compatible',model:'fixture'})};
     assert.equal(url, '/api/chat');
     const request = JSON.parse(options.body);
     messages.push(request);
-    return {ok:true, json:async()=>({source:'live', provider:'compatible', vendor:'deepseek', model:'fixture',
+    return {ok:true, json:async()=>({source:'live', provider:'compatible', vendor:'deepseek', model:request.role+'-model',
       elapsed_ms:3412, reply:'离线单元测试回复', conversation_id:'offline-id', role:request.role,
-      generated_at:'2026-11-19T03:00:00Z', request_id:request.request_id, replayed:false})};
+      generated_at:'2026-11-19T03:00:00Z', request_id:request.request_id, replayed:request.role==='expert'})};
   };
   load('chat.js', page);
   page.window.YincaiChat.render({replaceChildren(){}}, {role:'analyst'});
@@ -140,15 +145,50 @@ test('an explicit question and a handoff carry independent model receipts; a thi
   await new Promise(resolve=>setImmediate(resolve));
   assert.equal(messages.length,1);
   assert.equal(messages[0].role,'analyst');
-  assert.match(field('.cc-log').innerHTML, /● 实时生成 · DeepSeek · fixture · 3\.41 秒/);
+  assert.match(field('.cc-log').innerHTML, /data-model-receipt>analyst-model<\/small>/);
+  assert.doesNotMatch(field('.cc-log').innerHTML, /本次生成|实时生成|3\.41 秒/);
+  const recordButton={dataset:{cc:'record'},setAttribute(){}};
+  field('panel').onclick({target:{closest:()=>recordButton}});
+  assert.match(field('.cc-evidence').innerHTML,/● 本次生成 · analyst-model/);
   const handoff={dataset:{handoff:'expert',receipt:messages[0].request_id}};
   field('panel').onclick({target:{closest:()=>handoff}});
   await new Promise(resolve=>setImmediate(resolve));
   assert.equal(messages.length,2);
   assert.equal(messages[1].role,'expert');
   assert.equal(messages[1].handoff_from,messages[0].request_id);
-  assert.match(field('.cc-log').innerHTML, /data-model-receipt/);
+  assert.match(field('.cc-log').innerHTML, /data-model-receipt>expert-model<\/small>/);
+  assert.doesNotMatch(field('.cc-log').innerHTML, /回执重放|先前生成|3\.41 秒/);
+  field('.cc-evidence').hidden=true;
+  field('panel').onclick({target:{closest:()=>recordButton}});
+  assert.match(field('.cc-evidence').innerHTML,/○ 回执重放 · expert-model/);
   send('第三次');
   assert.equal(field('.cc-send').disabled,true);
   assert.equal(messages.length,2);
+});
+
+test('restored replies retain their original model, including an unknown model in older data', async () => {
+  const page=tab(''), field=chatFixture(page);
+  const cid='294e4abd-b8d7-4a47-b562-6ff4b18413ca';
+  page.localStorage={getItem:k=>k.endsWith('.expert')?cid:null};
+  page.window.EVIDENCE={s02:{evidence:'样例校验'}};
+  page.window.SOURCE={s02:{ms:2000}};
+  const past={question:'以前的问题',reply:'以前的建议',generated_at:'2026-11-19T03:00:00Z'};
+  page.fetch=async url=>{
+    if(url==='/api/chat/status')return {ok:true,json:async()=>({configured:true,model:'current-model'})};
+    assert.equal(url,'/api/chat/history/expert/'+cid);
+    return {ok:true,json:async()=>({role:'expert',conversation_id:cid,turns:[
+      {...past,request_id:'older',model:'previous-model'}, {...past,request_id:'legacy'}
+    ]})};
+  };
+  load('chat.js',page);
+  page.window.YincaiChat.render({replaceChildren(){}},{role:'expert'});
+  await new Promise(resolve=>setImmediate(resolve));
+  const log=field('.cc-log').innerHTML;
+  assert.equal(log.match(/data-model-receipt/g)?.length,1);
+  assert.match(log,/data-model-receipt>previous-model<\/small>/);
+  assert.doesNotMatch(log,/current-model|历史读取|实时生成/);
+  field('panel').onclick({target:{closest:()=>({dataset:{cc:'record'},setAttribute(){}})}});
+  const records=field('.cc-evidence').innerHTML;
+  assert.match(records,/本岗位对话来源[\s\S]*○ 历史读取 · previous-model[\s\S]*八步案例记录[\s\S]*○ 真实缓存/);
+  assert.doesNotMatch(records,/current-model/);
 });

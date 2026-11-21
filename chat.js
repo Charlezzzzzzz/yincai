@@ -104,14 +104,15 @@
   function time(value){
     return new Date(value).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});
   }
-  function receipt(turn){
-    const vendors={ollama:'本机 Ollama',openai:'OpenAI',google:'Google',anthropic:'Anthropic',deepseek:'DeepSeek',
-      qwen:'阿里云百炼',moonshot:'月之暗面',zhipu:'智谱',volcengine:'火山方舟',minimax:'MiniMax',custom:'自定义兼容接口'};
-    const parts=[turn.replayed?'○ 先前生成 · 回执':turn.restored?'○ 历史对话 · 原为实时生成':'● 实时生成',
-      vendors[turn.vendor] || turn.vendor,turn.model];
-    if(Number.isFinite(turn.elapsed_ms) && turn.elapsed_ms >= 0)parts.push((turn.elapsed_ms/1000).toFixed(2)+' 秒');
-    parts.push(time(turn.completed));
-    return escape(parts.filter(Boolean).join(' · '));
+  function dialogueRecords(id){
+    const replies=threads[id].turns.filter(turn=>turn.state==='live');
+    if(!replies.length)return '';
+    const entries=replies.map(turn=>{
+      const source=turn.restored?'○ 历史读取':turn.replayed?'○ 回执重放':'● 本次生成';
+      const model=turn.model?' · '+escape(turn.model):'';
+      return `<li><span>${escape(turn.text)}</span><small>${source}${model}</small></li>`;
+    }).join('');
+    return `<section><h3>本岗位对话来源</h3><ol class="cc-origin-list">${entries}</ol></section>`;
   }
   function serviceName(){
     if(!service) return serviceCheck?'正在检查连接':'连接设置';
@@ -156,20 +157,21 @@
     }).join('');
   }
   function evidence(id){
-    return byId[id].steps.map(n=>{
+    const excerpts=byId[id].steps.map(n=>{
       const key='s'+String(n).padStart(2,'0'), r=window.EVIDENCE?.[key], source=window.SOURCE?.[key];
       if(!r || !source || typeof r[steps[n-1][1]]!=='string')return '';
       return `<div class="cc-evidence-line"><div><b>${String(n).padStart(2,'0')}　${steps[n-1][0]}</b><small>○ 真实缓存 · ${(source.ms/1000).toFixed(1)} 秒</small></div>
         <p>${escape(r[steps[n-1][1]])}</p><button type="button" data-step-link="${n}" class="cc-text-action">回看这一步　↗</button></div>`;
     }).join('');
+    return dialogueRecords(id)+(excerpts?`<section><h3>八步案例记录</h3>${excerpts}</section>`:'');
   }
   function threadMarkup(){
     const p=byId[selected];
     return `<section class="cc-conversation" aria-label="与${p.name}对话"><header class="cc-contact">
       <button type="button" class="cc-open-model" data-cc="model" aria-label="查看${p.name}的三维形象">${avatar(p.id)}</button>
       <div class="cc-contact-name"><h2>${p.name}</h2><small>${p.duty}${p.id==='assistant'?' · 男生':''}</small></div>
-      <button type="button" class="cc-record-btn" data-cc="record" aria-expanded="false">○ 协作记录</button></header>
-      <div class="cc-evidence" hidden>${evidence(p.id)}</div><div class="cc-log" role="log" aria-label="消息记录" aria-live="polite" aria-relevant="additions text"></div>
+      <button type="button" class="cc-record-btn" data-cc="record" aria-controls="cc-evidence" aria-expanded="false">协作记录</button></header>
+      <div class="cc-evidence" id="cc-evidence" hidden></div><div class="cc-log" role="log" aria-label="消息记录" aria-live="polite" aria-relevant="additions text"></div>
       <form class="cc-compose"><div class="cc-files" aria-live="polite"></div><p class="cc-file-notice" hidden></p>
         <p class="cc-file-error" role="status" hidden></p><div class="cc-entry">
         <input type="file" data-files-picker multiple accept="${files.accept}" hidden>
@@ -188,13 +190,13 @@
     }
     log.innerHTML=t.turns.map((turn,i)=>{
       let reply='';
-      if(turn.state==='live')reply=`<div class="cc-in">${avatar(p.id)}<div><div class="cc-bubble cc-answer cc-rich" dir="auto">${formatMessage(turn.reply)}</div>
-        ${/(?:23|二十三)\s*(?:名|位|人)|(?:前|排名)\s*(?:23|二十三)/.test(turn.reply) ? '<p class="cc-case-note">□ 模拟班级口径：全班 30 人，前三类错因合计涉及 23 人。</p>' : ''}
-        <small class="cc-meta" data-model-receipt>${receipt(turn)}</small><div class="cc-handoffs">${handoffButtons(p.id,turn)}</div></div></div>`;
+      if(turn.state==='live')reply=`<div class="cc-in">${avatar(p.id)}<div><div class="cc-bubble cc-answer cc-rich" dir="auto">${formatMessage(turn.reply)}
+        ${/(?:23|二十三)\s*(?:名|位|人)|(?:前|排名)\s*(?:23|二十三)/.test(turn.reply) ? '<p class="cc-case-note">□ 模拟班级口径：全班 30 人，前三类错因合计涉及 23 人。</p>' : ''}</div>
+        ${turn.model?`<small class="cc-meta" data-model-receipt>${escape(turn.model)}</small>`:''}<div class="cc-handoffs">${handoffButtons(p.id,turn)}</div></div></div>`;
       else if(turn.state==='waiting')reply=`<div class="cc-in">${avatar(p.id)}<div><div class="cc-typing" aria-hidden="true"><i></i><i></i><i></i></div><small class="cc-meta">正在等待模型回复</small></div></div>`;
       else reply=`<div class="cc-error" role="status"><strong>${turn.state==='expired'?'会话已过期':'未收到回复'}</strong><span>${escape(turn.error)}</span>${i===t.turns.length-1?`<div><button type="button" data-cc="retry" ${recording.canSend()?'':'disabled'}>${turn.state==='expired'?'在新会话重试':'重试'}</button><button type="button" data-cc="revise">编辑问题</button><button type="button" data-cc="settings">连接设置</button></div>`:''}</div>`;
       const attached=(turn.attachments||[]).map(row=>`<span class="cc-sent-file">${escape(row.name)} · ${escape(files.sizeLabel(row.size))}</span>`).join('');
-      return `<div class="cc-turn">${turn.fresh?'<div class="cc-divider">新会话</div>':''}<div class="cc-out">${turn.handoffRole&&byId[turn.handoffRole]?`<small class="cc-meta">转自${byId[turn.handoffRole].name} · 先前生成的回复 ○</small>`: ''}<div class="cc-bubble cc-rich" dir="auto">${formatMessage(turn.text)}</div>${attached}<small class="cc-meta">我 · ${time(turn.when)}</small></div>${reply}</div>`;
+      return `<div class="cc-turn">${turn.fresh?'<div class="cc-divider">新会话</div>':''}<div class="cc-out">${turn.handoffRole&&byId[turn.handoffRole]?`<small class="cc-meta">转自${byId[turn.handoffRole].name}</small>`: ''}<div class="cc-bubble cc-rich" dir="auto">${formatMessage(turn.text)}</div>${attached}<small class="cc-meta">我 · ${time(turn.when)}</small></div>${reply}</div>`;
     }).join('');
     log.scrollTop=log.scrollHeight;
   }
@@ -245,6 +247,8 @@
     if(!panel?.isConnected)return;
     roster();if(id===selected){
       chatLog();showFiles();
+      const record=q('.cc-evidence');
+      if(!record.hidden)record.innerHTML=evidence(id);
       const last=q('.cc-turn:last-child .cc-in');
       if(threads[id].turns.at(-1)?.state==='live' && last){
         const log=q('.cc-log');
@@ -347,7 +351,10 @@
       case 'attach':q('[data-files-picker]').click();break;
       case 'model': hooks.openModel?.(selected);break;
       case 'record':{
-        const record=q('.cc-evidence');record.hidden=!record.hidden;b.setAttribute('aria-expanded',String(!record.hidden));break;
+        const record=q('.cc-evidence');
+        record.hidden=!record.hidden;
+        if(!record.hidden)record.innerHTML=evidence(selected);
+        b.setAttribute('aria-expanded',String(!record.hidden));break;
       }
       case 'settings':showConnection=b.classList.contains('cc-connect-btn')?!showConnection:true;updateConnection();if(showConnection&&!b.classList.contains('cc-connect-btn'))q('.cc-connect-btn').focus();break;
       case 'refresh':checkService();break;
