@@ -1,11 +1,11 @@
 (() => {
 'use strict';
-const ids=['S1','S2','S3'];const aliases=['小川','小禾','小远'];const causes=['M2','M4','M1'];const cacheKeys=['plan_xiaoan','plan_xiaohe','plan_xiaoyuan'];const labels={pending:'待定',modified:'已修改',adopted:'已采纳',rejected:'已否决'};
+const ids=['S1','S2','S3'];const aliases=['小川','小禾','小远'];const cacheKeys=['plan_xiaoan','plan_xiaohe','plan_xiaoyuan'];const labels={pending:'待定',modified:'已修改',adopted:'已采纳',rejected:'已否决'};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const http=location.protocol!=='file:';
 let host,active=0,editing=false,busy=false,draft='',version=null,notice='',loadState='preview',cycle=0;
 let records=[],plans=cacheKeys.map(k=>window.EVIDENCE[k]);
-let classroom={total_people:30,top_three_count:23,cause_distribution:[['M2',8],['M1',8],['M4',7],['M3',4],['M10',3]].map(([cause_id,count])=>({cause_id,count}))};
+let classroom={total_people:30,top_three_count:23,cause_distribution:[['M2','去分母漏乘不含分母的项',8],['M1','移项不变号',8],['M4','去括号符号错误',7],['M3','去分母后分子未作整体',4],['M10','等量关系方向弄反',3]].map(([cause_id,label,count])=>({cause_id,label,count}))};
 function blocked(){return editing||busy;}
 function row(){return records.find(r=>r.student_id===ids[active]);}
 function isHere(){return host&&document.body.dataset.view==='teacher'}
@@ -17,38 +17,37 @@ async function refresh(){
  try{const [saved,overview]=await Promise.all([request('/api/v7/reviews'),request('/api/teacher/overview')]);
  if(ticket!==cycle)return;
  if(!saved.teacher_only||!ids.every(id=>saved.reviews.some(r=>r.student_id===id)&&overview.plans.some(p=>p.student_id===id)))throw Error('审阅记录不完整');
- classroom=overview.classroom;records=saved.reviews;plans=ids.map(id=>overview.plans.find(p=>p.student_id===id));loadState='ready';}
- catch(err){if(ticket!==cycle)return;loadState='failed';notice='未能读取本机审阅记录。请重试。';}
+ classroom=overview.classroom;records=saved.reviews;plans=ids.map(id=>overview.plans.find(p=>p.student_id===id));loadState='ready';notice='';}
+ catch(err){if(ticket!==cycle)return;loadState='failed';notice='暂时无法加载批阅，请重试。';}
  if(isHere())paint();}
 function beginEdit(){if(busy||editing)return;version=row()?{hash:row().source_hash,rev:row().revision}:null;draft=textBody();editing=true;notice='';paint();host.querySelector('textarea').focus({preventScroll:true});}
 async function save(action){
  if(busy||loadState!=='ready'||!row())return;
  if(action==='modified'&&!draft.trim()){notice='请先填写修改后的建议。';paint();host.querySelector('textarea')?.focus();return;}
  const original=row(),idx=active;const expected=action==='modified'?version:{hash:original.source_hash,rev:original.revision};
- if(!expected)return;busy=true;notice='正在核对本机记录…';paint();
+ if(!expected)return;busy=true;notice='正在保存…';paint();
  const payload={student_id:ids[idx],source_hash:expected.hash,expected_revision:expected.rev,action};if(action==='modified')payload.current=draft;
  let receipt;
  try{
   receipt=(await request('/api/v7/reviews',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})).review;
   const saved=await request('/api/v7/reviews');const result=saved.reviews.find(r=>r.student_id===ids[idx]);
   if(!saved.teacher_only||result?.revision!==receipt.revision||result.source_hash!==receipt.source_hash||result.action!==action||result.current!==receipt.current)throw Error('最新记录与写入回执不一致');
-  records=saved.reviews;editing=false;version=null;draft='';notice=aliases[idx]+' · '+labels[action]+'，已从教师本机记录读回。';
+  records=saved.reviews;editing=false;version=null;draft='';notice=aliases[idx]+' · '+labels[action]+'。';
   if(action==='adopted'||action==='rejected'){const others=[...ids.slice(idx+1),...ids.slice(0,idx)];const next=others.find(id=>records.find(r=>r.student_id===id)?.action==='pending');if(next)active=ids.indexOf(next);}
  }catch(err){
-  if(err.status===409||receipt){notice=(receipt?'收到写入回执，但未能核对最新记录。':'该建议已由其他窗口更新。')+(editing?'当前草稿已保留，可先复制后取消，再重读。':'请重新读取记录。');loadState='stale';}
-  else notice='未确认保存。'+err.message+'。'+(editing?'当前草稿已保留。':'');
+  if(err.status===409||receipt){notice=(receipt?'暂时无法确认保存结果。':'该建议已由其他窗口更新。')+(editing?'草稿已保留，可先复制草稿，再取消并重试。':'请刷新后查看。');loadState='stale';}
+  else notice='保存失败，请重试。'+(editing?'当前草稿已保留。':'');
  }finally{busy=false;paint();}
 }
 function paint(){if(!isHere())return;
  document.querySelectorAll('#main-nav [data-view]').forEach(b=>{b.disabled=blocked()&&b.dataset.view!=='teacher';b.title=b.disabled?'先保存或取消当前修改':'';});const p=plans[active],r=row(),ready=loadState==='ready';const proof=Array.isArray(p.evidence)?p.evidence:[];
- const pending=ready?records.filter(x=>x.action==='pending').length:loadState==='preview'?ids.length:null;
- const state=editing?'正在修改 · 尚未保存':ready?labels[r.action]:loadState==='loading'?'读取中':loadState==='preview'?'待定 · 离线预览':'状态待核实';
- const status=ready?'教师本机记录':loadState==='preview'?'离线预览 · 写入未启用':loadState==='loading'?'正在读取教师记录':'本机记录待重读';
+ const pending=ready?records.filter(x=>x.action==='pending').length:null;
+ const state=editing?'正在修改 · 尚未保存':ready?labels[r.action]:'';
  const bookmarks=ids.map((id,i)=>{
    const saved=records.find(record=>record.student_id===id);
-   const statusLabel=ready?labels[saved.action]:loadState==='preview'?'待定 · 预览':'待读取';
+   const statusLabel=ready?labels[saved.action]:'';
    return `<button type="button" data-student="${i}" aria-pressed="${i===active}" aria-controls="review-paper" ${blocked()?'disabled':''}>
-     <small>${String(i+1).padStart(2,'0')}</small><b>${aliases[i]}</b><span>${statusLabel}</span></button>`;
+     <small>${String(i+1).padStart(2,'0')}</small><b>${aliases[i]}</b>${statusLabel?'<span>'+statusLabel+'</span>':''}</button>`;
  }).join('');
  const actions=editing?
    `<button class="solid" data-save="modified" ${!ready||busy?'disabled':''}>保存修改</button><button class="quiet" data-cancel ${busy?'disabled':''}>取消</button>`:
@@ -65,29 +64,29 @@ function paint(){if(!isHere())return;
      <div class="review-progress" aria-hidden="true">${ids.map(id=>{
        const saved=ready&&records.find(item=>item.student_id===id);
        return '<i class="'+(saved&&saved.action!=='pending'?'reviewed':'')+'"></i>';
-     }).join('')}</div><span>${esc(status)}</span></div></header>
+     }).join('')}</div></div></header>
    <nav class="bookmarks" aria-label="三份模拟学生建议">${bookmarks}</nav>
    <article class="review-paper" id="review-paper" aria-labelledby="review-title">
      <div class="review-main"><header class="review-heading">
        <p class="review-kicker">备课手记　/　${String(active+1).padStart(2,'0')}</p>
-       <strong class="written-state ${ready&&r.action==='adopted'?'accepted':''}">${esc(state)}</strong>
+       ${state?`<strong class="written-state ${ready&&r.action==='adopted'?'accepted':''}">${esc(state)}</strong>`:''}
        <h2 id="review-title">${aliases[active]}的教学建议</h2>
      </header>
      <section class="review-copy" aria-labelledby="copy-label"><h3 id="copy-label">${copyLabel}</h3>
        ${editing?`<label class="screen-reader" for="revision-text">教师建议修改稿</label><textarea id="revision-text" maxlength="12000" ${busy?'readonly':''}>${esc(draft)}</textarea>`:`<p>${esc(textBody())}</p>`}</section>
      ${active===2?'<p class="math-note">小远第三段微课的旁白与公式仍待复核。</p>':''}
      <footer class="decision-rail"><div class="decision-buttons" aria-label="教师决定">${actions}</div>
-       <span>${ready?'仅保存到教师端':esc(status)}</span></footer>
-     <div class="readback" role="status"><span>${esc(notice)}</span>${http&&!editing&&!busy?'<button class="ink-link" data-read>重新读取</button>':''}</div></div>
+       <span>${loadState==='preview'?'预览模式，仅供阅读':'仅保存到教师端'}</span></footer>
+     <div class="readback" role="status"><span>${esc(notice)}</span>${http&&!editing&&!busy?`<button class="ink-link" data-read>${loadState==='failed'||loadState==='stale'?'重试':'刷新'}</button>`:''}</div></div>
      <aside class="review-margin" aria-labelledby="review-evidence"><p class="review-kicker">□ 模拟学生 · ${aliases[active]}</p>
        <h3 id="review-evidence">批阅依据</h3>
-       <p class="cause-line">${esc(causes[active])}　${active===2?'□ 模拟设定':'○ 诊断缓存'}</p>
+       ${p.cause_label?'<p class="cause-line">'+esc(p.cause_label)+'</p>':''}
        <h4>学情摘要 ○</h4><p class="margin-summary">${esc(p.teacher_summary)}</p>
        <details class="review-source" ${editing?'open':''}><summary>原建议与 ${proof.length} 条依据 ○</summary>
          <p>${esc(r?.original||p.recommendation)}</p><ul>${proof.map(item=>`<li>${esc(item)}</li>`).join('')}</ul></details>
        <details class="review-class"><summary>班级错因分布 □</summary>
          <p>模拟班级 ${esc(classroom.total_people)} 人，前三类错因共 ${esc(classroom.top_three_count)} 人。</p>
-         <dl>${distribution.map(item=>`<div><dt>${esc(item.cause_id)}</dt><dd>${esc(item.count)} 人</dd></div>`).join('')}</dl></details>
+         <dl>${distribution.map(item=>`<div><dt>${esc(item.label)}</dt><dd>${esc(item.count)} 人</dd></div>`).join('')}</dl></details>
      </aside>
    </article></div>`;
  host.querySelectorAll('[data-student]').forEach(b=>b.onclick=()=>{if(blocked())return;active=+b.dataset.student;notice='';paint();host.querySelector(`[data-student="${active}"]`)?.focus({preventScroll:true})});

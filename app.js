@@ -11,14 +11,14 @@ const agents=[
 const teachers=[['teacher-female','任课教师','女教师','逐条审阅、修改、采纳或否决建议，保有最终决定权。',[]],['teacher-male','任课教师','男教师','逐条审阅、修改、采纳或否决建议，保有最终决定权。',[]]];
 const cast=[...agents,...teachers], names=['诊断','校验','设计','初稿','核查退回','修订','复核通过','交付'], roles=[0,1,2,3,4,3,4,5];
 const defaultModel='checker';
-const store={view:'cockpit',step:5,mss:4,flat:matchMedia('(max-width:720px), (prefers-reduced-motion:reduce)').matches,model:defaultModel,teacher:'teacher-female',round:526.8,records:{},modelHandle:null};
+const store={view:'cockpit',step:5,mss:4,flat:matchMedia('(max-width:720px), (prefers-reduced-motion:reduce)').matches,model:defaultModel,teacher:'teacher-female',records:{},modelHandle:null};
 try{const saved=localStorage.getItem('yincai.teacher.appearance');if(teachers.some(t=>t[0]===saved))store.teacher=saved;}catch{}
 function changeTeacher(id){if(!teachers.some(t=>t[0]===id))return;store.teacher=id;try{localStorage.setItem('yincai.teacher.appearance',id)}catch{}}
 const work=document.querySelector('#work');
 let roundtable;
 let previousWorkspace='cover', currentWorkspace='cover';
 const e=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const num=n=>String(n).padStart(2,'0');const src=n=>window.SOURCE['s'+num(n)];const rec=n=>store.records[num(n)]||window.EVIDENCE['s'+num(n)];const sec=n=>(src(n).ms/1000).toFixed(1);
+const num=n=>String(n).padStart(2,'0');const src=n=>window.SOURCE['s'+num(n)];const rec=n=>store.records[num(n)]||window.EVIDENCE['s'+num(n)];
 function announce(msg){document.querySelector('#announce').textContent=msg;}
 function modelImage(id){return 'models/'+id+'.png'}
 function avatar(id){return id.startsWith('teacher-')?'models/'+id+'-avatar.png':'avatars/'+id+'.webp'}
@@ -69,15 +69,15 @@ function route(path,{top=true,push=true}={}){
 function openModel(id){route('cast/'+id);}
 const transitions=['作答记录 → 错因诊断','诊断依据 → 学科校验','校验结论 → 教学策略','教学策略 → 讲解初稿','初稿泄露答案 → 退回制作人','退回意见 → 讲解修订稿','修订稿 → 核查通过','已复核材料 → 教师决定'];
 function manuscripts(){const revised=store.mss===6,r=rec(store.mss),cause=rec(revised?7:5),leak='正确答案是13。'; const current=store.step;
- return `<article class="manuscript" aria-label="同段版本审阅"><div class="folio-heading"><div><span class="eyebrow">教案批注 ○</span><h2>${e(r.title)}</h2></div><div class="switch-pair" aria-label="教案版本"><button data-variant="4" aria-pressed="${!revised}">初稿</button><button data-variant="6" aria-pressed="${revised}">修订稿</button></div></div><div class="margin-grid"><section class="annotated"><h3>第 2 步 · 代入检验 <small>○ ${num(store.mss)} 制作人</small></h3><p>${e(r.steps[1].replace(/^2\.\s*代入检验[：:]/,'' )).replace(leak,`<mark>${leak}</mark>`)}</p>${revised?`<div class="counter"><del>${leak}</del> <small>演示用反例 · 04 初稿原句</small></div>`:'<div class="counter"><small>演示用反例 · 初稿直接泄露答案</small></div>'}</section><aside class="proof"><span class="proof-index">${revised?'②':'①'}</span><div><h3>${revised?'07 复核通过':'05 核查退回'}　○ <small>${sec(revised?7:5)} 秒</small></h3><p>${e(cause.reason)}</p></div></aside></div><div class="folio-acts"><button class="ink-link" data-variant="${revised?4:6}">${revised?'对照被退回的原句':'对照修订后的同一句'}　⇄</button><button class="ink-link" data-step="${current===7?8:revised?7:6}">${current===7?'查看交付':revised?'进入复核':'移交制作人'}　→</button></div><details class="transcript"><summary>教案全文与旁白　○</summary><div><h3>教学步骤 ○</h3>${r.steps.map(t=>`<p>${e(t).replace(leak,'<mark>'+leak+'</mark>')}</p>`).join('')}<h3>语音旁白 ○ ${!revised?'· 含演示用反例':''}</h3><p>${e(r.voiceover).replace('正确答案是13哦。','<mark>正确答案是13哦。</mark>')}</p><h3>摘要与说明 ○</h3><p>${e(r.summary)}</p><p>${e(r.student_safe_diagnosis)}</p><h3>图示计划 ○</h3>${r.visual_plan.map(t=>`<p>${e(t)}</p>`).join('')}<h3>迁移练习 ○</h3><p>${e(r.migration_question)}</p></div></details></article>`;
+ return `<article class="manuscript" aria-label="同段版本审阅"><div class="folio-heading"><div><span class="eyebrow">教案批注 ○</span><h2>${e(r.title)}</h2></div><div class="switch-pair" aria-label="教案版本"><button data-variant="4" aria-pressed="${!revised}">初稿</button><button data-variant="6" aria-pressed="${revised}">修订稿</button></div></div><div class="margin-grid"><section class="annotated"><h3>第 2 步 · 代入检验 <small>○ ${num(store.mss)} 制作人</small></h3><p>${e(r.steps[1].replace(/^2\.\s*代入检验[：:]/,'' )).replace(leak,`<mark>${leak}</mark>`)}</p>${revised?`<div class="counter"><del>${leak}</del> <small>演示用反例 · 04 初稿原句</small></div>`:'<div class="counter"><small>演示用反例 · 初稿直接泄露答案</small></div>'}</section><aside class="proof"><span class="proof-index">${revised?'②':'①'}</span><div><h3>${revised?'07 复核通过':'05 核查退回'}</h3><p>${e(cause.reason)}</p></div></aside></div><div class="folio-acts"><button class="ink-link" data-variant="${revised?4:6}">${revised?'对照被退回的原句':'对照修订后的同一句'}　⇄</button><button class="ink-link" data-step="${current===7?8:revised?7:6}">${current===7?'查看交付':revised?'进入复核':'移交制作人'}　→</button></div><details class="transcript"><summary>教案全文与旁白　○</summary><div><h3>教学步骤 ○</h3>${r.steps.map(t=>`<p>${e(t).replace(leak,'<mark>'+leak+'</mark>')}</p>`).join('')}<h3>语音旁白 ○ ${!revised?'· 含演示用反例':''}</h3><p>${e(r.voiceover).replace('正确答案是13哦。','<mark>正确答案是13哦。</mark>')}</p><h3>摘要与说明 ○</h3><p>${e(r.summary)}</p><p>${e(r.student_safe_diagnosis)}</p><h3>图示计划 ○</h3>${r.visual_plan.map(t=>`<p>${e(t)}</p>`).join('')}<h3>迁移练习 ○</h3><p>${e(r.migration_question)}</p></div></details></article>`;
 }
 function plainRecord(){const n=store.step,r=rec(n);const fields=n===1?[['错因',r.misconception_id],['诊断依据',r.evidence],['学习状态',r.learner_state]]:n===2?[['校验',r.valid?'通过':'待复核'],['学科依据',r.evidence],['涉及的知识点',r.knowledge_points]]:n===3?[['策略名称',r.strategy_name],['选择依据',r.rationale],['教学步骤',r.steps],['媒体形式',r.media_form]]:[['教学建议',r.recommendation],['学情摘要',r.teacher_summary],['依据',r.evidence]];
  const asText=v=>Array.isArray(v)?v.join('　·　'):typeof v==='object'?Object.values(v).join('　·　'):v;
- return `<article class="manuscript trace-text"><div class="folio-heading"><div><span class="eyebrow">${agents[roles[n-1]][1]}　○ ${sec(n)} 秒</span><h2>${n===8?'送交教师的教学建议':transitions[n-1].split(' → ')[1]}</h2></div>${n===8?'<button class="solid" data-view="teacher">交给任课教师　→</button>':''}</div>${fields.map(([k,v])=>`<section><h3>${k} ○</h3><p>${e(asText(v))}</p></section>`).join('')}</article>`;}
+ return `<article class="manuscript trace-text"><div class="folio-heading"><div><span class="eyebrow">${agents[roles[n-1]][1]}</span><h2>${n===8?'送交教师的教学建议':transitions[n-1].split(' → ')[1]}</h2></div>${n===8?'<button class="solid" data-view="teacher">交给任课教师　→</button>':''}</div>${fields.map(([k,v])=>`<section><h3>${k} ○</h3><p>${e(asText(v))}</p></section>`).join('')}</article>`;}
 function handoffDescription(n){
  const event=store.handoffs?.[n-1];if(!event)return '';
  const name=id=>agents.find(a=>a[0]===id)?.[1]||'任课教师';
- return `<p><b>交接记录 ${num(event.seq)}</b>　${e(name(event.sender))} → ${e(name(event.recipient))}　·　${e(event.stage)}</p><small>□ 岗位流向按八步规则　·　○ 真实缓存　·　文件 SHA-256</small><code>${e(event.file_sha256)}</code>`;
+ return `<p><b>交接记录 ${num(event.seq)}</b>　${e(name(event.sender))} → ${e(name(event.recipient))}　·　${e(event.stage)}</p>`;
 }
 function quoteForStep(n) {
  const record=rec(n);
@@ -93,10 +93,9 @@ function quoteForStep(n) {
 function dossier() {
  const n=store.step;
  return (n>=4 && n<=7 ? manuscripts() : plainRecord()) +
-   `<details class="provenance"><summary>本步缓存记录与来源 ○</summary>
-   <p>${e(src(n).model)}　·　${sec(n)} 秒</p>
-   <small>模拟学生姓名使用当前展示名，来源文件保留生成时的记录。</small>
-   ${handoffDescription(n)}<code>${e(src(n).file)}</code><pre>${e(JSON.stringify(rec(n),null,2))}</pre></details>`;
+   `<details class="provenance"><summary>案例来源</summary>
+   <p>○ 已保存的教案案例 · ${e(src(n).model)}</p>
+   ${handoffDescription(n)}</details>`;
 }
 function renderCockpit() {
  if (!roundtable) {
@@ -107,7 +106,7 @@ function renderCockpit() {
    const labels=Object.fromEntries(agents.map(([id,name])=>[id,name]));
    labels.teacher='任课教师';
    roundtable=window.YincaiRoundtable.create({
-     steps,names:labels,getQuote:quoteForStep,elapsed:()=>store.round,
+     steps,names:labels,getQuote:quoteForStep,
      onStep:setStep,renderDetail:dossier,initialFlat:matchMedia('(prefers-reduced-motion: reduce)').matches
    });
  }
@@ -143,5 +142,5 @@ document.addEventListener('drop',event=>{if(event.target.closest('.drop-target')
 document.addEventListener('dragend',()=>document.querySelector('.drop-target')?.classList.remove('drop-target'));
 document.addEventListener('click',action);document.querySelector('.signature').addEventListener('click',ev=>{ev.preventDefault();route('cover')});window.addEventListener('hashchange',()=>{if(!route(location.hash.slice(1),{push:false}))history.replaceState(null,'','#teacher')});
 route(location.hash.slice(1),{push:false});
-if(location.protocol!=='file:')fetch('/api/cockpit/comparison').then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{const p=data.protocol;if(p?.steps&&Object.keys(p.steps).length===8&&Number.isFinite(p.cache_round_elapsed_seconds)){store.handoffs=data.handoffs;store.records=p.steps;store.round=p.cache_round_elapsed_seconds;if(store.view==='cockpit')renderCockpit();}}).catch(()=>{});
+if(location.protocol!=='file:')fetch('/api/cockpit/comparison').then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{const p=data.protocol;if(p?.steps&&Object.keys(p.steps).length===8&&Number.isFinite(p.cache_round_elapsed_seconds)){store.handoffs=data.handoffs;store.records=p.steps;if(store.view==='cockpit')renderCockpit();}}).catch(()=>{});
 })();

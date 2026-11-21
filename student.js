@@ -202,11 +202,11 @@
     if (student.id === "S1") {
       const action = typeof openCockpit === "function" ? () => openCockpit() : null;
       aside.append(
-        button("ys-button ys-button--quiet", "打开协作缓存", action),
-        element("p", "ys-cache-note", "八步协作缓存仅对应小川。"),
+        button("ys-button ys-button--quiet", "查看协作教案", action),
+        element("p", "ys-cache-note", "此份协作教案以小川为例。"),
       );
     } else {
-      aside.append(element("p", "ys-cache-note", "八步协作缓存仅对应小川。"));
+      aside.append(element("p", "ys-cache-note", "此份协作教案以小川为例。"));
     }
 
     const helper = element("div", "ys-helper");

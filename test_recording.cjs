@@ -22,7 +22,7 @@ test('recording requires manual setup and allows two requests across reloads', (
   assert.throws(() => recording.reserve(), /云端配置/);
   recording.confirmSettings(); recording.reserve();
   const restored = tab('?recording=1', saved).window.YincaiRecording;
-  assert.match(restored.status(), /还可发送 1 次/);
+  assert.equal(restored.status(), '');
   restored.reserve();
   assert.equal(restored.canSend(), false);
   assert.throws(() => restored.reserve(), /两次/);
@@ -89,7 +89,7 @@ test('private dialog: saving closes it, clears inputs and sends only a local set
   assert.equal(control('.ms-current strong').textContent, 'DeepSeek');
   assert.equal(control('.ms-current small').textContent, 'fixture-model');
   assert.deepEqual([...saved.values()], ['1']);
-  assert.match(page.window.YincaiRecording.status(), /还可发送 2 次/);
+  assert.equal(page.window.YincaiRecording.status(), '');
 });
 test('closing without saving clears the form and never authorizes a recording', async () => {
   const {page,control,calls} = settingsFixture();
@@ -160,7 +160,7 @@ test('an explicit question and a handoff carry independent model receipts; a thi
   assert.doesNotMatch(field('.cc-log').innerHTML, /回执重放|先前生成|3\.41 秒/);
   field('.cc-evidence').hidden=true;
   field('panel').onclick({target:{closest:()=>recordButton}});
-  assert.match(field('.cc-evidence').innerHTML,/○ 回执重放 · expert-model/);
+  assert.match(field('.cc-evidence').innerHTML,/○ 已有回复 · expert-model/);
   send('第三次');
   assert.equal(field('.cc-send').disabled,true);
   assert.equal(messages.length,2);
@@ -189,6 +189,6 @@ test('restored replies retain their original model, including an unknown model i
   assert.doesNotMatch(log,/current-model|历史读取|实时生成/);
   field('panel').onclick({target:{closest:()=>({dataset:{cc:'record'},setAttribute(){}})}});
   const records=field('.cc-evidence').innerHTML;
-  assert.match(records,/本岗位对话来源[\s\S]*○ 历史读取 · previous-model[\s\S]*八步案例记录[\s\S]*○ 真实缓存/);
+  assert.match(records,/本岗位对话来源[\s\S]*○ 历史读取 · previous-model[\s\S]*八步案例记录[\s\S]*○ 已保存的案例/);
   assert.doesNotMatch(records,/current-model/);
 });

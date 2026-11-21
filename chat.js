@@ -108,7 +108,7 @@
     const replies=threads[id].turns.filter(turn=>turn.state==='live');
     if(!replies.length)return '';
     const entries=replies.map(turn=>{
-      const source=turn.restored?'○ 历史读取':turn.replayed?'○ 回执重放':'● 本次生成';
+      const source=turn.restored?'○ 历史读取':turn.replayed?'○ 已有回复':'● 本次生成';
       const model=turn.model?' · '+escape(turn.model):'';
       return `<li><span>${escape(turn.text)}</span><small>${source}${model}</small></li>`;
     }).join('');
@@ -128,7 +128,7 @@
   function updateConnection(){
     const button=q('[data-cc="settings"]');if(!button)return;
     const destination=q('[data-chat-destination]');
-    if(destination)destination.textContent=recording.enabled?recording.status():service?.provider==='ollama'?'仅教师可见 · 本机模型':service?.provider==='compatible'?'教师私有 · 经所配置的 API 处理':'教师对话';
+    if(destination)destination.textContent=recording.status() || (service?.provider==='ollama'?'仅教师可见 · 本机模型':service?.provider==='compatible'?'教师私有 · 经所配置的 API 处理':'教师对话');
     button.textContent=serviceName();button.setAttribute('aria-expanded',String(showConnection));
     const box=q('.cc-settings');box.hidden=!showConnection;
     if(showConnection)box.innerHTML=connectionBody();
@@ -160,7 +160,7 @@
     const excerpts=byId[id].steps.map(n=>{
       const key='s'+String(n).padStart(2,'0'), r=window.EVIDENCE?.[key], source=window.SOURCE?.[key];
       if(!r || !source || typeof r[steps[n-1][1]]!=='string')return '';
-      return `<div class="cc-evidence-line"><div><b>${String(n).padStart(2,'0')}　${steps[n-1][0]}</b><small>○ 真实缓存 · ${(source.ms/1000).toFixed(1)} 秒</small></div>
+      return `<div class="cc-evidence-line"><div><b>${String(n).padStart(2,'0')}　${steps[n-1][0]}</b><small>○ 已保存的案例</small></div>
         <p>${escape(r[steps[n-1][1]])}</p><button type="button" data-step-link="${n}" class="cc-text-action">回看这一步　↗</button></div>`;
     }).join('');
     return dialogueRecords(id)+(excerpts?`<section><h3>八步案例记录</h3>${excerpts}</section>`:'');

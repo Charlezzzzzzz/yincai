@@ -27,7 +27,7 @@
       <p>为六个智能体选择对话模型。</p></div><div class="ms-current" hidden><span>当前使用</span><strong></strong><small></small></div></header>
       <div class="ms-private-intro"><div><h2>连接你的模型</h2><p>选择服务商与模型，在本机输入密钥。保存只更新配置。</p></div>
       <button type="button" data-private-config disabled>配置模型连接</button></div>
-      <p class="ms-feedback" role="status" aria-live="polite">正在读取本机配置…</p>
+      <p class="ms-feedback" role="status" aria-live="polite">正在加载设置…</p>
       <button type="button" class="ms-reload" hidden>重新读取设置</button>
       <dialog id="ms-private-dialog" aria-labelledby="ms-dialog-title"><div class="ms-dialog-heading"><h2 id="ms-dialog-title">私密连接设置</h2>
       <button type="button" class="ms-close" aria-label="关闭私密连接设置">关闭</button></div>
@@ -90,12 +90,12 @@
       q('.ms-note').textContent = p.note || '使用该厂商的官方兼容接口。';
       q('.ms-key').hidden = p.id === 'ollama';
       keyHint();
-      q('.ms-test-hint').textContent = recording.enabled ? '录制模式最多发送两次对话。保存设置不会向服务商发送请求。' : p.id === 'ollama' ? '测试会向本机模型发送一条简短消息。' :
+      q('.ms-test-hint').textContent = recording.enabled ? '保存设置后即可返回对话。' : p.id === 'ollama' ? '测试会向本机模型发送一条简短消息。' :
         '测试会向所填地址发送一条简短消息，云端服务可能计费。对话会发送当前角色的提问、近期对话和对应教学证据。切换模型或端点后需新开会话。';
       report('');
     }
     async function load() {
-      reload.hidden = true; report('正在读取本机配置…');
+      reload.hidden = true; report('正在加载设置…');
       try {
         const data = await api('', null, controller.signal);
         providers = data.providers; active = data.active;
@@ -159,6 +159,12 @@
     test.onclick = () => submit(true);
     reload.onclick = load;
     await load();
+    if (!opener.disabled && new URLSearchParams(location.search).has('configure')) {
+      const url = new URL(location.href);
+      url.searchParams.delete('configure');
+      history.replaceState(history.state, '', url);
+      opener.click();
+    }
   }
   window.YincaiSettings = Object.freeze({render, leave});
 })();

@@ -1,6 +1,6 @@
 // A single cockpit instance retains its WebGL context while other workspaces are open.
 window.YincaiRoundtable = {
- create({steps, names, getQuote, elapsed, onStep, renderDetail, initialFlat}) {
+ create({steps, names, getQuote, onStep, renderDetail, initialFlat}) {
   const root = document.querySelector('#roundtable-template').content.firstElementChild.cloneNode(true);
   const $ = id => root.querySelector('#' + id);
   const titles = ['定位漏乘的一项', '核对错因与证据', '确定教学策略', '写出第一版教案', '退回泄露答案的初稿', '把答案改成验算提示', '复核同一段提示', '交任课教师批阅'];
@@ -86,7 +86,6 @@ window.YincaiRoundtable = {
     const row = steps[n - 1];
     $('old-quote').textContent = getQuote(4);
     $('new-quote').textContent = getQuote(6);
-    $('elapsed').textContent = '○ 八步真实缓存 · ' + elapsed().toFixed(1) + ' 秒';
     $('ask-seat').href = '#chat/' + row.sender;
     $('view-seat').href = '#cast/' + row.sender;
     const toTeacher = row.recipient === 'teacher';

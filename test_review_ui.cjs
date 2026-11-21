@@ -30,6 +30,7 @@ test('compact teacher review opens with bookmarks, preserves pending count, and 
   };
   const plans = rows.map(r=>({student_id:r.student_id,recommendation:r.original,evidence:[]}));
   const requests = [];
+  let readFailure=false;
   const window = {
     EVIDENCE:Object.fromEntries(['plan_xiaoan','plan_xiaohe','plan_xiaoyuan'].map((key,i)=>[key,plans[i]])),
     addEventListener(){}
@@ -41,6 +42,7 @@ test('compact teacher review opens with bookmarks, preserves pending count, and 
       total_people:30,top_three_count:23,cause_distribution:[]
     }});
     assert.equal(url,'/api/v7/reviews');
+    if(!init.method && readFailure) return {ok:false,status:503,json:async()=>({})};
     if(!init.method) return response({teacher_only:true,reviews:rows});
     const input=JSON.parse(init.body);
     const row=rows.find(r=>r.student_id===input.student_id);
@@ -53,6 +55,8 @@ test('compact teacher review opens with bookmarks, preserves pending count, and 
     window, location:{protocol:'http:'}, document:{body:{dataset:{view:'teacher'}},querySelectorAll:()=>[]}, fetch
   });
   window.YincaiReview.render(host);
+  assert.match(host.html,/待审 — 条/);
+  assert.doesNotMatch(host.html,/本机记录待重读|正在读取教师记录/);
   await new Promise(resolve=>setImmediate(resolve));
   assert.match(host.html, /任课教师 · 最终决定/);
   assert.match(host.html, /待审 3 条/);
@@ -74,6 +78,17 @@ test('compact teacher review opens with bookmarks, preserves pending count, and 
   assert.match(host.html,/待审 0 条/);
   assert.match(host.html,/小远第三段微课的旁白与公式仍待复核/);
   assert.deepEqual(rows.map(r=>r.action),['modified','adopted','rejected']);
+  readFailure=true;
+  window.YincaiReview.render(host);
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.match(host.html,/待审 — 条/);
+  assert.match(host.html,/暂时无法加载批阅，请重试/);
+  assert.doesNotMatch(host.html,/本机记录待重读|待审 0 条/);
+  readFailure=false;
+  host.querySelector('[data-read]').onclick();
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.match(host.html,/待审 0 条/);
+  assert.doesNotMatch(host.html,/暂时无法加载批阅/);
   const writes=requests.map((item,index)=>item[1]==='POST'?index:-1).filter(index=>index>=0);
   assert.equal(writes.length,3);
   for(const index of writes) assert.deepEqual(requests[index+1],['/api/v7/reviews','GET']);

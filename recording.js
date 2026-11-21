@@ -14,16 +14,16 @@
     if (enabled) sessionStorage.setItem(prefix + 'ready', '1');
   }
   function unavailable(state) {
-    if (!state.ready) return '请先到模型设置中保存本次录制的云端配置。';
-    if (state.failed) return '上次请求未完成，已暂停本次录制。';
-    if (state.used >= limit) return '本次录制已使用两次对话请求。';
+    if (!state.ready) return '请先在模型设置中保存云端配置。';
+    if (state.failed) return '上次请求未完成，本次演示已暂停发送。';
+    if (state.used >= limit) return '本次演示的两次对话均已使用。';
     return '';
   }
   function status() {
     if (!enabled) return '';
     try {
       const state = read();
-      return unavailable(state) || '录制模式 · 还可发送 ' + (limit - state.used) + ' 次云端请求';
+      return unavailable(state);
     } catch {return '无法读取本次录制的请求次数，已暂停发送。';}
   }
   function canSend() {

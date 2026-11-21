@@ -5,7 +5,7 @@
  .actor.drop-target{background:rgb(244 247 230 / .35)}
  .role-index .drop-target{outline:2px dashed var(--ink);outline-offset:-2px}
  .workspace{width:min(1400px,90%);margin:auto}
- .kicker,.rubric,.cache-label,#elapsed,.byline,.viewer-status{font:12px/1.5 var(--sans);color:var(--muted)}
+ .kicker,.rubric,.byline,.viewer-status{font:12px/1.5 var(--sans);color:var(--muted)}
  .kicker,.rubric{font-weight:600;letter-spacing:.12em;margin:0}
  .workspace h1,.workspace h2{font-family:var(--serif);font-weight:600}
  .kicker span{margin:0 6px;color:#929087}
@@ -65,7 +65,7 @@ blockquote{border-left:2px solid #a2ada3;padding-left:14px}
 #book-hotspot{position:absolute;border-radius:3px;z-index:1}
 .actor:hover,.actor:focus-visible,#book-hotspot:hover,#book-hotspot:focus-visible{background:rgb(250 248 235 / .15)}
 #active-actor{position:absolute;z-index:2;pointer-events:none;width:12px;height:4px;border-radius:3px;background:#294958;box-shadow:0 0 0 1px #f4f2e9;transform:translate(-50%,calc(-100% - 4px))}
-@media(max-width:440px){.stage-hint{font-size:10px}.scene-leaf>.leaf-head{gap:6px}#elapsed{font-size:11px}}
+@media(max-width:440px){.stage-hint{font-size:10px}.scene-leaf>.leaf-head{gap:6px}}
 
 .flow {
   margin-block: clamp(22px, 2.2vw, 34px) 0;
